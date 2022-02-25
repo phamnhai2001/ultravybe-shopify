@@ -1,0 +1,412 @@
+<!-- /templates/customers/addressess.liquid -->
+<section id="AddressNewForm" class="section create_address edit_address hide">
+  <div class="upper">
+    <div class="navi_top">
+      <ul>
+        <li><a href="/">TOP</a></li>
+        <li>
+          <a class="util_pc" href="/account"><span class="current">マイページ</span></a>
+          <a class="util_sp go_home" href="/"><span class="current">マイページ</span></a>
+        </li>
+        <li class="create_top"><span class="current">住所を登録</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="edit-content">
+    <div class="form-name">
+      住所を登録
+    </div>
+    <div class="form-edit">
+      {% form 'customer_address', customer.new_address %}
+      {% if form.posted_successfully? %}
+      <script type="text/javascript">
+        window.location = "/account";
+      </script>
+      {% endif %}
+      <input class="redirect_url" type="hidden" name="return_to" value="/account">
+      <div class="form-item">
+        <div class="title">
+          名前
+        </div>
+        <div class="input-content name">
+          <input id="first-name" type="text" name="address[first_name]" placeholder="ウルトラ" />
+          <input id="last-name" type="text" name="address[last_name]" placeholder="太郎" />
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="title">
+          会社名
+        </div>
+        <div class="input-content company">
+          <input id="company" type="text" name="address[company]" placeholder="ULTRA-VYBE" />
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="title">
+          電話番号
+        </div>
+        <div class="input-content phone">
+          <input type="text" class="inputs" id="first-block-phone-number"
+            onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"
+            name="address[phone_number-block-1]" placeholder="03" maxlength="3" />
+          <div class="peg"></div>
+          <input type="text" class="inputs" id="second-block-phone-number"
+            onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"
+            name="address[phone_number-block-2]" placeholder="1234" maxlength="4" />
+          <div class="peg"></div>
+          <input type="text" class="inputs" id="third-block-phone-number"
+            onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"
+            name="address[phone_number-block-3]" placeholder="1234" maxlength="4" />
+          <input type="hidden" name="address[phone]" id="AddressPhoneNew" value="{{ form.phone }}" />
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="title">
+          郵便番号
+        </div>
+        <div class="input-content post-office">
+          <input type="text" class="inputs" id="first-block-post-number"
+            onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"
+            name="address[post_office_number-block-1]" placeholder="150" maxlength="3" />
+          <div class="peg"></div>
+          <input type="text" class="inputs" id="second-block-post-number"
+            onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"
+            name="address[post_office_number-block-2]" placeholder="0011" maxlength="5" />
+          <input type="hidden" id="AddressZipNew" name="address[zip]" value="{{ form.zip }}"
+            autocapitalize="characters">
+          <div>
+            <input type="button" class="search-address" value="住所を検索" />
+          </div>
+        </div>
+      </div>
+      <div class="form-item create_box_select">
+        <div class="title">
+          国 / 地域
+        </div>
+        <div id="box_check_option" class="input-content nation">
+          <select class="box_select_sort box_select_create_address"
+            name="address[country]">{{ all_country_option_tags }}</select>
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="title">
+          市区町村
+        </div>
+        <div class="input-content city">
+          <input value="{{ form.city }}" id="AddressCityNew" type="text" name="address[city]" placeholder="渋谷区" />
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="title">
+          住所
+        </div>
+        <div class="input-content street">
+          <input id="AddressAddress1New" type="text" name="address[address1]" placeholder="東1-28-9 1F"
+            value="{{ form.address1 }}" />
+        </div>
+      </div>
+      <div class="form-item last_child_form">
+        <div class="input-content default-address">
+          {{ form.set_as_default_checkbox}}
+          <label for="policy" class="checkbox normal">{{ 'この住所をデフォルトとして設定する' }}</label>
+        </div>
+      </div>
+      <input id="create_new_address" type="submit" class="update btn_short01" value="住所を登録する" />
+      <a class="cancel" href="javascript:;">キャンセル</a>
+      {% endform %}
+    </div>
+  </div>
+</section>
+{% for address in customer.addresses %}
+<section id="EditAddress_{{address.id}}" class="section edit_address hide">
+  <div class="upper">
+    <div class="navi_top">
+      <ul>
+        <li><a href="/">TOP</a></li>
+        <li>
+          <a class="util_pc" href="/account"><span class="current">マイページ</span></a>
+          <a class="util_sp go_home" href="/"><span class="current">マイページ</span></a>
+        </li>
+        <li class="edit_top"><span class="current">住所を編集</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="edit-content">
+    <div class="form-name">
+      発送先住所を編集
+    </div>
+    <div class="form-edit">
+      {% form 'customer_address', address %}
+      <input class="redirect_url" type="hidden" name="return_to" value="/account">
+      <div class="form-item">
+        <div class="title">
+          名前
+        </div>
+        <div class="input-content name">
+          <input type="text" id="AddressFirstNameNew_{{form.id}}" name="address[first_name]"
+            value="{{ form.first_name }}" placeholder="名" class="normal_input">
+          <input type="text" id="AddressLastNameNew_{{form.id}}" name="address[last_name]" value="{{ form.last_name }}"
+            placeholder="姓" class="normal_input">
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="title">
+          会社名
+        </div>
+        <div class="input-content company">
+          <input type="text" id="AddressCompany_{{ form.id }}" name="address[company]" value="{{ form.company }}"
+            autocapitalize="words">
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="title">
+          電話番号
+        </div>
+        <div class="input-content phone">
+          <input type="text" class="inputs" id="first-block-phone-number_{{form.id}}"
+            onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" placeholder="03"
+            maxlength="3" value="{{ form.phone | slice: 0,2 }}" />
+          <div class="peg"></div>
+          <input type="text" class="inputs" id="second-block-phone-number_{{form.id}}"
+            onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" placeholder="1234"
+            maxlength="4" value="{{ form.phone | slice: 2,4 }}" />
+          <div class="peg"></div>
+          <input type="text" class="inputs" id="third-block-phone-number_{{form.id}}"
+            onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" placeholder="1234"
+            maxlength="4" value="{{ form.phone | slice: 4,15 }}" />
+          <input type="hidden" id="AddressPhoneNew_{{form.id}}" name="address[phone]" value="{{ form.phone }}"
+            placeholder="" />
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="title">
+          郵便番号
+        </div>
+        <div class="input-content post-office">
+          <input type="text" class="inputs first-block-phone" id="first-block-post-number_{{form.id}}" maxlength="3"
+            placeholder="" value="{{ form.zip | slice: 0,2 }}" onKeyUp="$('#first-block-post-number_{{form.id}}').zip2addr({
+                      zip2: '#second-block-post-number_{{form.id}}',
+                			pref :'#AddressCity_{{form.id}}',
+                			addr :'#AddressAddress1_{{form.id}}'
+                		});" />
+          <div class="peg"></div>
+          <input type="text" class="inputs second-block-phone" id="second-block-post-number_edit" maxlength="5"
+            placeholder="" value="{{ form.zip | slice: 2,8 }}" onKeyUp="$('#first-block-post-number_{{form.id}}').zip2addr({
+                      zip2: '#second-block-post-number_{{form.id}}',
+                			pref :'#AddressCity_{{form.id}}',
+                			addr :'#AddressAddress1_{{form.id}}'
+                		});" />
+          <input type="hidden" id="AddressZipNew_{{form.id}}" name="address[zip]" value="{{ form.zip }}"
+            placeholder="" />
+          <div>
+            <input id="search-address_edit" type="button" class="search-address" value="住所を検索" />
+          </div>
+        </div>
+      </div>
+      <div class="form-item create_box_select">
+        <div class="title">
+          国 / 地域
+        </div>
+        <div id="box_check_option_01" class="input-content nation">
+          <select class="box_select_sort box_select_edit_address"
+            name="address[country]">{{ all_country_option_tags }}</select>
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="title">
+          市区町村
+        </div>
+        <div class="input-content city">
+          <input type="text" placeholder="都道府県" id="AddressCity_edit" value="{{ form.city }}" name="address[city]" />
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="title">
+          住所
+        </div>
+        <div class="input-content street">
+          <input type="text" id="AddressAddress1_edit" autocapitalize="words" name="address[address1]" placeholder="住所"
+            value="{{ form.address1 }}" />
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="input-content default-address checkbox_edit_address">
+          {{ form.set_as_default_checkbox }}
+          <label class="checkbox normal" for="address_default_address_{{ form.id }}">{{ 'この住所をデフォルトとして設定する' }}</label>
+        </div>
+      </div>
+      <input type="submit" class="update btn_short01 addr_edit" data-form-id="{{ address.id }}" value="更新する" />
+      <a class="cancel" href="javascript:;">キャンセル</a>
+      {% endform %}
+    </div>
+  </div>
+</section>
+{% endfor %}
+<section id="ListAddress" class="section my_page">
+  <div class="order-info">
+    <!-- <div class="card-content">
+      <div class="title">
+        発送先住所
+      </div>
+      {% if customer.addresses_count > 0 %}
+      {% for address in customer.addresses %}
+      <div class="item">
+        <div class="address {{ address.id }}">
+          <p>{{address.last_name}} {{address.first_name}}</p>
+          <p>{{ address.company }}</p>
+          <p>{{ address.phone }}</p>
+          <p>〒{{ address.zip }}</p>
+          <p>{{ address.province }} {{ address.city }} {{ address.address1 }} {{ address.address2 }}</p>
+        </div>
+        {% if address == customer.default_address %}
+        <div class="setting-default"> デフォルトに設定中</div>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <a class="cancel" href="/account">キャンセル</a>
+      {% else %}
+      <div class="address">
+        <p>まだ登録されていません。</p>
+      </div>
+      <a class="cancel" href="/account">キャンセル</a>
+      {% endif %}
+    </div> -->
+  </div>
+</section>
+
+<style>
+  .main>.inner {
+    width: 100%;
+    background-color: #F4F4F4;
+  }
+
+  #main_content {
+    background-color: #F4F4F4;
+  }
+
+  @media (max-width: 768px) {
+
+    .main>.inner,
+    #main_content {
+      background-color: #ffffff !important;
+    }
+
+    #main_content {
+      padding: 0 4.296875vw;
+    }
+  }
+</style>
+<script>
+    // $('.go_home').on('click', function(e) {
+    //     // alert("go home");
+    //     // e.preventDefault();
+    //     window.location.href = "/";
+    //     $('body').addClass('open');
+    //     $('.content.logined').show();
+    //     $('.icon__login.accordion_navi.main').addClass('active');
+    // });
+    // $(window).resize(function() {
+    //     var width = $(window).width();
+    //     if(width <= 768) {
+    //         $('.go_home').on('click', function(e) {
+    //             alert("go home");
+    //             // e.preventDefault();
+    //             window.location.href = "/";
+    //             $('body').addClass('open');
+    //             $('.content.logined').show();
+    //             $('.icon__login.accordion_navi.main').addClass('active');
+    //         });
+    //     }
+    // });
+  window.onload = function () {
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      $(".redirect_url").val("/");
+      $(".cancel").on("click", function () {
+        window.location = "/";
+      });
+      $(".go_home").on("click", function () {
+          window.location = "/";
+      });
+    } else {
+      $(".redirect_url").val("/account");
+      $(".cancel").on("click", function () {
+        window.location = "/account";
+      });
+      $(".go_home").on("click", function () {
+          window.location = "/account";
+      });
+    }
+  }
+  $("#create_new_address,.addr_edit,.cancel,.go_home").click(function () {
+    localStorage.setItem("redirectLogin", "login");
+  });
+</script>
+<script>
+  $(document).ready(function () {
+    $('.search-address').zip2addr({
+      zip2: '#second-block-post-number',
+      pref: '#AddressCityNew',
+      addr: '#AddressAddress1New'
+    });
+    $('#search-address_edit').zip2addr({
+      zip2: '#second-block-post-number_edit',
+      pref: '#AddressCity_edit',
+      addr: '#AddressAddress1_edit'
+    });
+    $('#create_new_address').click(function () {
+      var num1 = $('#first-block-phone-number').val();
+      var num2 = $('#second-block-phone-number').val();
+      var num3 = $('#third-block-phone-number').val();
+      var zip1 = $('#first-block-post-number').val();
+      var zip2 = $('#second-block-post-number').val();
+      var numberphone = num1 + num2 + num3;
+      var zip = zip1 + zip2;
+
+      $('#AddressPhoneNew').text(numberphone);
+      $('#AddressPhoneNew').val(numberphone);
+      $('#AddressZipNew').val(zip);
+      $('#AddressZipNew').text(zip);
+    });
+
+    $('.addr_edit').click(function () {
+      var $el = $(this);
+      var formId = $el.data('form-id');
+      var num1 = $('#first-block-phone-number_' + formId).val();
+      var num2 = $('#second-block-phone-number_' + formId).val();
+      var num3 = $('#third-block-phone-number_' + formId).val();
+      var zip1 = $('#first-block-post-number_' + formId).val();
+      var zip2 = $('#second-block-post-number_' + formId).val();
+
+      var numberphone = num1 + num2 + num3;
+      var zip = zip1 + zip2;
+      $('#AddressPhone_' + formId).text(numberphone);
+      $('#AddressPhone_' + formId).val(numberphone);
+      $('#AddressZip_' + formId).val(zip);
+      $('#AddressZip_' + formId).text(zip);
+      localStorage.setItem('address', 'list');
+    });
+
+
+    $(function () {
+      $(".inputs").keyup(function () {
+        if (this.value.length == this.maxLength) {
+          $(this).next('.inputs').focus();
+        }
+      });
+    });
+    var addr_func = localStorage.getItem('address') || "";
+    if (addr_func == 'create') {
+      $('.edit_top').addClass('hide');
+      $('#ListAddress').addClass('hide');
+      $('#AddressNewForm').toggleClass('hide');
+    } else if (addr_func == 'edit') {
+      var formId = localStorage.getItem('formId');
+      $('.create_top').addClass('hide');
+      $('#ListAddress').addClass('hide');
+      $('#EditAddress_' + formId).removeClass('hide');
+    } else {
+      window.location.href = "/account";
+    }
+
+  });
+</script>

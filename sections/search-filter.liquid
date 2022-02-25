@@ -1,0 +1,336 @@
+<div class="upper">
+  <div class="navi_top">
+    <ul>
+      <li><a href="/">TOP</a></li>
+      <li><span class="current">ウルトラ検索</span></li>
+    </ul>
+  </div>
+</div>
+<section class="section list_advanced_search">
+  <div id="advanced_search_popup">
+    <div class="upper">
+      <form class="inner_advanced_search" action="">
+        <div class="banner_search">
+          <div class="tlt_search_popup">
+            <div class="item_thumbnail">
+              <img src="{{'icon_urtra_serch_l.png' | asset_url}}" alt="">
+            </div>
+            <h3>ウルトラ検索</h3>
+            <span>| 条件を入力して検索ができます</span>
+          </div>
+        </div>
+        <div class="container_search">
+          <div class="option check checkbox__">
+            <div class="form_item no_padding">
+              <div class="unit__">
+                <span>単位</span>
+              </div>
+            </div>
+            <div class="container_checkbox">
+              <div class="form_item check_box">
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="cd" id="cd">
+                  <label for="cd" class="checkbox normal">CD</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="cd+dvd" id="cd_dvd">
+                  <label for="cd_dvd" class="checkbox normal">CD+DVD</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box"  type="checkbox" value="cd+goods" id="cd_goods">
+                  <label for="cd_goods" class="checkbox normal">CD+GOODS</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="cd+other" id="cd_other">
+                  <label for="cd_other" class="checkbox normal">CD+OTHER</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="7inch" id="7inch">
+                  <label for="7inch" class="checkbox normal">7 INCH RECORD</label>
+                </div>
+              </div>
+              <div class="form_item check_box">
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="12inch" id="12inch">
+                  <label for="12inch" class="checkbox normal">12 INCH RECORD</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="bot+set" id="bot_set">
+                  <label for="bot_set" class="checkbox normal">BOX SET</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="tape" id="tape">
+                  <label for="tape" class="checkbox normal">TAPE</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="dvd" id="dvd">
+                  <label for="dvd" class="checkbox normal">DVD</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="dvd+other" id="dvd_other">
+                  <label for="dvd_other" class="checkbox normal">DVD+OTHER</label>
+                </div>
+              </div>
+              <div class="form_item check_box">
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="blu+ray" id="blu_ray">
+                  <label for="blu_ray" class="checkbox normal">Blu-ray</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="goods" id="goods">
+                  <label for="goods" class="checkbox normal">GOODS</label>
+                </div>
+              </div>
+            </div>
+            <div class="form_item item_tag">
+              <div class="list_item_tag">
+                <span>※GOODSは</span>
+                <span>
+                  <a href="#">T-SHIRT</a> /
+                </span>
+                <span>
+                  <a href="#">SWEATSHIRTS</a> /
+                </span>
+                <span>
+                  <a href="#">CAP</a> /
+                </span>
+                <span>
+                  <a href="#">BAG</a> /
+                </span>
+                <span>
+                  <a href="#">BOOK</a> /
+                </span>
+                <span>
+                  <a href="#">OTHERの全てを内包しています</a>
+                </span>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="option check">
+            <div class="check_status">
+              <p class="ttl check"><span>発売状況</span></p>
+              <div id="box_check_option_01" class="form_item box_select__">
+                <select class="box_select_sort box_select_status" name="state">
+                  <option value="all">指定無し</option>
+                  <option value="all">予約受付中</option>
+                  <option value="all">発売中/売り切れ</option>
+                </select>
+              </div>
+            </div>
+            <div class="state">
+              <p class="ttl check"><span>状態</span></p>
+              <div id="box_check_option_02" class="form_item box_select__">
+                <select class="box_select_sort box_select_status" name="state">
+                  <option value="all">指定無し</option>
+                  <option value="all">新品</option>
+                  <option value="all">中古</option>
+                </select>
+              </div>
+            </div>
+            <div class="release_country">
+              <p class="ttl check"><span>発売国</span></p>
+              <div id="box_check_option_03" class="form_item box_select__">
+                <select class="box_select_sort box_select_status" name="state">
+                  <option value="all">指定無し</option>
+                  <option value="all">国内版</option>
+                  <option value="all">輸入盤</option>
+                </select>
+              </div>
+            </div>
+            <div class="presence_existence">
+              <p class="ttl check"><span>特典及び付録の有無</span></p>
+              <div id="box_check_option_04" class="form_item box_select__">
+                <select class="box_select_sort box_select_status" name="state">
+                  <option value="all">指定無し</option>
+                  <option value="all">有り</option>
+                  <option value="all">無し</option>
+                </select>
+                <span class="noite_check">※特典か付録のどちらか片方が 有りの場合、「有り」と見做し ます</span>
+              </div>
+            </div>
+            <div class="price_option">
+              <p class="ttl check"><span>価格</span></p>
+              <div class="narrowPrice searchList clearfix">
+                <div id="searchPrice"
+                  class="slide_size ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                  <div class="slider"></div>
+                  <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;"></div>
+                  <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default last_first_price"
+                    style="left: 0%;"></span>
+                  <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default last_child_price"
+                    style="left: 100%;"></span>
+                </div>
+                <div class="control clearfix">
+                  <p><span>￥</span><input type="text" id="p_pris" maxlength="10" class="sliderMin" name="p_pris"
+                      value="0"></p>
+                  <p><span>￥</span><input type="text" id="p_prie" maxlength="10" class="sliderMax" name="p_prie"
+                      value="100000"></p>
+                  <input id="p_pri_max_slider" type="hidden" name="p_pri_max_slider" value="">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="btn_submit">
+          <button type="button" class="btn_short01 btn_reset">条件をリセット</button>
+          <button id="search-filter-btn" type="button" class="btn_short01 btn_submit_form"><span>この条件で検索</span></button>
+        </div>
+      </form>
+      <div class="container_item_search">
+        <div class="tlt_option_top">
+          <div class="tlt_list">
+            <h3>ウルトラ検索結果</h3>
+            <span>件数：2454件</span>
+          </div>
+          <div id="box_check_option" class="box_select__">
+            <select class="box_select_sort box_select__list" name="state">
+              <option></option>
+              <option value="all">新着順</option>
+              <option value="all">値段の安い順</option>
+              <option value="all">値段の高い順</option>
+            </select>
+          </div>
+        </div>
+        <div class="product_list_item" id="list_product">
+
+          <div class="load-more load1">
+            <div class="wrap_loader">
+              <div class="loader"></div>
+              <div class="loading hidden"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .main>.inner {
+    width: 100%;
+    background-color: #FFFFFF;
+  }
+</style>
+<script src="https://unpkg.com/localforage@1.7.3/dist/localforage.min.js"></script>
+<script>
+  var collections = new Array();
+  localforage
+    .getItem('products')
+    .then(function (arrProduct) {
+      collections = arrProduct.products;
+    })
+    .catch(function (err) {
+        // Xử lý khi việc lấy giá trị với key bị lỗi
+        console.log(err);
+      });
+  $('input[name="coll_box"]').change(function () {
+    if(this.checked) {
+      if($(this).val() === "cd"){
+
+      }
+    }
+  });
+
+
+  //click search
+  $("#search-filter-btn").click(function(){
+    var arr = new Array();
+    var html = simpleTemplating(collections);
+    $('#list_product').html(html);
+      setTimeout(function () {
+          $('.c-item .c-item__body').matchHeight();
+      }, 1000);
+  });
+
+  //sort
+  function sortPriceHigh(a, b) {
+    if (a.price < b.price) {
+      return -1;
+    }
+    if (a.price > b.price) {
+      return 1;
+    }
+    return 0;
+  }
+  function sortPriceLow(a, b) {
+    if (a.price > b.price) {
+      return -1;
+    }
+    if (a.price < b.price) {
+      return 1;
+    }
+    return 0;
+  }
+  function sortDateNew(a, b) {
+    var date1 = a.release_date.substring(0, a.release_date.length - 15);
+    var date2 = b.release_date.substring(0, b.release_date.length - 15);
+    var dateA = new Date(date1), dateB = new Date(date2);
+    return dateB - dateA;
+  }
+
+  //rend product
+  function simpleTemplating(data) {
+      var html = '<ul class="holizontal_list col_05 list_item_products">';
+      $.each(data, function (index, item) {
+        var date = item.release_date.substring(0, item.release_date.length - 5);
+        html += `<li>
+            <a class="c-item" href="/products/`+ item.url + `">
+            <div class="item_thumbnail">
+              <img src="`+ item.img + `" alt="">
+            </div>
+            <div class="c-item__body">
+              <div class="c_category"><span>`+ item.type + `</span></div>
+              <h3 class="c-item__title">`+ item.title + `</h3>
+              <div class="c-item__author">`+ item.artist + `</div>
+              <div class="c-item__price">`+ Shopify.formatMoney(item.price, "{{ shop.money_with_currency_format }}") + `（税抜）</div>
+              <div class="c-item__date">`+ date + ` 発売</div>
+            </div>
+          </a>
+        </li>`;
+      });
+      html += '</ul>';
+      return html;
+    }
+</script>
+
+{% schema %}
+  {
+    "name": "Filter - Search",
+    "settings": [],
+    "blocks":[
+      {
+        "type": "item_tab",
+        "name": "Item tabs",
+        "settings": [
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection"
+          }
+        ]
+      }
+  ],
+  "presets": [
+      {
+        "name": "Filter - Search",
+        "category": "Collection",
+        "blocks": [
+          {
+            "type": "item_tab"
+          }
+		]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+  .select2-container--default .select2-results__option--selected {
+    margin: 0;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

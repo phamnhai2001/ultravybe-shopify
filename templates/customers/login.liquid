@@ -1,0 +1,189 @@
+<!-- /templates/customers/login.liquid -->
+{% if customer  %}<script type="text/javascript">  window.location = "/account";</script>{% endif %}
+<div class="upper">
+    {% render 'breadcrumbs' %}
+  </div>
+<section id="CustomerLoginForm" class="section wrap_login">
+  <div class="upper">
+    <div class="container_login">
+      <ul>
+        <li>
+          <div class="form_login">
+          {% form 'customer_login'%}
+            <input class="redirect_url" type="hidden" name="checkout_url" value="/">
+            <!-- <input class="redirect_url" type="hidden" name="return_to" value="/"> -->
+          {% if form.errors %}
+
+          <script>
+            window.location.href = "/pages/login-confirmation"
+          </script>
+          {% endif %}
+            <h3>ログイン</h3>
+            <form action="">
+              <ul class="vertical_list_login">
+                <li>
+                  <input
+                    id="mail_login"
+                    type="email"
+                    name="customer[email]"
+                    placeholder="メールアドレス"
+                    class="login_input"
+                    autocomplete="email"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    {%- if form.errors contains 'form' -%}
+                      class="input--error"
+                      aria-invalid="true"
+                    {%- endif -%}
+                  />
+                </li>
+                <li>
+                {% if form.password_needed %}
+                  <input
+                    type="password"
+                    value=""
+                    placeholder="パスワード"
+                    class="login_input"
+                    name="customer[password]"
+                    {%- if form.errors contains 'form' -%}
+                    class="input--error"
+                    aria-invalid="true"
+                    {%- endif -%}
+                  />
+                </li>
+                {% endif %}
+                <li>
+                {% if form.password_needed %}
+                  <a class="tlt_bottom_login" href="#recover" id="RecoverPassword"
+                    >パスワードをお忘れの方はコチラ</a
+                  >
+                  {% endif %}
+                </li>
+              </ul>
+              <div class="container_login">
+                <button type="submit" class="btn_login">ログイン</button>
+                <p class="txt_confirm">
+                  <input type="checkbox" value="" class="saved_cookie" id="policy" onchange="savedCookie(this)"/>
+                  <label for="policy" class="checkbox normal"
+                    >次回からのIDの入力を省略</label
+                  >
+                </p>
+                <a class="tlt_bottom_res" href="/account/register"
+                  >はじめてのご利用の方（新規会員登録）</a
+                >
+              </div>
+            </form>
+          {% endform %}
+          </div>
+        </li>
+        <li>
+          <div class="form_login_sns">
+            <h3>外部IDでログイン</h3>
+            <ul class="vertical_list_login">
+              <li><div class="one-click-social-login"></div></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section id="RecoverPasswordForm" class="section retrievel_password hide">
+  <div class="upper">
+    <div class="container_retrievel">
+      <div class="form_retrievel">
+        <h3>パスワードを再設定</h3>
+        <p>
+          登録済みのメールアドレスにパスワード再設定用のURLを通知いたします。
+        </p>
+        {% form 'recover_customer_password', id: 'form_retrievel' %}
+          {% if form.posted_successfully? %}
+            <span class="hide reset-password-success"></span>
+          {% endif %}
+          <ul>
+            <li>
+              <input
+                type="email"
+                class="input_retrieval"
+                placeholder="メールアドレス"
+                name="email"
+                id="RecoverEmail"
+                autocorrect="off"
+                autocapitalize="off"
+                {% if form.errors %}
+                  aria-invalid="true"
+                  aria-describedby="RecoverEmail-email-error"
+                {%- endif -%}
+              />
+              {%- if form.errors -%}
+                <span id="RecoverEmail-email-error" class="input-error-message">
+                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                  {% include 'icon-error' %}
+                  <span>{{ form.errors.messages['form'] }}</span>
+                </span>
+              {%- endif -%}
+            </li>
+            <li>
+              <input
+                type="submit"
+                class="btn_retrievel"
+                value="パスワードをリセット"
+              />
+            </li>
+          </ul>
+          <span id="HideRecoverPasswordLink" class="special_word">キャンセル</span>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .main>.inner {
+    width: 100%;
+    background-color: #F4F4F4;
+
+  }
+  #main_content {
+    background-color: #F4F4F4;
+  }
+#RecoverPasswordForm {
+    border-left: none !important;
+}
+legend .privacy-message {
+  display: none !important;
+}
+@media (max-width: 768px) {
+  .main > .inner,
+  #main_content {
+    background-color: #ffffff;
+  }
+}
+</style>
+<script>
+  window.onload = function (){
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      $(".redirect_url").val("/");
+    } else {
+      $(".redirect_url").val("/account");
+    }
+  }
+</script>
+<script>
+  $('legend.privacy-message').addClass('hide');
+  var today = new Date();
+  var expiry = new Date(today.getTime() + 30 * 24 * 3600 * 1000);
+  //save data to cookie
+  function savedCookie(obj) {
+    var email = document.getElementById('mail_login').value;
+    if($(obj).is(":checked")){
+      document.cookie = "email=" + email + "; path=/; expires=" + expiry.toGMTString();
+    }else{
+      document.cookie = "email=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    }
+  }
+
+  $(".btn_login").click(function () {
+      localStorage.setItem("redirectLogin", "login");
+    });
+</script>

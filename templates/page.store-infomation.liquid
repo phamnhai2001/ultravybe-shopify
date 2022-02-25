@@ -1,0 +1,111 @@
+<div class="upper">
+  <div class="navi_top">
+    <ul>
+      <li><a href="/">TOP</a></li>
+      <li><span class="current">店舗情報</span></li>
+    </ul>
+  </div>
+</div>
+<section class="section store_about" id="store_about">
+  <div class="upper">
+    <div id="slick_main_store">
+        {% section 'slider-store-infomation' %}
+    </div>
+    <div class="about_store">
+      <h2>About ULTRA SHIBUYA</h2>
+      <p>ウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷について</p>
+      <div class="warpper_list_store">
+          {% section 'event-store-infomation-01' %}
+          {% section 'event-store-infomation-02' %}
+      </div>
+    </div>
+    <div class="event_schedule">
+      <div class="tlt_main">
+        <div class="item_thumbnail">
+          <img src="{{'EVENT_SCHEDULE.png' | asset_url}}" alt=" ">
+        </div>
+      </div>
+      <div class="list_item_event">
+        <ul>
+        
+        {% for link in linklists.blog.links %}
+            {% if link.title == "Event" %}
+                {% assign blog = link.object %}
+                {% for article in blog.articles limit: 10 %}
+                <li>
+                    <a href="{{ article.url }}">
+                    <div class="item_event">
+                        <div class="item_thumbnail">
+                        <img src="{{ article.image | img_url: 'master' }}" alt="" />
+                        </div>
+                        <div class="data">
+                        <div class="c-item__date">{{ article.published_at | date:'%Y/%m/%d'}} ({{ article.published_at | date:'%a'}})</div>
+                        <div class="c-item_text">
+                            {{ article.content }}
+                        </div>
+                        </div>
+                    </div>
+                    </a>
+                </li>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+        </ul>
+        <div class="more_list">
+          <a href="/blogs/event">MORE</a>
+        </div>
+      </div>
+    </div>
+    <div class="store_instagram">
+      <div class="tlt_main_top">
+        <h2>Instagram</h2>
+        <div class="item_thumbnail">
+          <img src="{{'btn_share_insta.png' | asset_url}}" alt=" ">
+        </div>
+        <a href="https://www.instagram.com/ultrashibuya/"><span>ultrashibuya</span></a>
+      </div>
+      <div id="insta-feed"></div>
+
+    </div>
+    <div class="acces_map">
+      <h2>ACSEES</h2>
+      <div class="maps">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12967.822324642098!2d139.707293!3d35.653466!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x99b35fcfb24ca14a!2z44Km44Or44OI44Op44O044Kh44Kk44OW!5e0!3m2!1sja!2s!4v1597803616245!5m2!1sja!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+      </div>
+      <table class="info_comp">
+        <tbody>
+        <tr>
+          <td class="info-comp-name"><strong>店舗名</strong></td>
+          <td class="info-comp-desp">ウルトラ渋谷</td>
+        </tr>
+        <tr>
+          <td class="info-comp-name"><strong>住所</strong></td>
+          <td class="info-comp-desp">東京都渋谷区東1-28-9</td>
+        </tr>
+        <tr>
+          <td class="info-comp-name"><strong>TEL</strong></td>
+          <td class="info-comp-desp">03-5485-2301</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<style>
+  .main>.inner {
+    width: 100%;
+    background-color: #F4F4F4;
+  }
+  #main_content {
+    background-color: #F4F4F4;
+    padding-bottom: 0;
+  }
+  .item_event .item_thumbnail {
+    background-color: #EBEBEB;
+  }
+  @media (max-width: 768px) {
+    .main > .inner {
+      background-color: #ffffff;
+    }
+  }
+</style>

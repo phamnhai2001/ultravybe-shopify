@@ -1,0 +1,33 @@
+<div class="item_favorite hide" data-product-id="{{ product.id }}" data-product-handle="{{ product.handle }}">
+  <div class="data_favorite">
+    <div class="item_thumbnail">
+      <img src="{{ product.featured_image | product_img_url: 'grande' }}" alt="{{ product.title }}">
+    </div>
+    <div class="data">
+      <span class="util_sp">追加日：{{ "now" | date: "%Y/%m/%d" }}</span>
+      <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+      <div class="info_data">
+            <span>{{ product.metafields.custom_fields["artist"] }}</span>
+            {% if product.metafields.custom_fields["specification"] != null %}
+            <span>仕様 : {{ product.metafields.custom_fields["specification"] }}</span>
+            {% endif %}
+      </div>
+    </div>
+  </div>
+    <div class="point">
+      <span class="txt_points">残り{{product.selected_or_first_available_variant.inventory_quantity}}点</span>
+      <div>
+        <h3>{{ product.price | money }}</h3>
+        <span>(税別)</span>
+      </div>
+    </div>
+    <div class="btn_del_favorite">
+      <span class="util_pc">追加日：{{ "now" | date: "%Y/%m/%d" }}</span>
+      <div class="btn_del">
+        <div class="item_thumbnail">
+          <img src="{{'btn_icon_like.png' | asset_url}}" alt="" />
+        </div>
+        <span>削除</span>
+      </div>
+    </div>
+</div>

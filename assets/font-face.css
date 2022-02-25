@@ -1,0 +1,137 @@
+
+@font-face {
+  font-family: 'Vinyl';
+  font-style: normal;
+  font-weight: 400;
+  src: url("{{'ufonts.com_vinylregular.ttf' | asset_url}}");
+}
+
+/*
+* Noto Sans Japanese (japanese) http://www.google.com/fonts/earlyaccess
+ */
+@font-face {
+  font-family: 'Noto Sans CJK Japanese';
+  font-style: normal;
+  font-weight: 100;
+  src: url("{{'NotoSansCJKjp-Thin.otf' | asset_url}}");
+}
+@font-face {
+  font-family: 'Noto Sans CJK Japanese';
+  font-style: normal;
+  font-weight: 200;
+  src: url("{{'NotoSansCJKjp-Thin.otf' | asset_url}}");
+}
+@font-face {
+   font-family: 'Noto Sans CJK Japanese';
+   font-style: normal;
+   font-weight: 300;
+   src: url("{{'NotoSansCJKjp-Thin.otf' | asset_url}}");
+}
+@font-face {
+   font-family: 'Noto Sans CJK Japanese';
+   font-style: normal;
+   font-weight: 400;
+   src: url("{{'NotoSansCJKjp-Regular.otf' | asset_url}}");
+ }
+@font-face {
+   font-family: 'Noto Sans CJK Japanese';
+   font-style: normal;
+   font-weight: 500;
+   src: url("{{'NotoSansCJKjp-Medium.otf' | asset_url}}");
+ }
+@font-face {
+   font-family: 'Noto Sans CJK Japanese';
+   font-style: normal;
+   font-weight: 700;
+   src: url("{{'NotoSansCJKjp-Bold.otf' | asset_url}}");
+ }
+@font-face {
+   font-family: 'Noto Sans CJK Japanese';
+   font-style: normal;
+   font-weight: 900;
+   src: url("{{'NotoSansCJKjp-Black.otf' | asset_url}}");
+ }
+
+ @font-face {
+   font-family: 'Azo Sans';
+   font-style: normal;
+   font-weight: 200;
+   src: url("{{'AzoSans-Thin.ttf' | asset_url}}");
+ }
+
+ @font-face {
+   font-family: 'Azo Sans';
+   font-style: normal;
+   font-weight: 200;
+   src: url("{{'AzoSans-ThinItalic.ttf' | asset_url}}");
+ }
+
+ @font-face {
+   font-family: 'Azo Sans';
+   font-style: normal;
+   font-weight: 300;
+   src: url("{{'AzoSans-Light.ttf' | asset_url}}");
+ }
+
+ @font-face {
+   font-family: 'Azo Sans';
+   font-style: normal;
+   font-weight: 300;
+   src: url("{{'AzoSans-LightItalic.ttf' | asset_url}}");
+ }
+
+ @font-face {
+   font-family: 'Azo Sans';
+   font-style: normal;
+   font-weight: 400;
+   src: url("{{'AzoSans-Regular.ttf' | asset_url}}");
+ }
+
+ @font-face {
+   font-family: 'Azo Sans';
+   font-style: normal;
+   font-weight: 400;
+   src: url("{{'AzoSans-Italic.ttf' | asset_url}}");
+ }
+
+ @font-face {
+   font-family: 'Azo Sans';
+   font-style: normal;
+   font-weight: 500;
+   src: url("{{'AzoSans-Medium.ttf' | asset_url}}");
+ }
+
+ @font-face {
+   font-family: 'Azo Sans';
+   font-style: normal;
+   font-weight: 500;
+   src: url("{{'AzoSans-MediumItalic.ttf' | asset_url}}");
+ }
+
+ @font-face {
+   font-family: 'Azo Sans';
+   font-style: normal;
+   font-weight: 700;
+   src: url("{{'AzoSans-Bold.ttf' | asset_url}}");
+ }
+
+ @font-face {
+   font-family: 'Azo Sans';
+   font-style: normal;
+   font-weight: 700;
+   src: url("{{'AzoSans-BoldItalic.ttf' | asset_url}}");
+ }
+
+ @font-face {
+   font-family: 'Azo Sans';
+   font-style: normal;
+   font-weight: 900;
+   src: url("{{'AzoSans-Black.ttf' | asset_url}}");
+ }
+
+ @font-face {
+   font-family: 'Azo Sans';
+   font-style: normal;
+   font-weight: 900;
+   src: url("{{'AzoSans-BlackItalic.ttf' | asset_url}}");
+ }

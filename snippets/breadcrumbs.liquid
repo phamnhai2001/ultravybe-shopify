@@ -1,0 +1,78 @@
+{%- unless template == 'index' or template == 'list-collections' or template == '404' -%}
+{%- assign t = template | split: '.' | first -%}
+
+<div class="navi_top" role="navigation" aria-label="breadcrumbs">
+    <ul>
+        <li>
+            <a href="/">TOP</a>
+        </li>
+        {%- case t -%}
+        {%- when 'page' -%}
+        <li>
+            <span class="current" aria-current="page">{{ page.title }}</span>
+        </li>
+        {%- when 'product' -%}
+        {%- if collection.url -%}
+            <li>
+                {#{{ collection.title | link_to: collection.url }}#}
+                {%- if collection.url -%}
+                    <a class="current" href="{{ collection.url }}" aria-current="page"><span class="current">{{collection.title}}</span></a>
+                {%- endif -%}
+            </li>
+        {%- endif -%}
+        {% assign collection_url = "" %}
+        {% for collection in collections %}
+            {% if collection.title contains product.type %}
+            {% assign collection_url = collection.url %}
+            {% endif %}
+        {% endfor %}
+        <li>
+            <a href="{{ collection_url }}" aria-current="page"><span class="current">{{product.type}}</span></a>
+        </li>
+        <li>
+            <span class="current" aria-current="page">{{ product.title }}</span>
+        </li>
+        {%- when 'collection' and collection.handle -%}
+        {%- if current_tags -%}
+            <li>
+                <a class="current" href="{{ collection.url }}"><span class="current" aria-current="page">{{ collection.title }}</span></a>
+            </li>
+            <li>
+                {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: "+"}}{%- endcapture -%}
+                <span class="current" aria-current="page">{{ current_tags | join: " + "}}</span>
+            </li>
+        {%- else -%}
+            <li>
+                <span class="current" aria-current="page">{{ collection.title }}</span>
+            </li>
+        {%- endif -%}
+        {%- when 'blog' -%}
+        {%- if current_tags -%}
+            <li>
+                {{ blog.title | link_to: blog.url }}
+            </li>
+            <li>
+                {%- capture tag_url -%}{{blog.url}}/tagged/{{ current_tags | join: "+" }}{%- endcapture -%}
+                <a href="{{ tag_url }}" aria-current="page">{{ current_tags | join: " + " }}</a>
+            </li>
+        {%- else -%}
+            <li>
+                <span class="current" aria-current="page">{{ blog.title }}</span>
+            </li>
+        {%- endif -%}
+        {%- when 'article' -%}
+        <li>
+            {{ blog.title | link_to: blog.url }}
+        </li>
+        <li>
+            {#<a href="{{ article.url }}" aria-current="page">{{ article.title }}</a>#}
+            <span class="current" aria-current="page">{{ article.title }}</span>
+        </li>
+        {%- else -%}
+        <li>
+            <span class="current" aria-current="page">{{ page_title }}</span>
+        </li>
+        {%- endcase -%}
+    </ul>
+</div>
+{%- endunless -%}

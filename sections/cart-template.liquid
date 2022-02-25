@@ -1,0 +1,169 @@
+<div class="upper">
+    {% render 'breadcrumbs' %}
+</div>
+{% if cart.item_count > 0 %}
+<form action="{{ routes.cart_url }}" method="post" novalidate class="cart">
+  <section class="section list_cart">
+  <div class="upper">
+    <div class="tlt_option_top">
+      <div class="util_sp tlt_list">
+        <h3>カートの中身</h3>
+        <span id="item_count">{{cart.item_count}}アイテム</span>
+      </div>
+    </div>
+    <div class="inner_cart">
+      <ul class="list_cart_item">
+      {% for item in cart.items %}
+        <li>
+          <div class="item_cart">
+            <div class="data_cart">
+              <div class="item_thumbnail">
+                <img src="{{ item.image | img_url }}" alt="" />
+              </div>
+              <div class="data">
+                <h3><a href="{{item.url}}">{{item.title }}</a></h3>
+                <div class="info_data">
+                  <span>{{ item.product.metafields.custom_fields["artist"] }}</span>
+                  <span>フォーマット：{{item.vendor}}</span>
+                  {% if item.product.metafields.custom_fields["specification"] != null %}
+                  <span>仕様：{{ item.product.metafields.custom_fields["specification"] }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="entry_points">
+              <div id="box_check_option" class="check_points">
+                {% if item.variant.inventory_quantity < 10 %}
+                <span id="quantity_{{item.id}}" class="txt_points">残り{{ item.variant.inventory_quantity }}点</span>
+                {% endif %}
+                <select class="box_select_sort box_select_cart" id="updates_{{ item.id }}" name="updates[]" data-item-id="{{item.id}}">
+                {% assign maxQuantity = item.variant.inventory_quantity %}
+                {% for i in (1..maxQuantity) %} 
+                  <option value="{{ i }}"{% if item.quantity == i %} selected {% endif %}>{{ i }}</option>
+                {% endfor %}
+                </select>
+                <div class="btn_del">
+                  <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" class="cart__remove">
+                    <span>削除</span>
+                  </a>
+                </div>
+              </div>
+              {% comment %} <input type="submit" value="Update quantities" /> {% endcomment %}
+              <div class="point">
+                <h3>{{ item.price | money }}</h3>
+                <span>(税別)</span>
+              </div>
+            </div>
+            <div class="btn_del_1">
+              <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" class="cart__remove">
+                    <span>削除</span>
+                  </a>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="total_cart">
+        <div>
+          <div class="total_num_cart">
+            <h2>合計</h2>
+            <div class="c-item__price">
+              <h3 id="total_all">{{cart.total_price | money}}</h3><span>税別</span>
+            </div>
+          </div>
+          <a href="/pages/instruction-manual#shipping_cost">
+            <div class="item_thumbnail">
+              <img class="util_pc" src="{{'icon_help.png' | asset_url}}" alt="" />
+              <img class="util_sp" src="{{'sp_icon_help.png' | asset_url}}" alt="" />
+            </div>
+            送料について
+          </a>
+          <div class="cart_buy">
+              <input class="btn cart" type="submit" name="checkout" value="レジに進む"/>
+            <a href="javascript:history.back()" class="btn continue_shop">買い物を続ける</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</form>
+{% else %}
+<section class="section list_cart inner_cart_empty">
+  <div class="upper">
+    <div class="tlt_option_top">
+      <div class="util_sp tlt_list">
+        <h3>カートの中身</h3>
+        <span>0アイテム</span>
+      </div>
+    </div>
+    <div class="cart_empty">
+      <h2>カート内に商品がありません。</h2>
+      <a class="btn_short01" href="/collections/all">買い物を続ける</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% schema %}
+    {
+    "name": "Cart page",
+    "settings": [
+    {
+    "type": "checkbox",
+    "id": "cart_notes_enable",
+    "label": "Enable cart notes",
+    "default": false
+    }
+    ]
+    }
+{% endschema %}
+<style>
+  #main_content {
+    background-color: #F4F4F4;
+  }
+  .main>.inner {
+    width: 100%;
+    background-color: #F4F4F4;
+  }
+  @media (max-width: 768px) {
+    .main > .inner,
+    #main_content {
+      background-color: #ffffff;
+    }
+  }
+  .scrollSelect {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+</style>
+<script>
+  $(document).ready(function(){
+    if($('.list_cart_item >li').length > 10 ) {
+      $('.list_cart_item').addClass("scrollSelect");
+    }
+    $("select[name='updates[]']").on('change', function() {
+      var idItem = $(this).attr('data-item-id');
+      var datas = {
+        'quantity': this.value,
+        'id': idItem
+      }
+      $.ajax({
+        type: "POST",
+        url: '/cart/change.js',
+        data: datas,
+        dataType: 'json',
+        success: function(e){
+          $('#header').find('#CartCount').text(e.item_count);
+          // console.log("changed!!!", e.item_count);
+          $('#item_count').html(e.item_count + "アイテム");
+          for(var i = 0; i < e.items.length; i++){
+            if(e.items[i].id == idItem){
+              $('#quantity_'+ idItem).html("残り"+e.items[i].quantity+"点");
+            }
+          }
+          $('#total_all').html(Shopify.formatMoney(e.items_subtotal_price));
+        }
+      });
+    });
+  });
+</script>

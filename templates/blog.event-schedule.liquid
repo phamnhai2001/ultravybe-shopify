@@ -1,0 +1,145 @@
+<div class="upper">
+  <div class="navi_top">
+    <ul>
+      <li><a href="/">TOP</a></li>
+      <li><span class="current">店舗情報</span></li>
+    </ul>
+  </div>
+</div>
+<section class="section store_about" id="store_about">
+  <div class="upper">
+    <a class="logo_store" href="/">
+      <img src="{{'shop_logo.png' | asset_url}}" alt=" ">
+    </a>
+    <div id="slick_main_store">
+        {% section 'slider-store-infomation' %}
+    </div>
+    <div class="about_store">
+      <h2>About ULTRA SHIBUYA</h2>
+      <p>ウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷についてウルトラ渋谷について</p>
+      <div class="warpper_list_store">
+          {% section 'event-store-infomation-01' %}
+          {% section 'event-store-infomation-02' %}
+      </div>
+    </div>
+    <div class="event_schedule">
+      <div class="tlt_main">
+        <div class="item_thumbnail">
+          <img src="{{'EVENT_SCHEDULE.png' | asset_url}}" alt=" ">
+        </div>
+      </div>
+      <div class="list_item_event">
+        <ul>
+            {% for article in blog.articles %}
+              <li>
+                <a href="{{ blog.url }}">
+                  <div class="item_event">
+                    <div class="item_thumbnail">
+                      <img src="{{ article.image | img_url: 'master' }}" alt="" />
+                    </div>
+                    <div class="data">
+                      <div class="c-item__date">{{ article.published_at | date:'%Y/%m/%d'}} (Fri)</div>
+                      <div class="c-item_text">
+                        {{ article.content }}
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            {% endfor %}
+        </ul>
+        <div class="more_list">
+          <a href="/blogs/news">MORE</a>
+        </div>
+      </div>
+    </div>
+    <div class="store_instagram">
+      <div class="tlt_main_top">
+        <h2>Instagram</h2>
+        <a href="#">
+          <div class="item_thumbnail">
+            <img src="{{'btn_share_insta.png' | asset_url}}" alt=" ">
+          </div>
+          <span>Ultra_shibuya</span>
+        </a>
+      </div>
+      <div class="list_item_ins">
+        <ul>
+          <li>
+            <a href="#">
+              <img src="{{'img_ins_01.png' | asset_url}}" alt=" ">
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="{{'img_ins_02.png' | asset_url}}" alt=" ">
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="{{'img_ins_03.png' | asset_url}}" alt=" ">
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="{{'img_ins_04.png' | asset_url}}" alt=" ">
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="{{'img_ins_05.png' | asset_url}}" alt=" ">
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="{{'img_ins_06.png' | asset_url}}" alt=" ">
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="{{'img_ins_07.png' | asset_url}}" alt=" ">
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="{{'img_ins_08.png' | asset_url}}" alt=" ">
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="{{'img_ins_09.png' | asset_url}}" alt=" ">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="acces_map">
+      <h2>ACSSES</h2>
+      <div class="maps">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6483.891419664678!2d139.7035119!3d35.6537092!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b5cb3daaaab%3A0x99b35fcfb24ca14a!2z44Km44Or44OI44Op44O044Kh44Kk44OW!5e0!3m2!1svi!2s!4v1597042424867!5m2!1svi!2s" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+      </div>
+      <table class="info_comp">
+        <tbody>
+        <tr>
+          <td class="info-comp-name"><strong>店舗名</strong></td>
+          <td class="info-comp-desp">ウルトラ渋谷</td>
+        </tr>
+        <tr>
+          <td class="info-comp-name"><strong>住所</strong></td>
+          <td class="info-comp-desp">東京都渋谷区東1-28-9</td>
+        </tr>
+        <tr>
+          <td class="info-comp-name"><strong>TEL</strong></td>
+          <td class="info-comp-desp">00-0000-0000</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<style>
+  #main_content {
+    background-color: transparent;
+    padding-bottom: 0;
+  }
+</style>

@@ -1,0 +1,40 @@
+<!-- {% assign allProduct = '' | split: ',' %} -->
+{% assign allProduct = '' | split: ',' %}
+{% for block in section.blocks %}
+{%- assign at = collections[block.settings.collection].products -%}
+{% paginate at.products by 9999 %}
+{% assign allProduct = at.products %}
+{{at.products.size}}
+{% endpaginate %}
+{% endfor %}
+{% schema %}
+  {
+    "name": "All Product",
+    "max_blocks": 1,
+    "settings": [],
+	"blocks":[
+      {
+        "type": "item_tab",
+        "name": "Item tabs",
+        "settings": [
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection"
+          }
+        ]
+      }
+	],
+    "presets": [
+      {
+        "name": "All Product",
+        "category": "Collection",
+		"blocks": [
+          {
+            "type": "item_tab"
+          }
+		]
+      }
+    ]
+  }
+{% endschema %}

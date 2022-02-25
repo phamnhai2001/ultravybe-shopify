@@ -1,0 +1,787 @@
+{% include 'getDataShopify' %}
+<div class="upper">
+  <div class="navi_top">
+    <ul>
+      <li><a href="/">TOP</a></li>
+      <li><span class="current">ウルトラ検索</span></li>
+    </ul>
+  </div>
+</div>
+<section class="section list_advanced_search">
+  <div id="advanced_search_popup">
+    <div class="upper">
+      <form class="inner_advanced_search" action="">
+        <div class="banner_search">
+          <div class="tlt_search_popup">
+            <div class="item_thumbnail">
+              <img src="{{'icon_urtra_serch_l.png' | asset_url}}" alt="">
+            </div>
+            <h3>ウルトラ検索</h3>
+            <span>| 条件を入力して検索ができます</span>
+          </div>
+        </div>
+        <div class="container_search">
+          <div class="inner_col__">
+            <ul class="col__">
+              <li>
+                <div class="box_form_search">
+                  <div class="ttl">アーティスト名</div>
+                  <div>
+                    <input type="text" name="artist_name" value="" placeholder="" class="normal_input">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="box_form_search">
+                  <div class="ttl">タイトル</div>
+                  <div>
+                    <input type="text" name="product_title" value="" placeholder="" class="normal_input">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="box_form_search">
+                  <div class="ttl">曲名</div>
+                  <div>
+                    <input type="text" name="song_name" value="" placeholder="" class="normal_input">
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <ul class="col__">
+              <li>
+                <div class="box_form_search">
+                  <div class="ttl">レーベル名</div>
+                  <div>
+                    <input type="text" name="label_name" value="" placeholder="" class="normal_input">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="box_form_search">
+                  <div class="ttl">商品番号</div>
+                  <div>
+                    <input type="text" name="product_id" value="" placeholder="" class="normal_input">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="box_form_search">
+                  <div class="ttl">バーコード</div>
+                  <div>
+                    <input type="text" name="bar_code" value="" placeholder="" class="normal_input">
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="option check checkbox__">
+            <div class="form_item no_padding">
+              <div class="unit__">
+                <span>単位</span>
+              </div>
+            </div>
+            <div class="container_checkbox">
+              <div class="form_item check_box">
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="cd" id="cd">
+                  <label for="cd" class="checkbox normal">CD</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="cd+dvd" id="cd_dvd">
+                  <label for="cd_dvd" class="checkbox normal">CD+DVD</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="cd+goods" id="cd_goods">
+                  <label for="cd_goods" class="checkbox normal">CD+GOODS</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="cd+other" id="cd_other">
+                  <label for="cd_other" class="checkbox normal">CD+OTHER</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="7inch" id="7inch">
+                  <label for="7inch" class="checkbox normal">7 INCH RECORD</label>
+                </div>
+              </div>
+              <div class="form_item check_box">
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="12inch" id="12inch">
+                  <label for="12inch" class="checkbox normal">12 INCH RECORD</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="bot+set" id="bot_set">
+                  <label for="bot_set" class="checkbox normal">BOX SET</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="tape" id="tape">
+                  <label for="tape" class="checkbox normal">TAPE</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="dvd" id="dvd">
+                  <label for="dvd" class="checkbox normal">DVD</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="dvd+other" id="dvd_other">
+                  <label for="dvd_other" class="checkbox normal">DVD+OTHER</label>
+                </div>
+              </div>
+              <div class="form_item check_box">
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="blu+ray" id="blu_ray">
+                  <label for="blu_ray" class="checkbox normal">Blu-ray</label>
+                </div>
+                <div class="item_check">
+                  <input name="coll_box" type="checkbox" value="goods" id="goods">
+                  <label for="goods" class="checkbox normal">GOODS</label>
+                </div>
+              </div>
+            </div>
+            <div class="form_item item_tag">
+              <div class="list_item_tag">
+                <span>※GOODSは</span>
+                <span>
+                  <a href="#">T-SHIRT</a> /
+                </span>
+                <span>
+                  <a href="#">SWEATSHIRTS</a> /
+                </span>
+                <span>
+                  <a href="#">CAP</a> /
+                </span>
+                <span>
+                  <a href="#">BAG</a> /
+                </span>
+                <span>
+                  <a href="#">BOOK</a> /
+                </span>
+                <span>
+                  <a href="#">OTHERの全てを内包しています</a>
+                </span>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="option check">
+            <div class="check_status">
+              <p class="ttl check"><span>発売状況</span></p>
+              <div id="box_check_option_01" class="form_item box_select__">
+                <select class="box_select_sort box_select_status fil_sale_status" name="sales_status">
+                  <option value="指定無し">指定無し</option>
+                  <option value="予約受付中">予約受付中</option>
+                  <option value="発売中/売り切れ">発売中/売り切れ</option>
+                </select>
+              </div>
+            </div>
+            <div class="state">
+              <p class="ttl check"><span>状態</span></p>
+              <div id="box_check_option_02" class="form_item box_select__">
+                <select class="box_select_sort box_select_status fil_status" name="status">
+                  <option value="指定無し">指定無し</option>
+                  <option value="新品">新品</option>
+                  <option value="中古">中古</option>
+                </select>
+              </div>
+            </div>
+            <div class="release_country">
+              <p class="ttl check"><span>発売国</span></p>
+              <div id="box_check_option_03" class="form_item box_select__">
+                <select class="box_select_sort box_select_status fil_country" name="country">
+                  <option value="指定無し">指定無し</option>
+                  <option value="国内版">国内版</option>
+                  <option value="輸入盤">輸入盤</option>
+                </select>
+              </div>
+            </div>
+            <div class="presence_existence">
+              <p class="ttl check"><span>特典及び付録の有無</span></p>
+              <div id="box_check_option_04" class="form_item box_select__">
+                <select class="box_select_sort box_select_status fil_specification" name="specification">
+                  <option value="指定無し">指定無し</option>
+                  <option value="有り">有り</option>
+                  <option value="無し">無し</option>
+                </select>
+                <span class="noite_check">※特典か付録のどちらか片方が 有りの場合、「有り」と見做し ます</span>
+              </div>
+            </div>
+            <div class="price_option">
+              <p class="ttl check"><span>価格</span></p>
+              <div class="narrowPrice searchList clearfix">
+                <div id="searchPrice"
+                  class="slide_size ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                  <div class="slider"></div>
+                  <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;"></div>
+                  <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default last_first_price"
+                    style="left: 0%;"></span>
+                  <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default last_child_price"
+                    style="left: 100%;"></span>
+                </div>
+                <div class="control clearfix">
+                  <p><span>￥</span><input type="text" id="p_pris" maxlength="10" class="sliderMin" name="p_pris"
+                      value="0"></p>
+                  <p><span>￥</span><input type="text" id="p_prie" maxlength="10" class="sliderMax" name="p_prie"
+                      value="300000"></p>
+                  <input id="p_pri_max_slider" type="hidden" name="p_pri_max_slider" value="">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="btn_submit">
+          <a class="container_reset" href="#item_search">
+            <button type="button" class="btn_short01 btn_reset">
+              条件をリセット
+            </button>
+          </a>
+          <a class="container_submit" href="#item_search">
+            <button id="search-filter-btn" type="button" class="btn_short01 btn_submit_form"><span>この条件で検索</span></button>
+          </a>
+        </div>
+        <a class="container_submit_sp" href="#">
+          <button class="btn_short01 btn_submit_form search_advanced">
+            <span>条件を絞り直す</span>
+          </button>
+        </a>
+      </form>
+      <div class="container_item_search" id="item_search">
+        <div class="tlt_option_top">
+          <div class="tlt_list">
+            <h3>ウルトラ検索結果</h3>
+            <span>件数：<span id="count_result">0</span>件</span>
+          </div>
+          <div id="box_check_option" class="box_select__">
+            <select class="box_select_sort box_select__list fil_sort" name="state">
+              <option value="新着順">新着順</option>
+              <option value="値段の安い順">値段の安い順</option>
+              <option value="値段の高い順">値段の高い順</option>
+            </select>
+          </div>
+        </div>
+        <div class="product_list_item" id="list_product">
+        </div>
+        <div class="product_list_item no_item" id="list_none">
+          <h3>条件を入力して<span>検索ボタンを押してください。</span></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://unpkg.com/localforage@1.7.3/dist/localforage.min.js"></script>
+<script>$('#searchPrice').draggable();</script>
+<script>
+    $('.container_submit_sp').click(function (e) {
+        e.preventDefault();
+        $("html, body").animate({ scrollTop: 0 }, 1000);
+    });
+    var x = $('#item_search').position();
+
+    $(window).scroll(function (event) {
+        var scroll = $(window).scrollTop();
+        console.log('scroll', scroll);
+        if (scroll > x.top){
+            $('.container_submit_sp').show();
+        }
+        else {
+            $('.container_submit_sp').hide();
+        }
+    });
+
+    $('.btn_submit .container_reset').on('click', function(event) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: 0
+        }, 2000);
+    });
+    $('.btn_submit .container_submit').on('click', function(event) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: parseInt($("#item_search").offset().top)
+        }, 2000);
+    });
+  var collections = new Array();
+  var arrCollection = new Array();
+  checkHaveProduct(0);
+
+  localforage
+    .getItem('products')
+    .then(function (arrProduct) {
+      collections = arrProduct.products;
+      console.log(collections);
+      function getData() {
+        $('input[name="coll_box"]:checked').each(function () {
+          for (var i = 0; i < collections.length; i++) {
+            if (this.value === "cd") {
+              if (collections[i].type == "CD") {
+                arrCollection.push(collections[i]);
+              }
+            }
+            else if (this.value === "cd+dvd") {
+              if (collections[i].type == "CD+DVD") {
+                arrCollection.push(collections[i]);
+              }
+            }
+            else if (this.value === "cd+goods") {
+              if (collections[i].type == "CD+GOODS") {
+                arrCollection.push(collections[i]);
+              }
+            }
+            else if (this.value === "cd+other") {
+              if (collections[i].type == "CD+OTHER") {
+                arrCollection.push(collections[i]);
+              }
+            }
+            else if (this.value === "7inch") {
+              if (collections[i].type == "7 INCH") {
+                arrCollection.push(collections[i]);
+              }
+            }
+            else if (this.value === "12inch") {
+              if (collections[i].type == "12 INCH") {
+                arrCollection.push(collections[i]);
+              }
+            }
+            else if (this.value === "bot+set") {
+              if (collections[i].type == "BOXSET") {
+                arrCollection.push(collections[i]);
+              }
+            }
+            else if (this.value === "tape") {
+              if (collections[i].type == "TAPE") {
+                arrCollection.push(collections[i]);
+              }
+            }
+            else if (this.value === "dvd") {
+              if (collections[i].type == "DVD") {
+                arrCollection.push(collections[i]);
+              }
+            }
+            else if (this.value === "dvd+other") {
+              if (collections[i].type == "DVD+OTHER") {
+                arrCollection.push(collections[i]);
+              }
+            }
+            else if (this.value === "blu+ray") {
+              if (collections[i].type == "BLURAY") {
+                arrCollection.push(collections[i]);
+              }
+            }
+            else if (this.value === "goods") {
+              if (collections[i].type == "GOODS") {
+                arrCollection.push(collections[i]);
+              }
+            } else {
+              arrCollection = [];
+            }
+          }
+        });
+      }
+      //click search
+      $("#search-filter-btn").click(function (e) {
+        e.preventDefault();
+        arrCollection = [];
+        getData();
+        if (arrCollection.length == 0) {
+          var txt_ArtistName = $('input[name="artist_name"]').val().toLowerCase();
+          var txt_ProductTitle = $('input[name="product_title"]').val().toLowerCase();
+          var txt_SongName = $('input[name="song_name"]').val().toLowerCase();
+          var txt_LabelName = $('input[name="label_name"]').val().toLowerCase();
+          var txt_ProductId = $('input[name="product_id"]').val().toLowerCase();
+          var txt_BarCode = $('input[name="bar_code"]').val().toString();
+
+          arrCollection = collections;
+          function searchArtistName(txt, ar) {
+            if (txt != "") {
+              arrCollection = [];
+              for (var i = 0; i < ar.length; i++) {
+                if (ar[i].artist.toLowerCase().search(txt) != -1) {
+                  arrCollection.push(ar[i]);
+                }
+              }
+            }
+          }
+          function searchProductTitle(txt, ar) {
+            if (txt != "") {
+              arrCollection = [];
+              for (var i = 0; i < ar.length; i++) {
+                if (ar[i].title.toLowerCase().search(txt) != -1) {
+                  arrCollection.push(ar[i]);
+                }
+              }
+            }
+          }
+          function searchSongName(txt, ar) {
+            if (txt != "") {
+              arrCollection = [];
+              for (var i = 0; i < ar.length; i++) {
+                if (ar[i].tracklist != null && ar[i].tracklist.toLowerCase().search(txt) != -1) {
+                  arrCollection.push(ar[i]);
+                }
+              }
+            }
+          }
+
+          function searchLabelName(txt, ar) {
+            if (txt != "") {
+              arrCollection = [];
+              for (var i = 0; i < ar.length; i++) {
+                if (ar[i].vendor.toLowerCase().search(txt) != -1) {
+                  arrCollection.push(ar[i]);
+                }
+              }
+            }
+          }
+
+          function searchProductId(txt, ar) {
+            if (txt != "") {
+              arrCollection = [];
+              for (var i = 0; i < ar.length; i++) {
+                if (ar[i].catalog_no.toLowerCase().search(txt) != -1) {
+                  arrCollection.push(ar[i]);
+                }
+              }
+            }
+          }
+
+          function searchBarCode(txt, ar) {
+            if (txt != "") {
+              arrCollection = [];
+              for (var i = 0; i < ar.length; i++) {
+                if (ar[i].barcode.toString().search(txt) != -1) {
+                  arrCollection.push(ar[i]);
+                }
+              }
+            }
+          }
+
+          searchArtistName(txt_ArtistName, arrCollection);
+          searchProductTitle(txt_ProductTitle, arrCollection);
+          searchSongName(txt_SongName, arrCollection);
+          searchLabelName(txt_LabelName, arrCollection);
+          searchProductId(txt_ProductId, arrCollection);
+          searchBarCode(txt_BarCode, arrCollection);
+        }
+
+        var arr = new Array();
+        var str_condition = $("select.fil_sale_status option:selected").val();
+        var str_status = $("select.fil_status option:selected").val();
+        var str_country = $("select.fil_country option:selected").val();
+        var str_specification = $("select.fil_specification option:selected").val();
+        var minPrice = parseInt(localStorage.getItem('minPrice'));
+        var maxPrice = parseInt(localStorage.getItem('maxPrice'));
+        if (isNaN(minPrice)) {
+          minPrice = 0;
+        }
+        else {
+          minPrice = minPrice * 100;
+        }
+        if (isNaN(maxPrice)) {
+          maxPrice = 999999999;
+        }
+        else {
+          maxPrice = maxPrice * 100;
+        }
+        var filterCountry = function (txt, ar) {
+          return ar.filter(function (item) {
+            if (txt.indexOf("指定無し") != -1) {
+              return 1;
+            } else if (txt.indexOf("国内版") != -1) {
+              return item.country == "国内盤";
+            } else if (txt.indexOf("輸入盤") != -1) {
+              return item.country == "輸入盤";
+            }
+          })
+        }
+        var filterSpecification = function (txt, ar) {
+          return ar.filter(function (item) {
+            if (txt.indexOf("指定無し") != -1) {
+              return 1;
+            } else if (txt.indexOf("有り") != -1) {
+              return item.specification != "";
+            } else if (txt.indexOf("無し") != -1) {
+              return item.specification == "";
+            }
+          })
+        }
+        var filterStatus = function (txt, ar) {
+          return ar.filter(function (item) {
+            if (txt.indexOf("指定無し") != -1) {
+              return 1;
+            } else {
+              return txt.indexOf(item.condition) != -1;
+            }
+          })
+        }
+        var filterSaleStatus = function (txt, ar) {
+          return ar.filter(function (item) {
+            if (txt == "指定無し") {
+              return 1;
+            } else if (txt == "予約受付中") {
+              if (item.preorder != null) {
+                return 1;
+              }
+            } else if (txt == "発売中/売り切れ")
+              return item.available == true;
+          })
+        }
+
+        arrCollection = filterSaleStatus(str_condition, arrCollection);
+        arrCollection = filterStatus(str_status, arrCollection);
+        arrCollection = filterCountry(str_country, arrCollection);
+        arrCollection = filterSpecification(str_specification, arrCollection);
+        arrCollection = arrCollection.filter(function (el) {
+          return el.price >= minPrice && el.price <= maxPrice;
+        });
+        checkHaveProduct(arrCollection.length);
+        var html = simpleTemplating(arrCollection);
+        $('#list_product').html(html);
+        $('#count_result').html(arrCollection.length);
+          setTimeout(function () {
+              $('.c-item .c-item__body').matchHeight();
+          }, 1000);
+      });
+
+      //sort product
+      $(".fil_sort").change(function () {
+        var str_sort = $(this).val();
+        if (str_sort === "新着順") {
+          arrCollection = arrCollection.sort(sortDateNew);
+        } else if (str_sort === "値段の安い順") {
+          arrCollection = arrCollection.sort(sortPriceHigh);
+        } else if (str_sort === "値段の高い順") {
+          arrCollection = arrCollection.sort(sortPriceLow);
+        }
+        console.log(arrCollection);
+        checkHaveProduct(arrCollection.length);
+        var html = simpleTemplating(arrCollection);
+        $('#list_product').html(html);
+        $('#count_result').html(arrCollection.length);
+      });
+    })
+    .catch(function (err) {
+      // Xử lý khi việc lấy giá trị với key bị lỗi
+      console.log(err);
+    });
+
+
+  //check product
+  function checkHaveProduct(num) {
+    if (num > 0) {
+      $("#list_product").removeClass('hide');
+      $("#box_check_option").removeClass('hide');
+      $("#list_none").addClass('hide');
+    } else {
+      $("#list_none").removeClass('hide');
+      $("#box_check_option").addClass('hide');
+      $("#list_product").addClass('hide');
+    }
+  }
+  //sort arrow function
+  function sortPriceHigh(a, b) {
+    if (a.price < b.price) {
+      return -1;
+    }
+    if (a.price > b.price) {
+      return 1;
+    }
+    return 0;
+  }
+  function sortPriceLow(a, b) {
+    if (a.price > b.price) {
+      return -1;
+    }
+    if (a.price < b.price) {
+      return 1;
+    }
+    return 0;
+  }
+  function sortDateNew(a, b) {
+    var date1 = a.release_date.substring(0, a.release_date.length - 15);
+    var date2 = b.release_date.substring(0, b.release_date.length - 15);
+    var dateA = new Date(date1), dateB = new Date(date2);
+    return dateB - dateA;
+  }
+
+  //rend product
+  function simpleTemplating(data) {
+    var html = '<ul class="holizontal_list col_05 list_item_products">';
+    $.each(data, function (index, item) {
+      var date = item.release_date.substring(0, item.release_date.length - 5);
+      html += `<li>
+            <a class="c-item" href="`+ item.url + `">
+            <div class="item_thumbnail">
+              <img src="`+ item.img + `" alt="">
+            </div>
+            <div class="c-item__body">
+              <div class="c_category"><span>`+ item.type + `</span></div>
+              <h3 class="c-item__title">`+ item.title + `</h3>
+              <div class="c-item__author">`+ item.artist + `</div>
+              <div class="c-item__price">`+ Shopify.formatMoney(item.price, "{{ shop.money_with_currency_format }}") + `（税抜）</div>
+              <div class="c-item__date">`+ date + ` 発売</div>
+            </div>
+          </a>
+        </li>`;
+    });
+    html += '</ul>';
+    return html;
+  }
+</script>
+<style>
+  .select2-container--default .select2-results__option--selected {
+    margin: 0;
+  }
+</style>
+<style>
+  .container_submit_sp {
+    display: none;
+  }
+  form.inner_advanced_search {
+    background-color: #EBEBEB;
+  }
+
+  section#inner_list_item>.upper {
+    background-color: #ffffff;
+    width: 100%;
+    min-height: 1890px;
+  }
+
+  .display_order {
+    z-index: 1 !important;
+  }
+
+  .main>.inner {
+    width: 100%;
+    background-color: #FFFFFF;
+  }
+
+  .sliderMin,
+  .sliderMax {
+    color: #000 !important;
+  }
+
+  .paginationjs-pages {
+    padding-top: 20px;
+  }
+
+  @media only screen and (max-width: 1919px) and (min-width: 1248px) {
+    section#inner_list_item>.upper {
+      min-height: 98.48879625vw;
+    }
+  }
+
+  @media only screen and (max-width: 1247px) and (min-width: 769px) {
+    section#inner_list_item>.upper {
+      min-height: 1250px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container_submit_sp {
+      position: fixed;
+      border: none;
+      padding: 0 4.3vw;
+      z-index: 999;
+      bottom: 0;
+      width: 100%;
+    }
+    .paginationjs-pages>ul {
+      -webkit-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+
+    .paginationjs-pages>ul>li {
+      margin-bottom: 1.302083333vw;
+    }
+
+    .product_list_item {
+      padding: 2.47vw 2.47vw 9.765625vw;
+    }
+
+    form.inner_advanced_search {
+      background-color: #ffffff;
+    }
+
+    section#inner_list_item>.upper {
+      min-height: auto;
+    }
+
+    .main>.inner,
+    #main_content {
+      background-color: #ffffff;
+    }
+  }
+</style>
+<!-- <script>
+        function callBackData() {
+                $('input[name="coll_box"]').off().change(function () {
+                    if (this.checked) {
+                        for (var i = 0; i < collections.length; i++) {
+                            if ($(this).val() === "cd") {
+                                if (collections[i].type == "CD") {
+                                    arrCollection.push(collections[i]);
+                                }
+                            }
+                            else if ($(this).val() === "cd+dvd") {
+                                if (collections[i].type == "CD+DVD") {
+                                    arrCollection.push(collections[i]);
+                                }
+                            }
+                            else if ($(this).val() === "cd+goods") {
+                                if (collections[i].type == "CD+GOODS") {
+                                    arrCollection.push(collections[i]);
+                                }
+                            }
+                            else if ($(this).val() === "cd+other") {
+                                if (collections[i].type == "CD+OTHER") {
+                                    arrCollection.push(collections[i]);
+                                }
+                            }
+                            else if ($(this).val() === "7inch") {
+                                if (collections[i].type == "7 INCH") {
+                                    arrCollection.push(collections[i]);
+                                }
+                            }
+                            else if ($(this).val() === "12inch") {
+                                if (collections[i].type == "12 INCH") {
+                                    arrCollection.push(collections[i]);
+                                }
+                            }
+                            else if ($(this).val() === "bot+set") {
+                                if (collections[i].type == "BOXSET") {
+                                    arrCollection.push(collections[i]);
+                                }
+                            }
+                            else if ($(this).val() === "tape") {
+                                if (collections[i].type == "TAPE") {
+                                    arrCollection.push(collections[i]);
+                                }
+                            }
+                            else if ($(this).val() === "dvd") {
+                                if (collections[i].type == "DVD") {
+                                    arrCollection.push(collections[i]);
+                                }
+                            }
+                            else if ($(this).val() === "dvd+other") {
+                                if (collections[i].type == "DVD+OTHER") {
+                                    arrCollection.push(collections[i]);
+                                }
+                            }
+                            else if ($(this).val() === "blu+ray") {
+                                if (collections[i].type == "BLURAY") {
+                                    arrCollection.push(collections[i]);
+                                }
+                            }
+                            else if ($(this).val() === "goods") {
+                                if (collections[i].type == "GOODS") {
+                                    arrCollection.push(collections[i]);
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        arrCollection = [];
+                    }
+                });
+            }
+</script> -->

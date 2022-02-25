@@ -1,0 +1,170 @@
+<!-- /templates/customers/account.liquid -->
+<div class="upper">
+  <div class="navi_top">
+    <ul>
+      <li><a href="/">TOP</a></li>
+      <li><span class="current">マイページ</span></li>
+    </ul>
+  </div>
+</div>
+<section class="section my_page page_order_history">
+  <div class="order-info">
+    <div class="card-content">
+      <div class="title">マイページ</div>
+    </div>
+    <div class="card-content">
+      <div class="title tlt_page_order_history">注文履歴</div>
+      {% paginate customer.orders by 5 %}
+        {% if customer.orders.size != 0 %}
+          {% for order in customer.orders %}
+          {% assign numbeOrder = 0 %}
+          {%- for line_item in order.line_items -%}
+              {% assign numbeOrder = numbeOrder | plus: line_item.quantity %}
+          {% endfor %}
+              <ul class="list_page_order_history">
+                <li>
+                  <div class="item_my_page_order">
+                    <div class="info_order_history">
+                      <h3>注文番号：{{ order.name }}<span>発送済み</span></h3>
+                      <span>注文日：{{ order.created_at | time_tag: '%Y/%m/%d' }}　商品数：{{numbeOrder}}　合計：{{ order.total_price | money }}</span>
+                      <span>お支払い状況：{{ order.financial_status_label }}</span>
+                    </div>
+                    <a class="btn_short01" href="{{order.customer_url}}">詳細を見る</a>
+                  </div>
+                </li>
+          {% endfor %}
+        {% else %}
+        <span class="order-history">まだ注文をしていません。</span>
+        {% endif %}
+        {% if paginate.pages > 1 %}
+        {% include 'pagination' %}
+        {% endif %}
+        {% endpaginate %}
+    </div>
+    <div class="card-content">
+      <div class="title">発送先住所</div>
+      {% if customer.addresses_count > 0 %}
+      {% for address in customer.addresses %}
+      <div class="item">
+          {% if address == customer.default_address %}
+            <div class="setting-default"> デフォルトに設定中</div>
+          {% endif %}
+        <div class="address {{ address.id }}">
+          <p>{{address.last_name}} {{address.first_name}}</p>
+          <p>{{ address.company }}</p>
+          <p>{{ address.phone }}</p>
+          <p>〒{{ address.zip }}</p>
+          <p>{{ address.province }} {{ address.city }} {{ address.address1 }}  {{ address.address2 }}</p>
+        </div>
+          <div class="setting">
+            <a
+              data-form-id="{{ address.id }}"
+              href="javascript:;"
+              class="del_model_popup btn address-delete">削除</a>
+              <a
+                data-form-id="{{ address.id }}"
+                class="edit_address">編集</a>
+          </div>
+        <div
+          style="display: none;"
+          id="hidden-content-1"
+          class="hidden-content"
+        >
+          <div class="modal">
+            <div class="title">住所を削除</div>
+            <div class="question">本当にこの住所を削除してもよろしいですか？</div>
+            <div class="confirm">
+                <a
+                  data-fancybox-close
+                  class="delete btn_short01"
+                >はい
+                </a>
+                <a data-fancybox-close>いいえ</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <a id="create_address_" class="add-address btn_short01">住所を登録する</a>
+      {% else %}
+        <div class="address">
+          <p>まだ登録されていません。</p>
+        </div>
+        <a id="create_address_" class="add-address btn_short01">住所を登録する</a>
+      {% endif %}
+    </div>
+    <div class="card-content">
+      <div class="title"><a href="/pages/contact">お問い合わせ</a></div>
+    </div>
+    <div class="card-content">
+      <div class="title">
+        {{ 'layout.customer.log_out' | t | customer_logout_link }}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .main>.inner {
+    width: 100%;
+    background-color: #F4F4F4;
+  }
+  #main_content {
+    background-color: #F4F4F4;
+  }
+</style>
+<script>
+  if (localStorage.getItem("redirectLogin") == "login") {
+    // alert("Account");
+    localStorage.setItem("redirectLogin", "");
+  }
+</script>
+<script>
+    window.onload = function () {
+      var formIdDel;
+      $(".address-delete").click(function(){
+        formIdDel = $(this).data("form-id");
+      });
+        $('.delete').click(function (e) {
+          e.preventDefault();
+          localStorage.setItem('address','list');
+          console.log(formIdDel)
+          // Shopify.postLink('/account/addresses/' + formId, {
+          //   parameters: {
+          //     _method: 'delete'
+          //   }
+          // });
+          $.ajax({
+            url: "/account/addresses/"+ formIdDel,
+            type: "DELETE",
+            success: function (result) {
+              // Do something with the result
+            }
+          });
+          // _deleteFunc.next();
+        });
+      };
+    $(document).ready(function() {
+      $('#create_address_').click(function(){
+        localStorage.setItem('address','create');
+        setTimeout(function() {
+            window.location.href = "/account/addresses";
+        }, 500);
+      });
+      $('.edit_address').click(function(){
+        var formId = $(this).data('form-id');
+        localStorage.setItem('address','edit');
+        localStorage.setItem('formId',formId);
+        setTimeout(function() {
+            window.location.href = "/account/addresses";
+        }, 500);
+      });
+    });
+    // $.ajax({
+    //     url: '/collections/all',
+    //     type: 'DELETE',
+    //     success: function (result) {
+    //       // Do something with the result
+    //       console.log("data: ", result);
+    //     }
+    //   });
+</script>

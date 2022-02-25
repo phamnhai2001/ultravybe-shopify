@@ -1,0 +1,206 @@
+<div class="upper">
+  {% render 'breadcrumbs' %}
+</div>
+{% if blog.handle == "news" %}
+<script>
+  var allArticles = [];
+  localStorage.setItem("allArticles", JSON.stringify(allArticles));
+</script>
+{% assign my_array = "" | split: ',' %}
+{% for link in linklists.blog.links %}
+  {% assign blog = link.object %}
+  {% assign articles = blog.articles %}
+  {% assign blogTitle = blog.title %}
+  {% assign my_array = my_array | concat: blog.articles | sort: 'published_at' | reverse %}
+  {% for article in blog.articles %}
+    {% assign urlArticle = article.url %}
+    <script>
+      var allArticles = JSON.parse(localStorage.getItem("allArticles"));
+      var article = {{ article | json}};
+      var blogTitle = {{ blogTitle | json}};
+      var urlArticle = {{urlArticle | json}};
+      article["urlArticle"] = urlArticle;
+      article["blogTitle"] = blogTitle;
+      allArticles.push(article);
+      localStorage.setItem("allArticles", JSON.stringify(allArticles));
+    </script>
+  {% endfor %}
+{% endfor %}
+{% assign my_array = my_array | sort: 'published_at' | reverse %}
+<section class="section list_news container_list_news">
+  <div class="upper">
+    <div class="tlt_main">
+      <div class="item_thumbnail">
+        <img src="{{'title_news.png' | asset_url}}" alt="" />
+      </div>
+      <span>お知らせ</span>
+    </div>
+    <div class="tabs_list">
+      <ul class="tab_nav">
+        <li>
+          <a href="/blogs/news">すべて</a>
+        </li>
+        <li>
+          <a href="/blogs/theme">トピックス</a>
+        </li>
+        <li>
+          <a href="/blogs/management">運営</a>
+        </li>
+        <li>
+          <a href="/blogs/event">イベント</a>
+        </li>
+        <li>
+          <a href="/blogs/other">その他</a>
+        </li>
+      </ul>
+      <div class="tab_content">
+        <div class="tab_item" id="tab_1">
+          <div class="inner" id="data-container">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="pagination-container" class="paginationjs-pages my_favorite_bottom"></div>
+<script src="{{ 'pagination.js' | asset_url }}"></script>
+<script>
+  var allArticles = JSON.parse(localStorage.getItem("allArticles"));
+  function simpleTemplating(data) {
+    var html = '<ul class="list_item_news">';
+    $.each(data, function(index, item){
+        html += `<li>
+          <a href="`+item.urlArticle+`">
+            <div>
+              <div class="item_thumbnail">
+                <img src="`+item.image.src+`" alt="" />
+              </div>
+              <div class="data">
+                <span>`+ item.blogTitle +`</span>
+                <div class="c-item_text">
+                <span>`+item.title+`</span>
+                </div>
+                <div class="c-item__date">
+                  `+item.published_at+`
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>`;
+    });
+    html += '</ul>';
+    return html;
+}
+$('#pagination-container').pagination({
+    dataSource: allArticles,
+    pageSize: 2,
+    pageRange:1,
+    autoHidePrevious: true,
+    autoHideNext: true,
+    prevText: '＜',
+    nextText: '＞',
+    showFirstOnEllipsisShow: false,
+		showLastOnEllipsisShow: false,
+    callback: function(data, pagination) {
+        var html = simpleTemplating(data);
+        $('#data-container').html(html);
+    }
+});
+</script>
+{% else %}
+{% paginate blog.articles by 10 %}
+<section class="section list_news container_list_news">
+  <div class="upper">
+    <div class="tlt_main">
+      <div class="item_thumbnail">
+        <img src="{{'title_news.png' | asset_url}}" alt="" />
+      </div>
+      <span>お知らせ</span>
+    </div>
+    <div class="tabs_list">
+      <ul class="tab_nav">
+        <li>
+          <a href="/blogs/news">すべて</a>
+        </li>
+        <li>
+          <a href="/blogs/theme">トピックス</a>
+        </li>
+        <li>
+          <a href="/blogs/management">運営</a>
+        </li>
+        <li>
+          <a href="/blogs/event">イベント</a>
+        </li>
+        <li>
+          <a href="/blogs/other">その他</a>
+        </li>
+      </ul>
+      <div class="tab_content">
+        <div class="tab_item" id="tab_1">
+          <div class="inner">
+            <ul class="list_item_news">
+            {% for article in blog.articles %}
+              <li>
+                <a href="{{ blog.url }}">
+                  <div>
+                    <div class="item_thumbnail">
+                      <img src="{{ article.image | img_url: 'master' }}" alt="" />
+                    </div>
+                    <div class="data">
+                      <span>{{ blog.title }}</span>
+                      <div class="c-item_text">
+                        <span>{{ article.title }}</span>
+                      </div>
+                      <div class="c-item__date">
+                          {{ article.published_at | date:'%Y/%m/%d %H:%M:%S'}}
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+{% endif %}
+{% endpaginate %}
+{% endif %}
+<style>
+  #main_content {
+    background-color: #F4F4F4;
+  }
+  .main>.inner {
+    width: 100%;
+    background-color: #F4F4F4;
+  }
+  @media (max-width: 768px) {
+    
+    .main > .inner,
+    #list_news #main_content #main_content {
+      background-color: #cae2dc;
+    }
+    .navi_top {
+      padding-left: 4.296875vw;
+      padding-bottom: 5.859375vw;
+      background-color: #cae2dc;
+      margin: 0;
+    }
+  }
+</style>
+<script>
+  $(document).ready(function() {
+    var path = window.location.pathname;
+    $('.tab_nav li').each(function() {
+        var tabUrl = $(this).find('a').attr("href");
+        if (tabUrl === path) {
+            $(this).addClass('active_tab');
+        }
+    });
+  });
+</script>

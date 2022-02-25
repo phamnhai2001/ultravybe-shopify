@@ -1,0 +1,207 @@
+<div id="advanced_search_popup" style="display: none;">
+  <div class="upper">
+    <form class="inner_advanced_search" action="">
+      <div class="banner_search">
+        <div class="tlt_search_popup">
+          <div class="item_thumbnail">
+            <img src="{{'icon_urtra_serch_l.png' | asset_url}}" alt="" />
+          </div>
+          <h3>ウルトラ検索</h3>
+          <span class="util_pc">｜条件を入力して検索ができます</span>
+        </div>
+      </div>
+      <div class="container_search">
+        <div class="inner_col__">
+          <ul class="col__">
+            <li>
+              <div class="box_form_search">
+                <div class="ttl">アーティスト名</div>
+                <div>
+                  <input
+                    id = "artist-name"
+                    type="text"
+                    value=""
+                    placeholder=""
+                    class="normal_input"
+                  />
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="box_form_search">
+                <div class="ttl">タイトル</div>
+                <div>
+                  <input
+                    id ="title-product"
+                    type="text"
+                    value=""
+                    placeholder=""
+                    class="normal_input"
+                  />
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="box_form_search">
+                <div class="ttl">曲名</div>
+                <div>
+                  <input
+                    id = "song-name"
+                    type="text"
+                    value=""
+                    placeholder=""
+                    class="normal_input"
+                  />
+                </div>
+              </div>
+            </li>
+          </ul>
+          <ul class="col__">
+            <li>
+              <div class="box_form_search">
+                <div class="ttl">レーベル名</div>
+                <div>
+                  <input
+                    id ="vendor-product"
+                    type="text"
+                    value=""
+                    placeholder=""
+                    class="normal_input"
+                  />
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="box_form_search">
+                <div class="ttl">商品番号</div>
+                <div>
+                  <input
+                    id = "id-product"
+                    type="text"
+                    value=""
+                    placeholder=""
+                    class="normal_input"
+                  />
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="box_form_search">
+                <div class="ttl">バーコード</div>
+                <div>
+                  <input
+                    id = "barcode-product"
+                    type="text"
+                    value=""
+                    placeholder=""
+                    class="normal_input"
+                  />
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="option check">
+          <div class="price_option">
+            <p class="ttl check"><a href="#">価格</a></p>
+            <div class="narrowPrice searchList clearfix">
+              <div id="searchPrice" class="slide_size ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                <div class="slider"></div>
+                <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;"></div>
+                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default last_first_price" style="left: 0%;"></span>
+                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default last_child_price" style="left: 100%;"></span></div>
+              <div class="control clearfix">
+                <p><span>￥</span><input type="text" id="p_pris" maxlength="10" class="sliderMin" name="p_pris" value=""></p>
+                <p><span>￥</span><input type="text" id="p_prie" maxlength="10" class="sliderMax" name="p_prie" value=""></p>
+                <input id="p_pri_max_slider" type="hidden" name="p_pri_max_slider" value="">
+              </div>
+            </div>
+          </div>
+          <div class="country_sale">
+            <p class="ttl check"><a href="#">発売国</a></p>
+            <div class="form_item">
+              <div class="item_check">
+                <input type="checkbox" value="" id="unspeci">
+                <label for="unspeci" class="checkbox normal">指定なし</label>
+              </div>
+              <div class="item_check">
+                <input type="checkbox" value="" id="domestic">
+                <label for="domestic" class="checkbox normal">国内版</label>
+              </div>
+              <div class="item_check">
+                <input type="checkbox" value="" id="import">
+                <label for="import" class="checkbox normal">輸入盤</label>
+              </div>
+            </div>
+          </div>
+          <div class="check_status">
+            <p class="ttl check"><a href="#">状態</a></p>
+            <div class="form_item">
+              <div class="item_check">
+                <input type="checkbox" value="" id="unspeci_02">
+                <label for="unspeci_02" class="checkbox normal">指定なし</label>
+              </div>
+              <div class="item_check">
+                <input type="checkbox" value="" id="new_product">
+                <label for="new_product" class="checkbox normal">新品</label>
+              </div>
+              <div class="item_check">
+                <input type="checkbox" value="" id="sec_hand">
+                <label for="sec_hand" class="checkbox normal">中古</label>
+              </div>
+            </div>
+          </div>
+          <div class="sales_status">
+            <p class="ttl check"><a href="#">販売状況</a></p>
+            <div class="form_item">
+              <div class="item_check">
+                <input type="checkbox" value="" id="unspeci_03">
+                <label for="unspeci_03" class="checkbox normal">指定なし</label>
+              </div>
+              <div class="item_check">
+                <input type="checkbox" value="" id="under_reservation">
+                <label for="under_reservation" class="checkbox normal">予約受付中</label>
+              </div>
+              <div class="item_check">
+                <input type="checkbox" value="" id="sales">
+                <label for="sales" class="checkbox normal">販売中</label>
+              </div>
+            </div>
+          </div>
+          <div class="display_order">
+            <p class="ttl check"><a href="#">検索結果表示順</a></p>
+            <div id="box_check_option_search" class="box_select__">
+              <select class="box_select_sort box_select__list_search" name="state">
+                <option></option>
+                <option value="all">新着順</option>
+                <option value="all">値段の安い順</option>
+                <option value="all">値段の高い順</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="btn_submit">
+        <button type="button" class="btn_short01 btn_reset">条件をリセット</button>
+        <button class="btn_short01 btn_submit_form search_form">
+          <span>この条件で検索</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div style="display: none;" id="hidden-search-sp">
+  <div class="modal">
+    <form class="form-search" action="#" method="post">
+      <input type="text" placeholder="キーワードで検索" />
+      <button type="submit" class="">
+        <img
+          class="util_sp"
+          src="{{'sp_header_Icon_search.png' | asset_url}}"
+          alt=""
+        />
+      </button>
+    </form>
+  </div>
+</div>

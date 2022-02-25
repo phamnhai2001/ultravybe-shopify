@@ -1,0 +1,161 @@
+<div class="upper">
+    <div class="navi_top">
+      <ul>
+        <li><a href="/">キーワード検索</a></li>
+        <li><span class="current">{{search.terms}}</span></li>
+        </ul>
+    </div>
+  </div>
+{% if search.results_count > 0 %}
+  <section class="section inner_list_item" id="inner_list_item">
+    <div class="upper">
+      <div class="tlt_option_top">
+        <div class="tlt_list">
+          <h3>検索結果：{{search.terms}}</h3>
+          <span>件数：{{ search.results_count}}件</span>
+        </div>
+        <div id="box_check_option" class="box_select__">
+          <select class="box_select_sort box_select__list" name="state" id="sort-by">
+            <option></option>
+            <option value="created-descending">新着順</option>
+            <option value="price-ascending">値段の安い順</option>
+            <option value="price-descending">値段の高い順</option>
+
+          </select>
+        </div>
+      </div>
+      {% paginate search.results by 10 %}
+      <div class="product_list_item">
+        <ul class="holizontal_list col_05" id="product-loop">
+        {% for item in search.results %}
+        {% assign product = item %}
+          <li class="item-product-{{ forloop.index }}">
+            <a class="c-item" href="{{ product.url }}">
+              <div class="item_thumbnail">
+                <img src="{{ product.images.first.src | img_url: '200x200' }}" alt="{{ product.images.first.alt }}">
+              </div>
+              <div class="c-item__body">
+                <div class="c_category"><span>{{ product.type }}</span></div>
+                  <h3 class="c-item__title">{{ product.title}}</h3>
+                  <div class="c-item__author">{{product.metafields.custom_fields["artist"]}}</div>
+                  <div class="c-item__price">{{ product.selected_or_first_available_variant.price | money }}（税抜）</div>
+                  <div class="c-item__date">{{product.metafields.custom_fields["release_date"] | date: "%Y/%m/%d"}} 発売</div>
+              </div>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        <div id="AjaxinatePagination">
+        {% if paginate.next %}
+            <a href="{{ paginate.next.url }}">
+              <div class="load-more load1">
+                <div class="wrap_loader">
+                  <div class="loader"></div>
+                  <div class="loading hidden"></div>
+                </div>
+              </div>
+            </a>
+        {% endif %}
+        </div>
+      </div>
+      {% endpaginate %}
+    </div>
+  </section>
+{% else %}
+  <section class="section inner_list_item wapper_search_empty" id="inner_list_item">
+    <div class="upper">
+      <div class="tlt_option_top">
+        <div class="tlt_list">
+          <h3>検索結果: {{search.terms}}</h3>
+          <span>件数：0件</span>
+        </div>
+      </div>
+      <div class="product_list_item inner_search_empty">
+        <div class="search_empty">
+          <h2>お探しの商品は見つかりませんでした。</h2>
+          <a class="btn_short01" href="/">TOPへ戻る</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+<style>
+  .section.inner_list_item.wapper_search_empty > .upper {
+    min-height: auto !important;
+  }
+  .main>.inner {
+    background-color: #ffffff;
+    width: 100%;
+  }
+  .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: #EBEBEB;
+    color: #000;
+    font-size: 14px;
+  }
+  .select2-container--default .select2-results__option--selected,
+  .select2-results__option--selectable {
+    font-size: 14px;
+  }
+  .select2-results__option {
+    margin: 6px;
+  }
+  @media only screen and (min-width: 1248px) and (max-width: 1919px) {
+    .select2-container--default .select2-results__option--selected,
+    .select2-results__option--selectable {
+      font-size: 0.729546639vw;
+    }
+    .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+      font-size: 0.729546639vw;
+    }
+    .select2-results__option {
+      margin: 0.312662845vw;
+    }
+  }
+  @media only screen and (max-width: 1247px) and (min-width: 769px) {
+    .select2-results__option {
+      margin: 4px;
+    }
+  }
+  @media (max-width: 768px) {
+    .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable,
+    .select2-container--default .select2-results__option--selected, .select2-results__option--selectable {
+      font-size: 3.64vw;
+      padding: 2.604166667vw;
+    }
+  }
+</style>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  var endlessScroll = new Ajaxinate({
+        container: '#product-loop',
+        pagination: '#AjaxinatePagination',
+        loadingText: ' ',
+        callback: function() {
+            setTimeout(function () {
+                $('.c-item .c-item__body').matchHeight();
+                $('.holizontal_list .c-item').matchHeight();
+            }, 1000);
+        }
+  });
+    endlessScroll.destroy();
+});
+</script>
+<script>
+Shopify.queryParams = {};
+if (location.search.length) {
+  for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+    aKeyValue = aCouples[i].split('=');
+    if (aKeyValue.length > 1) {
+      Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+    }
+  }
+}
+jQuery('#sort-by')
+  .val('{{ search.sort_by | default: search.default_sort_by | escape }}')
+  .bind('change', function() {
+    Shopify.queryParams.sort_by = jQuery(this).val();
+    location.search = jQuery.param(Shopify.queryParams).replace(/\+/g, '%20');
+  });
+</script>

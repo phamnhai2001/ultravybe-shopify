@@ -1,0 +1,110 @@
+{%- assign ImageUrl = section.settings.image -%}
+{%- assign collection = collections[section.settings.collection] -%}
+<div class="upper">
+    {% render 'breadcrumbs' %}
+</div>
+  <section class="section" id="main_feature">
+    <div class="feature_image">
+      <img src="{{ ImageUrl | img_url: 'master'}}" />
+    </div>
+    <div class="feature_contents">
+      <p>
+        {{ section.settings.description }}
+      </p>
+    </div>
+    <div class="feature_item">
+      <ul>
+      {% for product in collection.products %}
+          <li>
+              <div class="item_thumbnail">
+                  <img src="{{ product.images.first.src | img_url: '200x200' }}" alt="{{ product.images.first.alt }}">
+              </div>
+              <div class="item-contents">
+                  <p class="item-name">{{ product.metafields.custom_fields["artist"] }}</p>
+                  <p class="item-title">{{ product.title }}</p>
+                  <span class="c-item__price">{{ product.selected_or_first_available_variant.price | money }}（税別）</span>
+              </div>
+
+                  {% form 'product', product %}
+                  {% if product.variants.size > 1 %}
+                  <div id="box_check_option" class="box_select__ select-top">
+                    <select class="box_select_sort box_select_feature_01" name="id" id="ProductSelect-{{ section.id }}"
+                      data-productid="{{product.id}}">
+                      {% for variant in product.variants %}
+                      {% if variant.available %}
+                      <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}
+                        data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }}</option>
+                      {% else %}
+                      <option disabled="disabled">
+                        {{ variant.title }}
+                      </option>
+                      {% endif %}
+                      {% endfor %}
+                    </select>
+                  </div>
+                  {% else %}
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
+                  {% endif %}
+                  <input type="hidden" id="Quantity" name="quantity" value="1" min="1">
+                  <!-- <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" /> -->
+                  <button type="submit" name="add" id="AddToCart" class="btn_short01 item-contents_cart"
+                    data-cart-url="{{ routes.cart_url }}">
+                    <span id="AddToCartText">カートに入れる</span>
+                  </button>
+                  {%endform %}
+
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Special-page",
+    "settings": [
+  	  {
+        "type": "header",
+        "content": "Special settings"
+      },
+      {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description",
+            "info": "If you need larger items, enter CSS area value, [refer here](https:\/\/www.w3schools.com\/cssref\/pr_grid-area.asp)"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection"
+          }
+    ]
+  }
+{% endschema %}
+<style>
+    .main > .inner,
+    #main_content {
+        background-color: #F4F4F4;
+    }
+    @media only screen and (min-width: 1248px) and (max-width: 1919px) {
+        .item-contents > .box_select__ > .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 1.0422vw;
+        }
+    }
+    @media (max-width: 768px) {
+        .main > .inner,
+        #main_content {
+            background-color: #F4F4F4;
+        }
+    }
+</style>
+<script>
+    setTimeout(function () {
+        $('.feature_item_details .item-contents').matchHeight();
+    }, 1000);
+</script>

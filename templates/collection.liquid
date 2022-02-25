@@ -1,0 +1,14 @@
+
+<!-- /templates/collection.liquid -->
+
+{% section 'collection-template' %}
+
+<script>
+  window.theme = window.theme || {};
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  //
+  theme.collectionStrings = {
+    sortBy: '{{ collection.sort_by | default: collection.default_sort_by }}'
+  }
+</script>

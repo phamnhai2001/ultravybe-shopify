@@ -1,0 +1,70 @@
+<div class="upper header_txt hide">
+  <div class="navi_top">
+    <ul>
+      <li><a href="/">TOP</a></li>
+      <li><span class="current">お気に入り</span></li>
+    </ul>
+  </div>
+</div>
+<section id="list_favorite_exist" class="section list_favorite" id="wish_list">
+  <div class="upper">
+    <div class="util_sp tlt_option_top">
+      <div class="tlt_list">
+        <h3>お気に入り</h3>
+        <span class="wishlist-item-count">4アイテム</span>
+      </div>
+    </div>
+  {% paginate collections.all.products by 9999 %}
+    <div class="inner_favorite">
+      <ul class="list_favorite_item">
+      {% for product in collections.all.products %}
+        <li>
+          {% include 'product-tile' %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endpaginate %}
+  </div>
+</section>
+<section id="list_favorite_empty" class="section list_favorite">
+  <div class="upper">
+    <div class="favorite_empty">
+      <h2>お気に入り商品がありません。</h2>
+      <a class="btn_short01" href="/">買い物を続ける</a>
+    </div>
+  </div>
+</section>
+{% comment %} <div class="wishlist-loader">
+  <img
+    class="wishlist-loader--image"
+    src="{{ 'btn_icon_like.png' | asset_url }}"
+    alt="Wishlist loading"
+  />
+</div> {% endcomment %}
+<style>
+  .main>.inner {
+    width: 100%;
+    background-color: #F4F4F4;
+    overflow: auto;
+  }
+  @media (max-width: 768px) {
+    .main > .inner {
+      background-color: #ffffff;
+    }
+    #main_content {
+      background-color: #ffffff;
+    }
+  }
+</style>
+
+
+<script>
+  var wishlist = JSON.parse(localStorage.getItem('user_wishlist')) || [];
+    $('.header_txt').removeClass('hide');
+    if(wishlist.length > 0) {
+      $ ('#list_favorite_exist').addClass ('is_visible');
+    } else {
+      $ ('#list_favorite_empty').addClass ('is_visible');
+    }
+</script>

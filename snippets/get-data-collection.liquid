@@ -1,0 +1,531 @@
+<script src="https://unpkg.com/localforage@1.7.3/dist/localforage.min.js"></script>
+<script>
+    localforage.setDriver(localforage.INDEXEDDB);
+    var collection_CD = new Array();
+    var collection_CD_DVD = new Array();
+    var collection_CD_GOODS = new Array();
+    var collection_CD_OTHER = new Array();
+    var collection_7INCH = new Array();
+    var collection_12INCH = new Array();
+    var collection_BOX_SET = new Array();
+    var collection_TAPE = new Array();
+    var collection_DVD = new Array();
+    var collection_DVD_OTHER = new Array();
+    var collection_BLU_RAY = new Array();
+    var collection_GOODS = new Array();
+</script>
+
+<!-- CD -->
+{% paginate collections['cd'].products by 99999 %}
+{% for product in collections['cd'].products %}
+{% assign artist = product.metafields.custom_fields["artist"] %}
+{% assign date_release = product.metafields.custom_fields["release_date"] %}
+{% assign country = product.metafields.custom_fields["country"] %}
+{% assign condition = product.metafields.custom_fields["condition"] %}
+{% assign specification = product.metafields.custom_fields["specification"] %}
+{% assign preorder = product.metafields.custom_fields["preorder"] %}
+{% assign product_type = product.type %}
+{% assign product_title = product.title %}
+{% assign product_price = product.selected_or_first_available_variant.price %}
+{% assign product_img = product.images.first.src %}
+{% assign product_url = product.url %}
+{% assign songName = product.metafields.custom_fields["tracklist"] %}
+{% assign catalogNo = product.metafields.custom_fields["catalog_no"] %}
+{% assign product_vendor = product.vendor %}
+{% assign product_barcode = product.selected_or_first_available_variant.barcode %}
+<script>
+    var product = {
+        "title": {{ product_title | json }},
+        "type": {{ product_type | json }},
+        "price": {{ product_price | json }},
+        "img": {{ product_img | json }},
+        "url": {{ product_url | json }},
+        "artist": {{ artist | json }},
+        "release_date": {{ date_release | json }},
+        "country": {{ country | json }},
+        "condition": {{ condition | json }},
+        "specification": {{ specification | json }},
+        "preorder": {{ preorder | json }},
+        "tracklist": {{ songName | json }},
+        "catalog_no": {{ catalogNo | json }},
+        "vendor": {{ product_vendor | json }},
+        "barcode": {{ product_barcode | json }},
+    };
+    collection_CD.push(product);
+</script>
+{% endfor %}
+{% endpaginate %}
+
+<!-- CD+DVD -->
+{% paginate collections['cd-dvd'].products by 99999 %}
+{% for product in collections['cd-dvd'].products %}
+{% assign artist = product.metafields.custom_fields["artist"] %}
+{% assign date_release = product.metafields.custom_fields["release_date"] %}
+{% assign country = product.metafields.custom_fields["country"] %}
+{% assign condition = product.metafields.custom_fields["condition"] %}
+{% assign specification = product.metafields.custom_fields["specification"] %}
+{% assign preorder = product.metafields.custom_fields["preorder"] %}
+{% assign product_type = product.type %}
+{% assign product_title = product.title %}
+{% assign product_price = product.selected_or_first_available_variant.price %}
+{% assign product_img = product.images.first.src %}
+{% assign product_url = product.url %}
+{% assign songName = product.metafields.custom_fields["tracklist"] %}
+{% assign catalogNo = product.metafields.custom_fields["catalog_no"] %}
+{% assign product_vendor = product.vendor %}
+{% assign product_barcode = product.selected_or_first_available_variant.barcode %}
+<script>
+    var product = {
+        "title": {{ product_title | json }},
+        "type": {{ product_type | json }},
+        "price": {{ product_price | json }},
+        "img": {{ product_img | json }},
+        "url": {{ product_url | json }},
+        "artist": {{ artist | json }},
+        "release_date": {{ date_release | json }},
+        "country": {{ country | json }},
+        "condition": {{ condition | json }},
+        "specification": {{ specification | json }},
+        "preorder": {{ preorder | json }},
+        "tracklist": {{ songName | json }},
+        "catalog_no": {{ catalogNo | json }},
+        "vendor": {{ product_vendor | json }},
+        "barcode": {{ product_barcode | json }},
+    };
+    collection_CD_DVD.push(product);
+</script>
+{% endfor %}
+{% endpaginate %}
+
+<!-- CD+GOODS -->
+{% paginate collections['cd-goods'].products by 99999 %}
+{% for product in collections['cd-goods'].products %}
+{% assign artist = product.metafields.custom_fields["artist"] %}
+{% assign date_release = product.metafields.custom_fields["release_date"] %}
+{% assign country = product.metafields.custom_fields["country"] %}
+{% assign condition = product.metafields.custom_fields["condition"] %}
+{% assign specification = product.metafields.custom_fields["specification"] %}
+{% assign preorder = product.metafields.custom_fields["preorder"] %}
+{% assign product_type = product.type %}
+{% assign product_title = product.title %}
+{% assign product_price = product.selected_or_first_available_variant.price %}
+{% assign product_img = product.images.first.src %}
+{% assign product_url = product.url %}
+{% assign songName = product.metafields.custom_fields["tracklist"] %}
+{% assign catalogNo = product.metafields.custom_fields["catalog_no"] %}
+{% assign product_vendor = product.vendor %}
+{% assign product_barcode = product.selected_or_first_available_variant.barcode %}
+<script>
+    var product = {
+        "title": {{ product_title | json }},
+        "type": {{ product_type | json }},
+        "price": {{ product_price | json }},
+        "img": {{ product_img | json }},
+        "url": {{ product_url | json }},
+        "artist": {{ artist | json }},
+        "release_date": {{ date_release | json }},
+        "country": {{ country | json }},
+        "condition": {{ condition | json }},
+        "specification": {{ specification | json }},
+        "preorder": {{ preorder | json }},
+        "tracklist": {{ songName | json }},
+        "catalog_no": {{ catalogNo | json }},
+        "vendor": {{ product_vendor | json }},
+        "barcode": {{ product_barcode | json }},
+    };
+    collection_CD_GOODS.push(product);
+</script>
+{% endfor %}
+{% endpaginate %}
+
+<!-- CD+OTHER -->
+{% paginate collections['lp'].products by 99999 %}
+{% for product in collections['lp'].products %}
+{% assign artist = product.metafields.custom_fields["artist"] %}
+{% assign date_release = product.metafields.custom_fields["release_date"] %}
+{% assign country = product.metafields.custom_fields["country"] %}
+{% assign condition = product.metafields.custom_fields["condition"] %}
+{% assign specification = product.metafields.custom_fields["specification"] %}
+{% assign preorder = product.metafields.custom_fields["preorder"] %}
+{% assign product_type = product.type %}
+{% assign product_title = product.title %}
+{% assign product_price = product.selected_or_first_available_variant.price %}
+{% assign product_img = product.images.first.src %}
+{% assign product_url = product.url %}
+{% assign songName = product.metafields.custom_fields["tracklist"] %}
+{% assign catalogNo = product.metafields.custom_fields["catalog_no"] %}
+{% assign product_vendor = product.vendor %}
+{% assign product_barcode = product.selected_or_first_available_variant.barcode %}
+<script>
+    var product = {
+        "title": {{ product_title | json }},
+        "type": {{ product_type | json }},
+        "price": {{ product_price | json }},
+        "img": {{ product_img | json }},
+        "url": {{ product_url | json }},
+        "artist": {{ artist | json }},
+        "release_date": {{ date_release | json }},
+        "country": {{ country | json }},
+        "condition": {{ condition | json }},
+        "specification": {{ specification | json }},
+        "preorder": {{ preorder | json }},
+        "tracklist": {{ songName | json }},
+        "catalog_no": {{ catalogNo | json }},
+        "vendor": {{ product_vendor | json }},
+        "barcode": {{ product_barcode | json }},
+    };
+    collection_CD_OTHER.push(product);
+</script>
+{% endfor %}
+{% endpaginate %}
+
+<!-- 7INCH -->
+{% paginate collections['7-inch-record'].products by 99999 %}
+{% for product in collections['7-inch-record'].products %}
+{% assign artist = product.metafields.custom_fields["artist"] %}
+{% assign date_release = product.metafields.custom_fields["release_date"] %}
+{% assign country = product.metafields.custom_fields["country"] %}
+{% assign condition = product.metafields.custom_fields["condition"] %}
+{% assign specification = product.metafields.custom_fields["specification"] %}
+{% assign preorder = product.metafields.custom_fields["preorder"] %}
+{% assign product_type = product.type %}
+{% assign product_title = product.title %}
+{% assign product_price = product.selected_or_first_available_variant.price %}
+{% assign product_img = product.images.first.src %}
+{% assign product_url = product.url %}
+{% assign songName = product.metafields.custom_fields["tracklist"] %}
+{% assign catalogNo = product.metafields.custom_fields["catalog_no"] %}
+{% assign product_vendor = product.vendor %}
+{% assign product_barcode = product.selected_or_first_available_variant.barcode %}
+<script>
+    var product = {
+        "title": {{ product_title | json }},
+        "type": {{ product_type | json }},
+        "price": {{ product_price | json }},
+        "img": {{ product_img | json }},
+        "url": {{ product_url | json }},
+        "artist": {{ artist | json }},
+        "release_date": {{ date_release | json }},
+        "country": {{ country | json }},
+        "condition": {{ condition | json }},
+        "specification": {{ specification | json }},
+        "preorder": {{ preorder | json }},
+        "tracklist": {{ songName | json }},
+        "catalog_no": {{ catalogNo | json }},
+        "vendor": {{ product_vendor | json }},
+        "barcode": {{ product_barcode | json }},
+    };
+    collection_7INCH.push(product);
+</script>
+{% endfor %}
+{% endpaginate %}
+
+<!-- 12INCH -->
+{% paginate collections['12-inch-record'].products by 99999 %}
+{% for product in collections['7-inch-record'].products %}
+{% assign artist = product.metafields.custom_fields["artist"] %}
+{% assign date_release = product.metafields.custom_fields["release_date"] %}
+{% assign country = product.metafields.custom_fields["country"] %}
+{% assign condition = product.metafields.custom_fields["condition"] %}
+{% assign specification = product.metafields.custom_fields["specification"] %}
+{% assign preorder = product.metafields.custom_fields["preorder"] %}
+{% assign product_type = product.type %}
+{% assign product_title = product.title %}
+{% assign product_price = product.selected_or_first_available_variant.price %}
+{% assign product_img = product.images.first.src %}
+{% assign product_url = product.url %}
+{% assign songName = product.metafields.custom_fields["tracklist"] %}
+{% assign catalogNo = product.metafields.custom_fields["catalog_no"] %}
+{% assign product_vendor = product.vendor %}
+{% assign product_barcode = product.selected_or_first_available_variant.barcode %}
+<script>
+    var product = {
+        "title": {{ product_title | json }},
+        "type": {{ product_type | json }},
+        "price": {{ product_price | json }},
+        "img": {{ product_img | json }},
+        "url": {{ product_url | json }},
+        "artist": {{ artist | json }},
+        "release_date": {{ date_release | json }},
+        "country": {{ country | json }},
+        "condition": {{ condition | json }},
+        "specification": {{ specification | json }},
+        "preorder": {{ preorder | json }},
+        "tracklist": {{ songName | json }},
+        "catalog_no": {{ catalogNo | json }},
+        "vendor": {{ product_vendor | json }},
+        "barcode": {{ product_barcode | json }},
+    };
+    collection_12INCH.push(product);
+</script>
+{% endfor %}
+{% endpaginate %}
+
+<!-- BOXSET -->
+{% paginate collections['box-set'].products by 99999 %}
+{% for product in collections['box-set'].products %}
+{% assign artist = product.metafields.custom_fields["artist"] %}
+{% assign date_release = product.metafields.custom_fields["release_date"] %}
+{% assign country = product.metafields.custom_fields["country"] %}
+{% assign condition = product.metafields.custom_fields["condition"] %}
+{% assign specification = product.metafields.custom_fields["specification"] %}
+{% assign preorder = product.metafields.custom_fields["preorder"] %}
+{% assign product_type = product.type %}
+{% assign product_title = product.title %}
+{% assign product_price = product.selected_or_first_available_variant.price %}
+{% assign product_img = product.images.first.src %}
+{% assign product_url = product.url %}
+{% assign songName = product.metafields.custom_fields["tracklist"] %}
+{% assign catalogNo = product.metafields.custom_fields["catalog_no"] %}
+{% assign product_vendor = product.vendor %}
+{% assign product_barcode = product.selected_or_first_available_variant.barcode %}
+<script>
+    var product = {
+        "title": {{ product_title | json }},
+        "type": {{ product_type | json }},
+        "price": {{ product_price | json }},
+        "img": {{ product_img | json }},
+        "url": {{ product_url | json }},
+        "artist": {{ artist | json }},
+        "release_date": {{ date_release | json }},
+        "country": {{ country | json }},
+        "condition": {{ condition | json }},
+        "specification": {{ specification | json }},
+        "preorder": {{ preorder | json }},
+        "tracklist": {{ songName | json }},
+        "catalog_no": {{ catalogNo | json }},
+        "vendor": {{ product_vendor | json }},
+        "barcode": {{ product_barcode | json }},
+    };
+    collection_BOX_SET.push(product);
+</script>
+{% endfor %}
+{% endpaginate %}
+
+
+<!-- TAPE -->
+{% paginate collections['tape'].products by 99999 %}
+{% for product in collections['tape'].products %}
+{% assign artist = product.metafields.custom_fields["artist"] %}
+{% assign date_release = product.metafields.custom_fields["release_date"] %}
+{% assign country = product.metafields.custom_fields["country"] %}
+{% assign condition = product.metafields.custom_fields["condition"] %}
+{% assign specification = product.metafields.custom_fields["specification"] %}
+{% assign preorder = product.metafields.custom_fields["preorder"] %}
+{% assign product_type = product.type %}
+{% assign product_title = product.title %}
+{% assign product_price = product.selected_or_first_available_variant.price %}
+{% assign product_img = product.images.first.src %}
+{% assign product_url = product.url %}
+{% assign songName = product.metafields.custom_fields["tracklist"] %}
+{% assign catalogNo = product.metafields.custom_fields["catalog_no"] %}
+{% assign product_vendor = product.vendor %}
+{% assign product_barcode = product.selected_or_first_available_variant.barcode %}
+<script>
+    var product = {
+        "title": {{ product_title | json }},
+        "type": {{ product_type | json }},
+        "price": {{ product_price | json }},
+        "img": {{ product_img | json }},
+        "url": {{ product_url | json }},
+        "artist": {{ artist | json }},
+        "release_date": {{ date_release | json }},
+        "country": {{ country | json }},
+        "condition": {{ condition | json }},
+        "specification": {{ specification | json }},
+        "preorder": {{ preorder | json }},
+        "tracklist": {{ songName | json }},
+        "catalog_no": {{ catalogNo | json }},
+        "vendor": {{ product_vendor | json }},
+        "barcode": {{ product_barcode | json }},
+    };
+    collection_TAPE.push(product);
+</script>
+{% endfor %}
+{% endpaginate %}
+
+<!-- DVD -->
+{% paginate collections['dvd'].products by 99999 %}
+{% for product in collections['dvd'].products %}
+{% assign artist = product.metafields.custom_fields["artist"] %}
+{% assign date_release = product.metafields.custom_fields["release_date"] %}
+{% assign country = product.metafields.custom_fields["country"] %}
+{% assign condition = product.metafields.custom_fields["condition"] %}
+{% assign specification = product.metafields.custom_fields["specification"] %}
+{% assign preorder = product.metafields.custom_fields["preorder"] %}
+{% assign product_type = product.type %}
+{% assign product_title = product.title %}
+{% assign product_price = product.selected_or_first_available_variant.price %}
+{% assign product_img = product.images.first.src %}
+{% assign product_url = product.url %}
+{% assign songName = product.metafields.custom_fields["tracklist"] %}
+{% assign catalogNo = product.metafields.custom_fields["catalog_no"] %}
+{% assign product_vendor = product.vendor %}
+{% assign product_barcode = product.selected_or_first_available_variant.barcode %}
+<script>
+    var product = {
+        "title": {{ product_title | json }},
+        "type": {{ product_type | json }},
+        "price": {{ product_price | json }},
+        "img": {{ product_img | json }},
+        "url": {{ product_url | json }},
+        "artist": {{ artist | json }},
+        "release_date": {{ date_release | json }},
+        "country": {{ country | json }},
+        "condition": {{ condition | json }},
+        "specification": {{ specification | json }},
+        "preorder": {{ preorder | json }},
+        "tracklist": {{ songName | json }},
+        "catalog_no": {{ catalogNo | json }},
+        "vendor": {{ product_vendor | json }},
+        "barcode": {{ product_barcode | json }},
+    };
+    collection_DVD.push(product);
+</script>
+{% endfor %}
+{% endpaginate %}
+
+<!-- DVD+OTHER -->
+{% paginate collections['dvd-goods'].products by 99999 %}
+{% for product in collections['dvd-goods'].products %}
+{% assign artist = product.metafields.custom_fields["artist"] %}
+{% assign date_release = product.metafields.custom_fields["release_date"] %}
+{% assign country = product.metafields.custom_fields["country"] %}
+{% assign condition = product.metafields.custom_fields["condition"] %}
+{% assign specification = product.metafields.custom_fields["specification"] %}
+{% assign preorder = product.metafields.custom_fields["preorder"] %}
+{% assign product_type = product.type %}
+{% assign product_title = product.title %}
+{% assign product_price = product.selected_or_first_available_variant.price %}
+{% assign product_img = product.images.first.src %}
+{% assign product_url = product.url %}
+{% assign songName = product.metafields.custom_fields["tracklist"] %}
+{% assign catalogNo = product.metafields.custom_fields["catalog_no"] %}
+{% assign product_vendor = product.vendor %}
+{% assign product_barcode = product.selected_or_first_available_variant.barcode %}
+<script>
+    var product = {
+        "title": {{ product_title | json }},
+        "type": {{ product_type | json }},
+        "price": {{ product_price | json }},
+        "img": {{ product_img | json }},
+        "url": {{ product_url | json }},
+        "artist": {{ artist | json }},
+        "release_date": {{ date_release | json }},
+        "country": {{ country | json }},
+        "condition": {{ condition | json }},
+        "specification": {{ specification | json }},
+        "preorder": {{ preorder | json }},
+        "tracklist": {{ songName | json }},
+        "catalog_no": {{ catalogNo | json }},
+        "vendor": {{ product_vendor | json }},
+        "barcode": {{ product_barcode | json }},
+    };
+    collection_DVD_OTHER.push(product);
+</script>
+{% endfor %}
+{% endpaginate %}
+
+<!-- BLU-RAY -->
+{% paginate collections['blu-ray'].products by 99999 %}
+{% for product in collections['blu-ray'].products %}
+{% assign artist = product.metafields.custom_fields["artist"] %}
+{% assign date_release = product.metafields.custom_fields["release_date"] %}
+{% assign country = product.metafields.custom_fields["country"] %}
+{% assign condition = product.metafields.custom_fields["condition"] %}
+{% assign specification = product.metafields.custom_fields["specification"] %}
+{% assign preorder = product.metafields.custom_fields["preorder"] %}
+{% assign product_type = product.type %}
+{% assign product_title = product.title %}
+{% assign product_price = product.selected_or_first_available_variant.price %}
+{% assign product_img = product.images.first.src %}
+{% assign product_url = product.url %}
+{% assign songName = product.metafields.custom_fields["tracklist"] %}
+{% assign catalogNo = product.metafields.custom_fields["catalog_no"] %}
+{% assign product_vendor = product.vendor %}
+{% assign product_barcode = product.selected_or_first_available_variant.barcode %}
+<script>
+    var product = {
+        "title": {{ product_title | json }},
+        "type": {{ product_type | json }},
+        "price": {{ product_price | json }},
+        "img": {{ product_img | json }},
+        "url": {{ product_url | json }},
+        "artist": {{ artist | json }},
+        "release_date": {{ date_release | json }},
+        "country": {{ country | json }},
+        "condition": {{ condition | json }},
+        "specification": {{ specification | json }},
+        "preorder": {{ preorder | json }},
+        "tracklist": {{ songName | json }},
+        "catalog_no": {{ catalogNo | json }},
+        "vendor": {{ product_vendor | json }},
+        "barcode": {{ product_barcode | json }},
+    };
+    collection_BLU_RAY.push(product);
+</script>
+{% endfor %}
+{% endpaginate %}
+
+<!-- GOODS -->
+{% paginate collections['goods'].products by 99999 %}
+{% for product in collections['goods'].products %}
+{% assign artist = product.metafields.custom_fields["artist"] %}
+{% assign date_release = product.metafields.custom_fields["release_date"] %}
+{% assign country = product.metafields.custom_fields["country"] %}
+{% assign condition = product.metafields.custom_fields["condition"] %}
+{% assign specification = product.metafields.custom_fields["specification"] %}
+{% assign preorder = product.metafields.custom_fields["preorder"] %}
+{% assign product_type = product.type %}
+{% assign product_title = product.title %}
+{% assign product_price = product.selected_or_first_available_variant.price %}
+{% assign product_img = product.images.first.src %}
+{% assign product_url = product.url %}
+{% assign songName = product.metafields.custom_fields["tracklist"] %}
+{% assign catalogNo = product.metafields.custom_fields["catalog_no"] %}
+{% assign product_vendor = product.vendor %}
+{% assign product_barcode = product.selected_or_first_available_variant.barcode %}
+<script>
+    var product = {
+        "title": {{ product_title | json }},
+        "type": {{ product_type | json }},
+        "price": {{ product_price | json }},
+        "img": {{ product_img | json }},
+        "url": {{ product_url | json }},
+        "artist": {{ artist | json }},
+        "release_date": {{ date_release | json }},
+        "country": {{ country | json }},
+        "condition": {{ condition | json }},
+        "specification": {{ specification | json }},
+        "preorder": {{ preorder | json }},
+        "tracklist": {{ songName | json }},
+        "catalog_no": {{ catalogNo | json }},
+        "vendor": {{ product_vendor | json }},
+        "barcode": {{ product_barcode | json }},
+    };
+    collection_GOODS.push(product);
+</script>
+{% endfor %}
+{% endpaginate %}
+
+<script>
+    var data = {
+            collection_CD, collection_CD_DVD, collection_CD_GOODS, collection_CD_OTHER, collection_7INCH, collection_12INCH, collection_BOX_SET, collection_TAPE, collection_DVD, collection_DVD_OTHER, collection_BLU_RAY, collection_GOODS,
+        }
+
+        var collections = Object.keys(data).reduce(function (arr, key) {
+            return arr.concat(data[key]);
+        }, []);
+    var dataProduct = {
+            'products': collections,
+        }
+
+    localforage
+        .setItem('products', dataProduct)
+        .then(function (value) {
+            // console.log("data: ",value);
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+</script>

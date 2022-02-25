@@ -1,0 +1,135 @@
+<div class="brand-section" id="brand">
+  <div class="box_ttl_section brands">
+    <div class="box_ttl_inner">
+      <h2 class="ttl_section">
+        {{section.settings.text1}}
+        <span>{{section.settings.text11}}</span>
+      </h2>
+    </div>
+  </div>
+  <div class="section brand-wrapper">
+    <div class="inner util_pc">
+       <ul class="holizontal_list col5">
+        {% for block in section.blocks limit: 5 %}
+         <li>
+           <div class="box_brand">
+             <div class="thumbnail">
+               <a href="{{block.settings.link}}">
+                 <img src="{{ block.settings.image | img_url: '300x300' }}" alt="ASTRON">
+               </a></div>
+             <div class="logo"><img src="{{ block.settings.image2 | img_url: '300x' }}" alt="ASTRON"></div>
+           </div>
+         </li>
+        {% endfor %}
+      </ul>
+       <div class="link_more more_">
+          <a href="{{section.settings.custom_link_brand}}" >もっと見る</a>
+      </div>
+<!--       <div class="link_more bnr">
+        <a href="{{section.settings.link_read_more}}"><img src="{{section.settings.image_more |img_url: '1400x' }}" alt="img"></a>
+      </div> -->
+    </div>
+    <div class="inner util_sp">
+       <ul class="holizontal_list col5">
+        {% for block in section.blocks limit: 6 %}
+         <li>
+           <div class="box_brand">
+             <div class="thumbnail">
+               <a href="{{block.settings.link}}">
+                 <img src="{{ block.settings.image | img_url: '300x300' }}" alt="ASTRON">
+               </a></div>
+             <div class="logo"><img src="{{ block.settings.image2 | img_url: '300x' }}" alt="ASTRON"></div>
+           </div>
+         </li>
+        {% endfor %}
+      </ul>
+       <div class="link_more more_">
+          <a href="{{section.settings.custom_link_brand}}" >もっと見る</a>
+      </div>
+<!--       <div class="link_more bnr">
+        <a href="{{section.settings.link_read_more}}"><img src="{{section.settings.image_more |img_url: '1400x' }}" alt="img"></a>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Brand",
+    "class": "index-section",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "text1",
+        "label": "Text 1",
+        "default": "BRANDS"
+      },
+	  {
+        "type": "text",
+        "id": "text11",
+        "label": "Text 1",
+        "default": "ウォッチブランド"
+      },
+		{
+          "type": "image_picker",
+          "id": "image1",
+          "label": "Background left"
+		},
+		{
+          "type": "image_picker",
+          "id": "image12",
+          "label": "Background right"
+		},
+		{
+          "type": "image_picker",
+          "id": "image13",
+          "label": "Icon header"
+		},
+	    {
+          "type": "image_picker",
+          "id": "image_more",
+          "label": "Image banner more"
+		},
+		{
+        "type": "url",
+        "id": "custom_link_brand",
+        "label": "Custom link brand"
+     	 },
+		{
+          "type": "url",
+          "id": "link_read_more",
+          "label": "Link read more"
+		}
+    ],
+    "blocks": [
+      {
+        "type": "brand_image",
+        "name": "Brand",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image2",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link",
+			"info": "Optional"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Brand",
+        "category": "Service"
+      }
+    ]
+  }
+{% endschema %}

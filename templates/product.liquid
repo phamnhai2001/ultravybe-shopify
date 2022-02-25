@@ -1,0 +1,54 @@
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+
+{% section 'product-template' %}
+{% section 'product-recommendations' %}
+{% include 'recently-viewed' %}
+<style>
+  .main>.inner {
+    background-color: #F4F4F4;
+  }
+  #slider_browsing_history {
+    margin-bottom: 0;
+  }
+  #main_content {
+    padding-bottom: 153px;
+    background-color: #F4F4F4;
+  }
+  @media only screen and (max-width: 1919px) and (min-width: 1248px) {
+    #main_content {
+      padding-bottom: 7.9729vw;
+    }
+    section#slider_browsing_history {
+      margin-bottom: 0;
+    }
+  }
+  @media only screen and (max-width: 1247px) and (min-width: 769px) {
+    #main_content {
+      padding-bottom: 99px;
+    }
+  }
+  @media (max-width: 768px) {
+    .main>.inner {
+      background-color: #ffffff;
+    }
+    #main_content {
+      padding-bottom: 18.88020833vw;
+      background-color: #ffffff;
+    }
+    #carousel02 {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-wrap: wrap;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: stretch;
+      overflow: hidden;
+    }
+    ul#carousel02 {
+      margin: 0;
+    }
+  }
+</style>
+

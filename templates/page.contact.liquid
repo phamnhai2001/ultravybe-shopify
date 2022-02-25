@@ -1,0 +1,319 @@
+<!-- /templates/page.contact.liquid -->
+{% form 'contact' %}
+  <div class="upper">
+    <div class="navi_top contact_nav">
+  <ul>
+    <li><a href="/">TOP</a></li>
+    <li>
+        <a href="/account"><span class="current">マイページ</span></a>
+      </li>
+    <li><span class="current">お問い合わせ</span></li>
+  </ul>
+</div>
+<div class="navi_top confirm_nav">
+  <ul>
+    <li><a href="/">TOP > </a></li>
+    <li><a href="#">お問い合わせ</a></li>
+    <li><span class="current">お問い合わせ内容確認</span></li>
+  </ul>
+</div>
+<div class="navi_top contact_success_nav">
+  <ul>
+    <li><a href="/">TOP > </a></li>
+    <li><a href="#">お問い合わせ</a></li>
+    <li><span class="current">お問い合わせ内容確認</span></li>
+  </ul>
+</div>
+  </div>
+  {% if form.posted_successfully? %}
+      
+      <div class="upper">
+        <div class="navi_top">
+            <ul>
+                <li><a href="/">TOP > </a></li>
+                <li><a href="/pages/contact">お問い合わせ</a></li>
+                <li><span class="current">お問い合わせ内容確認</span></li>
+            </ul>
+        </div>
+    </div>
+      <section class="section contact_success" style="display: block">
+            <div class="upper form_success">
+                <div class="notification_success">
+                    <h2>送信完了しました</h2>
+                    <p>お問い合わせいただき<span>ありがとうございました。</span></p>
+                    <a href="/" class="btn01 sp_success">買い物を続ける</a>
+                </div>
+            </div>
+        </section>
+        <script>
+          $('.contact_nav').addClass('hide');
+          $('.section.contact').addClass('hide');
+      </script>
+{% endif %}
+  <section id="section_contact" class="section contact">
+    <div class="upper">
+      <div class="container_contact">
+        <div class="form_contact">
+          <h2>お問い合わせ</h2>
+            <ul>
+              <li>
+                <div class="title_contact">
+                  <label>名前</label>
+                  <span class="title_require">必須</span>
+                </div>
+                <ul class="holizontal_list_contact">
+                  <li>
+                    <input
+                      type="text"
+                      placeholder="姓"
+                      class="input_contact"
+                      id="firstName" 
+                      name="contact[fname]" 
+                      autocapitalize="words" 
+                      value="{% if form[fname] %}{{ form[fname] }}{% elsif customer %}{{ customer.first_name }}{% endif %}"
+                    />
+                  </li>
+                  <li>
+                    <input
+                      type="text"
+                      placeholder="名"
+                      class="input_contact"
+                      id="lastName" 
+                      name="contact[lname]" 
+                      autocapitalize="words" 
+                      value="{% if form[lname] %}{{ form[lname] }}{% elsif customer %}{{ customer.last_name }}{% endif %}"
+                    />
+                    <input type="hidden" name="contact[name]" id="ContactFormName" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}"/>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <div class="title_contact">
+                  <label>メールアドレス</label>
+                  <span class="title_require">必須</span>
+                </div>
+                <input
+                  type="email"
+                  placeholder="メールアドレス"
+                  class="input_contact"
+                  id="email" 
+                  name="contact[email]"
+                  autocorrect="off" autocapitalize="off" 
+                  value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                />
+              </li>
+              <li>
+                <div class="title_contact">
+                  <label>メールアドレス(確認)</label>
+                </div>
+                <input
+                  type="email"
+                  placeholder="確認のためもう一度入力してください"
+                  class="input_contact"
+                  name="reemail"
+                  id="reemail"
+                />
+              </li>
+                <li>
+                    <div class="title_contact">
+                        <label>お問い合わせ内容</label>
+                    </div>
+                    <div id="box_check_option" class="input-content nation">
+                        <select id="select-box" class="box_select_sort box_select_contact" name="contact[inquiry]">
+                            <option value="商品や在庫に関して"> 商品や在庫に関して</option>
+                            <option value="アカウントに関して">アカウントに関して </option>
+                            <option value="お支払いについて">お支払いについて</option>
+                            <option value="実店舗について"> 実店舗について</option>
+                            <option value="イベントについて">イベントについて</option>
+                            <option value="その他">その他</option>
+                        </select>
+                    </div>
+                </li>
+              <li>
+                <div class="title_contact">
+                  <label>お問い合わせ内容</label>
+                </div>
+                <textarea
+                  id="content"
+                  placeholder="お問い合わせ内容についてご入力ください。"
+                  name="contact[message]"
+                  class="c_content"
+                ></textarea>
+              </li>
+              <li>
+              <div class="title_contact policy_area">
+                <label>個人情報の取り扱いについて</label>
+                <span class="title_require">必須</span>
+              </div>
+                <div class="c_contact_policy">
+                  <input type="checkbox" name="policies" id="policies" class="checkbox normal"/>
+                  <span for="policies" class="group_title_span"><a target="_blank" href="/pages/privacy-policy" class="special_word">プライバシーポリシー</a>に同意します</span>
+                </div>
+            </li>
+              <li>
+               <script src="https://www.google.com/recaptcha/api.js"></script>
+                <div
+                  class="g-recaptcha"
+                  data-sitekey="6LdGgrMZAAAAANwPzPJ78gl0nP76d98j9qC4IQMl"
+                  data-callback='onSubmit'
+                  data-action='submit'></div>
+              </li>
+            </ul>
+            <div class="submit-contact">
+              <input type="button" class="btn01 sp" id="register_contact" value="内容を確認">
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+<section class="section confirm">
+  <div class="upper">
+    <div class="form_confirm">
+      <h2>お問い合わせ内容確認</h2>
+      <div class="question util_pc">
+        <p>お問い合わせ内容はこちらで宜しいですか？</p>
+        <p>よろしければ「送信する」ボタンを押して下さい。</p>
+      </div>
+      <div class="question util_sp">
+        <p>
+          お問い合わせ内容はこちらで宜しいですか？よろしければ「送信する」ボタンを押して下さい。
+        </p>
+      </div>
+        <div class="util_pc">
+          <table class="information_user">
+            <tr>
+              <td class="title_confirm">お名前</td>
+              <td>
+                <input
+                  type="text"
+                  class="input_confirm"
+                  id="name-confirm"
+                  name="name-confirm"
+                  disabled
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="title_confirm">メールアドレス</td>
+              <td>
+                <input
+                  type="email"
+                  class="input_confirm"
+                  name="email-confirm"
+                  id="email-confirm"
+                  disabled
+                />
+              </td>
+            </tr>
+              <tr>
+                  <td class="title_confirm">お問い合わせ内容</td>
+                  <td><input type="text" class="input_confirm" name="select-confirm" id="select-confirm" disabled></td>
+              </tr>
+          </table>
+          <div class="content_confirm">
+            <p>お問い合わせ内容</p>
+            <textarea
+              name="content-confirm"
+              id="content-confirm"
+              disabled
+            ></textarea>
+          </div>
+          <div class="group_button">
+            <a class="btn02" id="modify_contact">内容を修正する</a>
+            <input
+              type="submit"
+              class="btn01"
+              id="register_success"
+              value="この内容で送信"
+            />
+          </div>
+        </div>
+        <div class="util_sp">
+          <table class="information_user util_sp">
+            <thead></thead>
+            <tbody>
+              <tr class="title_confirm">
+                <td>お名前</td>
+              </tr>
+              <tr class="data-confirm">
+                <td>
+                  <input
+                    type="text"
+                    class="input_confirm"
+                    id="name-confirm-sp"
+                    name="name-confirm-sp"
+                    disabled
+                  />
+                </td>
+              </tr>
+              <tr class="title_confirm">
+                <td>メールアドレス</td>
+              </tr>
+              <tr class="data-confirm">
+                <td>
+                  <input
+                    type="email"
+                    class="input_confirm"
+                    name="email-confirm-sp"
+                    id="email-confirm-sp"
+                    disabled
+                  />
+                </td>
+              </tr>
+              <tr class="title_confirm">
+                <td>
+                  お問い合わせ内容
+                </td>
+              </tr>
+              <tr class="data-confirm">
+                <td>
+                  <textarea
+                    name="content-confirm-sp"
+                    id="content-confirm-sp"
+                    disabled
+                  ></textarea>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="group_button">
+            <input
+              type="submit"
+              class="btn01 sp_confirm"
+              id="register_success_sp"
+              value="この内容で送信"
+            />
+            <a class="btn02 sp" id="modify_contact_sp">内容を修正する</a>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+{% endform %}
+<style>
+  .main>.inner {
+    width: 100%;
+  }
+  #main_content,
+  .main>.inner {
+    background-color: #F4F4F4;
+  }
+  @media (max-width: 768px) {
+    .main > .inner {
+      background-color: #ffffff;
+    }
+    #main_content {
+      background-color: #ffffff;
+    }
+  }
+</style>
+
+ <script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+   var url = window.location.pathname+window.location.search;
+   if(url == "/pages/contact?contact_posted=true") {
+     $('.section.contact').addClass('hide');
+   }
+ </script>

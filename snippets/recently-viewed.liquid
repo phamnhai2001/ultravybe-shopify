@@ -1,0 +1,64 @@
+{{ '//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js' | script_tag }}
+{{ 'jquery.products.js' | asset_url | script_tag }}
+<section class="util_pc section list_slider browsing_history" id="slider_browsing_history">
+  <div class="upper">
+    <div class="tlt_main">
+      <div class="item_thumbnail">
+        <img src="{{'browsing_history.png' | asset_url}}" alt="" />
+      </div>
+      <span>閲覧履歴</span>
+    </div>
+    <div class="slider_inner">
+      <ul class="recently-viewed-products item_browsing_history">
+      </ul>
+    </div>
+    <div class="bg_slider_top"></div>
+  </div>
+</section>
+<section class="util_sp section recomend" id="container_history">
+  <div class="upper">
+    <div class="tlt_main">
+      <div class="item_thumbnail">
+        <img src="{{'browsing_history.png' | asset_url}}" alt="" />
+      </div>
+      <span>閲覧履歴</span>
+    </div>
+    <div class="container_recomend">
+      <ul class="recently-viewed-products item_browsing_history list_item_recomend">
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% raw %}
+  <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
+<li id="product-${handle}">
+  <a class="c-item" href="${url}">
+        <div class="item_thumbnail"">
+            <img class="util_pc" src="${Shopify.Products.resizeImage(featured_image, "medium")}" alt="">
+            <img class="util_sp" src="${Shopify.Products.resizeImage(featured_image, "medium")}" alt="">
+        </div>
+        <div class="c-item__body">
+            <div class="c_category"><span>${type}</span></div>
+            <h3 class="c-item__title">${title}</h3>
+            <div class="c-item__price">${Shopify.formatMoney(price)}（税抜）</div>
+        </div>
+  </a>
+</li>
+</script>
+{% endraw %}
+<style>
+  section#slider_browsing_history .c-item__body {
+    height: 75px;
+  }
+</style>
+<script>
+    Shopify.Products.showRecentlyViewed( {
+        howManyToShow:5,
+        onComplete: function (){
+            $('.c-item .c-item__body').matchHeight();
+            $('.c-item').matchHeight();
+        }
+    } );
+  
+</script>

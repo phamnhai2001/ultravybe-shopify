@@ -1,0 +1,157 @@
+<!-- /templates/customers/order.liquid -->
+<div class="upper">
+  <div class="navi_top">
+    <ul>
+      <li><a href="/">TOP</a></li>
+      <li>
+        <a href="/"><span class="current">マイページ</span></a>
+      </li>
+      <li><span class="current">ご注文の詳細</span></li>
+    </ul>
+  </div>
+</div>
+<section class="section order_history">
+  <div class="upper">
+    <div class="util_pc tlt_main">
+      <span>ご注文の詳細</span>
+    </div>
+    <div class="inner_order_history">
+      <div class="container_list_order_history">
+        <ul class="list_order_history">
+          {% assign numbeOrder = 0 %}
+            {%- for line_item in order.line_items -%}
+            {% assign numbeOrder = numbeOrder | plus: line_item.quantity %}
+            <li>
+              <div class="item_order_history">
+                <div class="data_order_history">
+                  <div class="item_thumbnail">
+                    <img src="{{ line_item.image | img_url }}" alt="" />
+                  </div>
+                  <div class="data">
+                    <h3>
+                      {{line_item.title}}
+                      {% comment %} [告知解禁：2020年 2月17日 12時 0分] {% endcomment %}
+                      [告知解禁: {{ order.created_at | time_tag: '%Y年%m月%d日 %H時 %M分' }}]
+                    </h3>
+                    <div class="info_data">
+                      <span>{{ line_item.product.metafields.custom_fields.artist }}</span>
+                      <span>フォーマット：{{ line_item.product.metafields.custom_fields.format }} / 仕様：{{ line_item.product.metafields.custom_fields.specification }}</span>
+                      <span>商品番号： {{line_item.product_id}}</span>
+                    </div>
+                    <div class="num_price_order">
+                      <span>数量：{{line_item.quantity}}</span>
+                      <span>価格：{{ line_item.original_line_price | money }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+        </ul>
+      </div>
+      <div class="util_sp tlt_main">
+        <span>ご注文の詳細</span>
+      </div>
+      <div class="total_order_history">
+        <div class="order_num">
+          <div>
+            <span>注文番号：{{order.name}}</span>
+            <span>注文日：{{ order.created_at | time_tag: '%Y/%m/%d' }}</span>
+            <span>商品数：{{ numbeOrder }}</span>
+            <a href="#">発送準備中: {{ order.fulfillment_status_label }}</a>
+            <div class="returns_about">
+              <a href="/pages/instruction-manual#canceling_order_01">
+                <div class="item_thumbnail">
+                  <img
+                    class="util_pc"
+                    src="{{'icon_help.png' | asset_url}}"
+                    alt=""
+                  />
+                  <img
+                    class="util_sp"
+                    src="{{'sp_icon_help.png' | asset_url}}"
+                    alt=""
+                  />
+                </div>
+                <span>商品のキャンセル・返品について</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="total_product_order">
+          <div class="list_total_order">
+            <div class="total_order">
+              <span>商品合計</span>
+              <span>{{ order.line_items_subtotal_price | money }}</span>
+            </div>
+            <div class="total_order">
+              <span>消費税</span>
+              {%- for tax_line in order.tax_lines -%}
+              <span>{{ tax_line.price | money }}</span>
+              {%- endfor -%}
+            </div>
+            <div class="total_order">
+              <span>送料</span>
+              {%- for shipping_method in order.shipping_methods -%}
+              <span>{{ shipping_method.price | money }}</span>
+              {%- endfor -%}
+            </div>
+            <div class="total_order total_last">
+              <span>合計</span>
+              <span>{{ order.total_price | money }}円</span>
+            </div>
+            <div class="total_order payment_method">
+              <span>お支払い方法：{{ order.gateway }}</span>
+              {% comment %} {% for transaction in order.transactions %}
+                <span>お支払い方法：{{ transaction.gateway }}</span>
+              {% endfor %} {% endcomment %}
+              <span class="status_payment">お支払い状況：{{ order.financial_status_label }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="billing_address">
+          <h3>請求先</h3>
+          {{ order.billing_address | format_address }}
+        </div>
+        <div class="shipping_address">
+          <h3>請求先</h3>
+          {{ order.shipping_address | format_address }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .main>.inner {
+    width: 100%;
+    background-color: #F4F4F4;
+  }
+    #main_content {
+    background-color: #F4F4F4;
+  }
+  .billing_address p, .shipping_address p{
+    font-size: 16px;
+    line-height: 24px;
+    display: block;
+    font-weight: 500;
+  }
+  @media only screen and (max-width: 1919px) and (min-width: 1248px) {
+    .billing_address p, .shipping_address p{
+      font-size: 0.833767587vw;
+      line-height: 1.250651381vw;
+    }
+  }
+  @media only screen and (max-width: 1247px) and (min-width: 769px) {
+    .billing_address p, .shipping_address p {
+      font-size: 10px;
+      line-height: 15px;
+    }
+  }
+  @media (max-width: 768px){
+    .billing_address p, .shipping_address p {
+      font-size: 3.125vw;
+      line-height: 4.6875vw;
+      letter-spacing: 0.24vw;
+    }
+  }
+</style>

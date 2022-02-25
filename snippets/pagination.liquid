@@ -1,0 +1,25 @@
+<div class="pagenation_list list_news_bottom">
+  <ul>
+    <li><a href="{{paginate.parts.first.url}}" class="prev_top"></a></li>
+    <li>
+      {% unless paginate.previous.is_link %}
+      <a href="#" class="prev"></a>
+      {% else %}
+      <a href="{{ paginate.previous.url }}" class="prev"></a>
+      {% endunless %}
+    </li>
+    {% for part in paginate.parts %}
+    <li>
+      <a class="{% unless part.is_link %}current{% endunless %}" href="{{part.url}}">{{part.title}}</a>
+    </li>
+    {% endfor %}
+    <li>
+      {% unless paginate.next.is_link %}
+      <a href="#" class="next"></a>
+      {% else %}
+      <a href="{{ paginate.next.url }}" class="next"></a>
+      {% endunless %}
+    </li>
+    <li><a href="{{paginate.parts.last.url}}" class="next_last"></a></li>
+  </ul>
+</div>

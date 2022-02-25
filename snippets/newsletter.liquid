@@ -1,0 +1,15 @@
+{% form 'customer', class: 'submit_email' %}
+  {{ form.errors | default_errors }}
+  {% if form.posted_successfully? %}
+    <p>ご登録ありがとうございました。</p>
+  {% else %}
+    <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="メールアドレスを入力してください" name="contact[email]" id="NewsletterEmail" autocorrect="off" autocapitalize="off">
+        <button type="submit" class="btn btn_email" name="commit" id="Subscribe">
+          <span {% if has_page_content %}class="medium-up--hide"{% endif %}>メルマガに登録する</span>
+          {% if has_page_content %}
+            <span class="small--hide">{% include 'icon-arrow-right' %}</span>
+          {% endif %}
+        </button>
+  {% endif %}
+{% endform %}

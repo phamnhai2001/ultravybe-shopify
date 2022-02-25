@@ -1,0 +1,247 @@
+<div id="slick_main">
+    <div class="slider-wrap">
+        <div class="image-slider">
+        {%- for block in section.blocks -%}
+            <a href="{{ block.settings.button_link}}">
+              <div class="img-wrap">
+                  <img class="util_pc" src="{{ block.settings.image | img_url: 'master'}}" alt="">
+                  <img class="util_sp" src="{{ block.settings.image | img_url: 'master'}}" alt="">
+              </div>
+            </a>
+            {% endfor %}
+        </div>
+        <div class="dot_slider_main">
+            <span class="start-num">01</span>
+            <div class="slider-progress">
+                <span></span>
+            </div>
+                <span class="end-num">03</span>
+        </div>
+    </div>
+</div>
+<style>
+  #slick_main {
+    background-color: #ebebeb;
+  }
+</style>
+{% schema %}
+{
+  "name": {
+    "da": "Diasshow",
+    "de": "Slideshow",
+    "en": "Slideshow",
+    "es": "Diapositivas",
+    "fi": "Diaesitys",
+    "fr": "Diaporama",
+    "hi": "स्लाइडशो",
+    "it": "Presentazione",
+    "ja": "スライドショー",
+    "ko": "슬라이드 쇼",
+    "nb": "Lysbildefremvisning",
+    "nl": "Diavoorstelling",
+    "pt-BR": "Apresentação de slides",
+    "pt-PT": "Apresentação de diapositivos",
+    "sv": "Bildspel",
+    "th": "สไลด์โชว์",
+    "zh-CN": "幻灯片",
+    "zh-TW": "素材輪播"
+  },
+  "class": "shopify-slideshow-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "select",
+      "id": "slider_height",
+      "label": {
+        "da": "Diashøjde",
+        "de": "Diahöhe",
+        "en": "Slide height",
+        "es": "Altura de diapositiva",
+        "fi": "Dian korkeus",
+        "fr": "Hauteur de la diapositive",
+        "hi": "स्लाइड ऊंचाई",
+        "it": "Altezza slide",
+        "ja": "スライドの高さ",
+        "ko": "슬라이드 높이",
+        "nb": "Lysbildehøyde",
+        "nl": "Diahoogte",
+        "pt-BR": "Altura do slide",
+        "pt-PT": "Altura do diapositivo",
+        "sv": "Bildhöjd",
+        "th": "ความสูงของสไลด์",
+        "zh-CN": "幻灯片高度",
+        "zh-TW": "投影片高度"
+      },
+      "options": [
+        {
+          "value": "small",
+          "label": {
+            "da": "Lille",
+            "de": "Klein",
+            "en": "Small",
+            "es": "Pequeño",
+            "fi": "Pieni",
+            "fr": "Petite",
+            "hi": "छोटा",
+            "it": "Small",
+            "ja": "小",
+            "ko": "스몰",
+            "nb": "Liten",
+            "nl": "Klein",
+            "pt-BR": "Pequeno",
+            "pt-PT": "Pequeno",
+            "sv": "Liten",
+            "th": "เล็ก",
+            "zh-CN": "小",
+            "zh-TW": "小型"
+          }
+        },
+        {
+          "value": "medium",
+          "label": {
+            "da": "Medium",
+            "de": "Mitte",
+            "en": "Medium",
+            "es": "Mediano",
+            "fi": "Keskisuuri",
+            "fr": "Moyenne",
+            "hi": "मध्यम",
+            "it": "Medium",
+            "ja": "中",
+            "ko": "보통",
+            "nb": "Middels",
+            "nl": "Gemiddeld",
+            "pt-BR": "Médio",
+            "pt-PT": "Intermédio",
+            "sv": "Medium",
+            "th": "ปานกลาง",
+            "zh-CN": "中等",
+            "zh-TW": "中等"
+          }
+        },
+        {
+          "value": "large",
+          "label": {
+            "da": "Stor",
+            "de": "Groß",
+            "en": "Large",
+            "es": "Grande",
+            "fi": "Suuri",
+            "fr": "Grande",
+            "hi": "बड़ा",
+            "it": "Large",
+            "ja": "大",
+            "ko": "라지",
+            "nb": "Stor",
+            "nl": "Groot",
+            "pt-BR": "Grande",
+            "pt-PT": "Grande",
+            "sv": "Stor",
+            "th": "ใหญ่",
+            "zh-CN": "大",
+            "zh-TW": "大型"
+          }
+        },
+        {
+          "value": "adapt",
+          "label": {
+            "da": "Tilpas til første slide",
+            "de": "An erste Folie anpassen",
+            "en": "Adapt to first slide",
+            "es": "Adaptar a la primera diapositiva",
+            "fi": "Sovita ensimmäiseen diaan",
+            "fr": "Adapter à la première diapositive",
+            "hi": "पहली स्लाइड को अनुकूल बनाएं",
+            "it": "Adatta alla prima slide",
+            "ja": "最初のスライドに適応する",
+            "ko": "첫 번째 슬라이드에 맞춤",
+            "nb": "Tilpass til første lysbilde",
+            "nl": "Aanpassen aan eerste dia",
+            "pt-BR": "Adaptar ao primeiro slide",
+            "pt-PT": "Adaptar ao primeiro diapositivo",
+            "sv": "Anpassa efter första bilden",
+            "th": "ปรับให้เข้ากับสไลด์แรก",
+            "zh-CN": "适应第一张幻灯片",
+            "zh-TW": "配合第一張投影片"
+          }
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": {
+        "da": "Slide",
+        "de": "Folie",
+        "en": "Slide",
+        "es": "Diapositiva",
+        "fi": "Dia",
+        "fr": "Diapositive",
+        "hi": "स्लाइड",
+        "it": "Scorrimento",
+        "ja": "スライド",
+        "ko": "슬라이드",
+        "nb": "Lysbilde",
+        "nl": "Dia",
+        "pt-BR": "Slide",
+        "pt-PT": "Diapositivo",
+        "sv": "Bild",
+        "th": "สไลด์",
+        "zh-CN": "幻灯片",
+        "zh-TW": "投影片"
+      },
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": {
+            "da": "Billede",
+            "de": "Foto",
+            "en": "Image",
+            "es": "Imagen",
+            "fi": "Kuva",
+            "fr": "Image",
+            "hi": "इमेज",
+            "it": "Immagine",
+            "ja": "画像",
+            "ko": "이미지",
+            "nb": "Bilde",
+            "nl": "Afbeelding",
+            "pt-BR": "Imagem",
+            "pt-PT": "Imagem",
+            "sv": "Bild",
+            "th": "รูปภาพ",
+            "zh-CN": "图片",
+            "zh-TW": "圖片"
+          }
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": {
+            "da": "Knaplink",
+            "de": "Schaltflächenlink",
+            "en": "Button link",
+            "es": "Enlace de botón",
+            "fi": "Painikelinkki",
+            "fr": "Lien du bouton",
+            "hi": "बटन लिंक",
+            "it": "Link pulsante",
+            "ja": "ボタンのリンク",
+            "ko": "버튼 링크",
+            "nb": "Kobling for knapp",
+            "nl": "Knoplink",
+            "pt-BR": "Link de botão",
+            "pt-PT": "Ligação do botão",
+            "sv": "Knapplänk",
+            "th": "ลิงก์ปุ่ม",
+            "zh-CN": "按钮链接",
+            "zh-TW": "按鈕連結"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

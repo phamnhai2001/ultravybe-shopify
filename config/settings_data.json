@@ -1,0 +1,766 @@
+{
+  "current": {
+    "color_body_bg": "#fffeed",
+    "color_body_text": "#000000",
+    "color_primary_color": "#cae2dc",
+    "color_primary_button_text": "#ffffff",
+    "color_sale_badge": "#a5674d",
+    "color_borders": "#ede8e7",
+    "color_form": "#f4f4f4",
+    "color_image_overlay_text": "#fff",
+    "color_image_overlay": "#0f857c",
+    "image_overlay_opacity": 55,
+    "type_header_font": "swiss_721_rounded_n7",
+    "type_header_base_size": "28px",
+    "type_base_font": "itc_johnston_n5",
+    "type_base_size": "16px",
+    "type_button_base_size": "14px",
+    "type_navigation_base_size": "16px",
+    "cart_enable_ajax": true,
+    "show_breadcrumb_nav": true,
+    "share_image": "",
+    "social_facebook_link": "",
+    "social_twitter_link": "",
+    "social_pinterest_link": "",
+    "social_instagram_link": "",
+    "social_snapchat_link": "",
+    "social_google_plus_link": "",
+    "social_tumblr_link": "",
+    "social_youtube_link": "",
+    "social_vimeo_link": "",
+    "social_fancy_link": "",
+    "main_blog": "",
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "favicon": "",
+    "checkout_header_image": "",
+    "checkout_logo_image": "",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#197bbd",
+    "checkout_button_color": "#197bbd",
+    "checkout_error_color": "#e32c2b",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo": "",
+          "logo_max_width": 150,
+          "show_announcement": true,
+          "home_page_only": true,
+          "announcement_text": "ここで告知してください",
+          "announcement_link": "",
+          "tagline": ""
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "product_vendor_enable": false,
+          "product_quantity_enable": true,
+          "product_image_zoom_type": "none",
+          "product_thumbnails_position": "right",
+          "show_extra_tab": true,
+          "extra_tab_content": "",
+          "social_sharing": false,
+          "enable_payment_button": true,
+          "add_to_cart_width": "regular"
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "vendor_show": true,
+          "collection_sort_enable": true,
+          "collection_tag_enable": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "footer-0": {
+            "type": "menu",
+            "settings": {
+              "title": "リンク",
+              "menu": "footer"
+            }
+          },
+          "footer-1": {
+            "type": "newsletter",
+            "settings": {
+              "subtext": "<p>新商品やセール情報などのお得な情報をお届けします。<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "footer-0",
+          "footer-1"
+        ],
+        "settings": {
+          "show_payment_icons": true
+        }
+      },
+      "sidebar": {
+        "type": "sidebar",
+        "settings": {
+          "main_menu_link_list": "main-menu"
+        }
+      },
+      "product-recommendations": {
+        "type": "product-recommendations",
+        "settings": {
+          "show_product_recommendations": true
+        }
+      },
+      "slider": {
+        "type": "slider",
+        "blocks": {
+          "1591937045326": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/slider_01.png",
+              "button_link": "shopify:\/\/products\/4526180511533"
+            }
+          },
+          "1591937052459": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/slider_02.png",
+              "button_link": "shopify:\/\/products\/711297525922"
+            }
+          }
+        },
+        "block_order": [
+          "1591937045326",
+          "1591937052459"
+        ],
+        "settings": {
+          "slider_height": "small"
+        }
+      },
+      "featuredpage": {
+        "type": "featuredpage",
+        "blocks": {
+          "1591675073955": {
+            "type": "image",
+            "settings": {
+              "area": "",
+              "image": "shopify:\/\/shop_images\/banner_feature.png",
+              "link": "shopify:\/\/pages\/campaign"
+            }
+          },
+          "1591675077092": {
+            "type": "image",
+            "settings": {
+              "area": "",
+              "image": "shopify:\/\/shop_images\/banner_feature-1.png",
+              "link": "shopify:\/\/pages\/new-item"
+            }
+          },
+          "1591675078597": {
+            "type": "image",
+            "settings": {
+              "area": "",
+              "image": "shopify:\/\/shop_images\/banner_feature-2.png",
+              "link": "shopify:\/\/pages\/sale"
+            }
+          },
+          "1591675080056": {
+            "type": "image",
+            "settings": {
+              "area": "",
+              "image": "shopify:\/\/shop_images\/banner_feature-3.png",
+              "link": "shopify:\/\/pages\/shop"
+            }
+          },
+          "1591675082297": {
+            "type": "image",
+            "settings": {
+              "area": "",
+              "image": "shopify:\/\/shop_images\/banner_feature-4.png",
+              "link": "shopify:\/\/pages\/event"
+            }
+          }
+        },
+        "block_order": [
+          "1591675073955",
+          "1591675077092",
+          "1591675078597",
+          "1591675080056",
+          "1591675082297"
+        ],
+        "settings": {}
+      },
+      "list-collections-template": {
+        "type": "list-collections-template",
+        "settings": {
+          "display_type": "all",
+          "sort": "alphabetical",
+          "grid": 3
+        }
+      },
+      "1591688201241": {
+        "type": "productlists",
+        "blocks": {
+          "1591688201241-0": {
+            "type": "item_tab",
+            "settings": {
+              "collection": "recommend",
+              "title": "おすすめ"
+            }
+          }
+        },
+        "block_order": [
+          "1591688201241-0"
+        ],
+        "settings": {
+          "title": "Recomend",
+          "image": "shopify:\/\/shop_images\/recomend.png"
+        }
+      },
+      "1591689729466": {
+        "type": "product-rearease",
+        "blocks": {
+          "1591689729466-0": {
+            "type": "item_tab",
+            "settings": {
+              "collection": "new-release",
+              "title": "新譜"
+            }
+          }
+        },
+        "block_order": [
+          "1591689729466-0"
+        ],
+        "settings": {
+          "title": "Rerease",
+          "image": "shopify:\/\/shop_images\/new_rerease.png"
+        }
+      },
+      "page-campaignspecial": {
+        "type": "page-campaignspecial",
+        "settings": {
+          "description": "メジャー・デビュー・アルバムとなった歴史的名盤『Ron Sexsmith』から25周年となる2020年、ジュノ賞（カナダのグラミー賞）を複数回獲得するカナダの偉大なソングライター、Ron Sexsmithがニュー・アルバム『Hermitage』をリリースする。アルバムは長年のホーム・タウン、オンタリオ州トロントから、より田舎である同州のストラトフォードに移って初となる作品で、Ronにとっては欠かすことのできない盟友、Don Kerrがプロデュース。二人はレコーディングの為、Ronのリヴィングルームに機材をセット・アップ。ドラム以外の全ての楽器をRonがプレイし、アルバムは完成した。『Hermitage』からのファースト・シングルは「You Don’t Wanna Hear It」で、アルバムは2020年4月17日にリリースされる。Ron Sexsmithはカナダのオンタリオ州セント・キャサリンズ出身のシンガーソングライターだ。14歳のころからバンド活動を開始し、1991年にデビュー・アルバム『Grand Opera Lane』をリリース。その後も、『Ron Sexsmith』(1995年)、『Other Songs』 (1997年)、『Whereabouts』 (1999年)、『Blue Boy』 (2001年)、『Cobblestone Runway』 (2002年)、『Retriever』 (2004年)、『Time Being』 (2006年)、『Exit Strategy Of The Soul』 (2008年)、『Long Player Late Bloomer』 (2011年)、『Forever Endeavour』 (2013年)、『Carousel One』 (2015年)、『The Last Rider』（2017年）と継続的にスタジオ・アルバムのリリースを続けている。また、Daniel Lanois、Mitchell Froom、Ane Brun、Tchad Blake、Ray Kennedy、Don Kerr、Bob Rock等とコラボレートし、Feist、Michael Buble、k. D. Lang等には楽曲提供も行っている。",
+          "image": "shopify:\/\/shop_images\/banner_feature_4ccfe46c-0835-44db-af81-711b90819b40.png",
+          "collection": "cd-dvd"
+        }
+      },
+      "page-newitemspecial": {
+        "type": "page-newitemspecial",
+        "settings": {
+          "description": "メジャー・デビュー・アルバムとなった歴史的名盤『Ron Sexsmith』から25周年となる2020年、ジュノ賞（カナダのグラミー賞）を複数回獲得するカナダの偉大なソングライター、Ron Sexsmithがニュー・アルバム『Hermitage』をリリースする。アルバムは長年のホーム・タウン、オンタリオ州トロントから、より田舎である同州のストラトフォードに移って初となる作品で、Ronにとっては欠かすことのできない盟友、Don Kerrがプロデュース。二人はレコーディングの為、Ronのリヴィングルームに機材をセット・アップ。ドラム以外の全ての楽器をRonがプレイし、アルバムは完成した。『Hermitage』からのファースト・シングルは「You Don’t Wanna Hear It」で、アルバムは2020年4月17日にリリースされる。Ron Sexsmithはカナダのオンタリオ州セント・キャサリンズ出身のシンガーソングライターだ。14歳のころからバンド活動を開始し、1991年にデビュー・アルバム『Grand Opera Lane』をリリース。その後も、『Ron Sexsmith』(1995年)、『Other Songs』 (1997年)、『Whereabouts』 (1999年)、『Blue Boy』 (2001年)、『Cobblestone Runway』 (2002年)、『Retriever』 (2004年)、『Time Being』 (2006年)、『Exit Strategy Of The Soul』 (2008年)、『Long Player Late Bloomer』 (2011年)、『Forever Endeavour』 (2013年)、『Carousel One』 (2015年)、『The Last Rider』（2017年）と継続的にスタジオ・アルバムのリリースを続けている。また、Daniel Lanois、Mitchell Froom、Ane Brun、Tchad Blake、Ray Kennedy、Don Kerr、Bob Rock等とコラボレートし、Feist、Michael Buble、k. D. Lang等には楽曲提供も行っている。",
+          "image": "shopify:\/\/shop_images\/banner_feature-1.png",
+          "collection": "cd-dvd"
+        }
+      },
+      "page-salespecial": {
+        "type": "page-salespecial",
+        "settings": {
+          "description": "メジャー・デビュー・アルバムとなった歴史的名盤『Ron Sexsmith』から25周年となる2020年、ジュノ賞（カナダのグラミー賞）を複数回獲得するカナダの偉大なソングライター、Ron Sexsmithがニュー・アルバム『Hermitage』をリリースする。アルバムは長年のホーム・タウン、オンタリオ州トロントから、より田舎である同州のストラトフォードに移って初となる作品で、Ronにとっては欠かすことのできない盟友、Don Kerrがプロデュース。二人はレコーディングの為、Ronのリヴィングルームに機材をセット・アップ。ドラム以外の全ての楽器をRonがプレイし、アルバムは完成した。『Hermitage』からのファースト・シングルは「You Don’t Wanna Hear It」で、アルバムは2020年4月17日にリリースされる。Ron Sexsmithはカナダのオンタリオ州セント・キャサリンズ出身のシンガーソングライターだ。14歳のころからバンド活動を開始し、1991年にデビュー・アルバム『Grand Opera Lane』をリリース。その後も、『Ron Sexsmith』(1995年)、『Other Songs』 (1997年)、『Whereabouts』 (1999年)、『Blue Boy』 (2001年)、『Cobblestone Runway』 (2002年)、『Retriever』 (2004年)、『Time Being』 (2006年)、『Exit Strategy Of The Soul』 (2008年)、『Long Player Late Bloomer』 (2011年)、『Forever Endeavour』 (2013年)、『Carousel One』 (2015年)、『The Last Rider』（2017年）と継続的にスタジオ・アルバムのリリースを続けている。また、Daniel Lanois、Mitchell Froom、Ane Brun、Tchad Blake、Ray Kennedy、Don Kerr、Bob Rock等とコラボレートし、Feist、Michael Buble、k. D. Lang等には楽曲提供も行っている。",
+          "image": "shopify:\/\/shop_images\/banner_feature-2.png",
+          "collection": "cd-dvd"
+        }
+      },
+      "page-shopspecial": {
+        "type": "page-shopspecial",
+        "settings": {
+          "description": "メジャー・デビュー・アルバムとなった歴史的名盤『Ron Sexsmith』から25周年となる2020年、ジュノ賞（カナダのグラミー賞）を複数回獲得するカナダの偉大なソングライター、Ron Sexsmithがニュー・アルバム『Hermitage』をリリースする。アルバムは長年のホーム・タウン、オンタリオ州トロントから、より田舎である同州のストラトフォードに移って初となる作品で、Ronにとっては欠かすことのできない盟友、Don Kerrがプロデュース。二人はレコーディングの為、Ronのリヴィングルームに機材をセット・アップ。ドラム以外の全ての楽器をRonがプレイし、アルバムは完成した。『Hermitage』からのファースト・シングルは「You Don’t Wanna Hear It」で、アルバムは2020年4月17日にリリースされる。Ron Sexsmithはカナダのオンタリオ州セント・キャサリンズ出身のシンガーソングライターだ。14歳のころからバンド活動を開始し、1991年にデビュー・アルバム『Grand Opera Lane』をリリース。その後も、『Ron Sexsmith』(1995年)、『Other Songs』 (1997年)、『Whereabouts』 (1999年)、『Blue Boy』 (2001年)、『Cobblestone Runway』 (2002年)、『Retriever』 (2004年)、『Time Being』 (2006年)、『Exit Strategy Of The Soul』 (2008年)、『Long Player Late Bloomer』 (2011年)、『Forever Endeavour』 (2013年)、『Carousel One』 (2015年)、『The Last Rider』（2017年）と継続的にスタジオ・アルバムのリリースを続けている。また、Daniel Lanois、Mitchell Froom、Ane Brun、Tchad Blake、Ray Kennedy、Don Kerr、Bob Rock等とコラボレートし、Feist、Michael Buble、k. D. Lang等には楽曲提供も行っている。",
+          "image": "shopify:\/\/shop_images\/banner_feature-3.png",
+          "collection": "cd-dvd"
+        }
+      },
+      "page-eventspecial": {
+        "type": "page-eventspecial",
+        "settings": {
+          "description": "メジャー・デビュー・アルバムとなった歴史的名盤『Ron Sexsmith』から25周年となる2020年、ジュノ賞（カナダのグラミー賞）を複数回獲得するカナダの偉大なソングライター、Ron Sexsmithがニュー・アルバム『Hermitage』をリリースする。アルバムは長年のホーム・タウン、オンタリオ州トロントから、より田舎である同州のストラトフォードに移って初となる作品で、Ronにとっては欠かすことのできない盟友、Don Kerrがプロデュース。二人はレコーディングの為、Ronのリヴィングルームに機材をセット・アップ。ドラム以外の全ての楽器をRonがプレイし、アルバムは完成した。『Hermitage』からのファースト・シングルは「You Don’t Wanna Hear It」で、アルバムは2020年4月17日にリリースされる。Ron Sexsmithはカナダのオンタリオ州セント・キャサリンズ出身のシンガーソングライターだ。14歳のころからバンド活動を開始し、1991年にデビュー・アルバム『Grand Opera Lane』をリリース。その後も、『Ron Sexsmith』(1995年)、『Other Songs』 (1997年)、『Whereabouts』 (1999年)、『Blue Boy』 (2001年)、『Cobblestone Runway』 (2002年)、『Retriever』 (2004年)、『Time Being』 (2006年)、『Exit Strategy Of The Soul』 (2008年)、『Long Player Late Bloomer』 (2011年)、『Forever Endeavour』 (2013年)、『Carousel One』 (2015年)、『The Last Rider』（2017年）と継続的にスタジオ・アルバムのリリースを続けている。また、Daniel Lanois、Mitchell Froom、Ane Brun、Tchad Blake、Ray Kennedy、Don Kerr、Bob Rock等とコラボレートし、Feist、Michael Buble、k. D. Lang等には楽曲提供も行っている。",
+          "image": "shopify:\/\/shop_images\/banner_feature-4.png",
+          "collection": "cd-dvd"
+        }
+      },
+      "password-header": {
+        "type": "password-header",
+        "settings": {}
+      },
+      "password-content": {
+        "type": "password-content",
+        "settings": {}
+      },
+      "productlists": {
+        "type": "productlists",
+        "blocks": {
+          "1593414229749": {
+            "type": "item_tab",
+            "settings": {
+              "collection": "cd-dvd",
+              "title": "おすすめ"
+            }
+          }
+        },
+        "block_order": [
+          "1593414229749"
+        ],
+        "settings": {
+          "title": "Recomend",
+          "image": "shopify:\/\/shop_images\/recomend.png"
+        }
+      },
+      "1593415791754": {
+        "type": "product-rankin",
+        "blocks": {
+          "1593415791754-0": {
+            "type": "item_tab",
+            "settings": {
+              "collection": "ranking",
+              "title": "ランキング"
+            }
+          }
+        },
+        "block_order": [
+          "1593415791754-0"
+        ],
+        "settings": {
+          "title": "Rankin",
+          "image": "shopify:\/\/shop_images\/ranking.png"
+        }
+      },
+      "slider-store-infomation": {
+        "type": "slider-store-infomation",
+        "blocks": {
+          "1597222095662": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/shopimg_banner.png",
+              "button_link": ""
+            }
+          },
+          "1597222103297": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/shopimg_banner.png",
+              "button_link": ""
+            }
+          },
+          "1597222109851": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/shopimg_banner.png",
+              "button_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "1597222095662",
+          "1597222103297",
+          "1597222109851"
+        ],
+        "settings": {
+          "slider_height": "small"
+        }
+      },
+      "event-store-infomation-01": {
+        "type": "event-store-infomation-01",
+        "blocks": {
+          "1597221400012": {
+            "type": "image",
+            "settings": {
+              "area": "",
+              "image": "shopify:\/\/shop_images\/icon_SHOP.png",
+              "link": ""
+            }
+          },
+          "1597221450786": {
+            "type": "image",
+            "settings": {
+              "area": "",
+              "image": "shopify:\/\/shop_images\/icon_EVENT.png",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "1597221400012",
+          "1597221450786"
+        ],
+        "settings": {}
+      },
+      "event-store-infomation-02": {
+        "type": "event-store-infomation-02",
+        "blocks": {
+          "1597221463817": {
+            "type": "image",
+            "settings": {
+              "area": "",
+              "image": "shopify:\/\/shop_images\/icon_LOBBY.png",
+              "link": ""
+            }
+          },
+          "1597221482719": {
+            "type": "image",
+            "settings": {
+              "area": "",
+              "image": "shopify:\/\/shop_images\/icon_OTHER.png",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "1597221463817",
+          "1597221482719"
+        ],
+        "settings": {}
+      },
+      "search-filter": {
+        "type": "search-filter",
+        "blocks": {
+          "1598155653367": {
+            "type": "item_tab",
+            "settings": {
+              "collection": ""
+            }
+          }
+        },
+        "block_order": [
+          "1598155653367"
+        ],
+        "settings": {}
+      },
+      "featured-products": {
+        "type": "featured-products",
+        "settings": {
+          "title": "特集コレクション",
+          "home_page_featured_products": "cd-goods",
+          "home_featured_products_row_num": 2
+        }
+      }
+    },
+    "content_for_index": [
+      "1593415791754",
+      "1591688201241",
+      "1591689729466"
+    ]
+  },
+  "presets": {
+    "Light": {
+      "color_body_bg": "#ffffff",
+      "color_body_text": "#333333",
+      "color_primary_color": "#333333",
+      "color_primary_button_text": "#ffffff",
+      "color_sale_badge": "#c8493f",
+      "color_borders": "#e8e8e8",
+      "color_form": "#f4f4f4",
+      "color_image_overlay_text": "#fff",
+      "color_image_overlay": "#333333",
+      "image_overlay_opacity": "25",
+      "type_header_font": "times_new_roman_n4",
+      "type_header_base_size": "28px",
+      "type_base_font": "helvetica_n4",
+      "type_base_size": "15px",
+      "type_button_base_size": "14px",
+      "type_navigation_base_size": "16px",
+      "show_breadcrumb_nav": true,
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "sections": {
+        "featured-products": {
+          "type": "featured-products",
+          "settings": {
+            "home_page_featured_products": "frontpage"
+          }
+        },
+        "featured-content": {
+          "type": "featured-content",
+          "settings": {}
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "footer-0": {
+              "type": "menu",
+              "settings": {
+                "menu": "footer"
+              }
+            }
+          },
+          "block_order": [
+            "footer-0"
+          ],
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "featured-products",
+        "featured-content"
+      ]
+    },
+    "Beauty": {
+      "color_body_bg": "#fafafa",
+      "color_body_text": "#3c4049",
+      "color_primary_color": "#c13121",
+      "color_primary_button_text": "#ffffff",
+      "color_sale_badge": "#c13121",
+      "color_borders": "#d7d8d2",
+      "color_form": "#ffffff",
+      "color_image_overlay_text": "#fff",
+      "color_image_overlay": "#605050",
+      "image_overlay_opacity": 45,
+      "type_header_font": "futura_n4",
+      "type_header_base_size": "32px",
+      "type_base_font": "futura_n4",
+      "type_base_size": "19px",
+      "type_button_base_size": "14px",
+      "type_navigation_base_size": "16px",
+      "show_breadcrumb_nav": true,
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "show_announcement": true
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "image",
+              "settings": {
+                "text_alignment": "left"
+              }
+            },
+            "slideshow-1": {
+              "type": "image",
+              "settings": {
+                "text_alignment": "left"
+              }
+            },
+            "slideshow-2": {
+              "type": "image",
+              "settings": {
+                "text_alignment": "left"
+              }
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "slideshow-1",
+            "slideshow-2"
+          ],
+          "settings": {
+            "slider_height": "medium",
+            "slider_home_rate": 5
+          }
+        },
+        "advanced-content-0": {
+          "type": "advanced-content",
+          "blocks": {
+            "advanced-content-0-0": {
+              "type": "html",
+              "settings": {
+                "code": "<hr>"
+              }
+            }
+          },
+          "block_order": [
+            "advanced-content-0-0"
+          ],
+          "settings": {
+            "title": ""
+          }
+        },
+        "featured-content": {
+          "type": "featured-content",
+          "settings": {
+            "section_title": "",
+            "text_size": "large"
+          }
+        },
+        "featured-products": {
+          "type": "featured-products",
+          "settings": {
+            "home_page_featured_products": "frontpage"
+          }
+        },
+        "advanced-content-1": {
+          "type": "advanced-content",
+          "blocks": {
+            "advanced-content-1-0": {
+              "type": "html",
+              "settings": {
+                "code": "<hr>"
+              }
+            }
+          },
+          "block_order": [
+            "advanced-content-1-0"
+          ],
+          "settings": {
+            "title": ""
+          }
+        },
+        "featured-row": {
+          "type": "featured-row",
+          "settings": {
+            "layout": "right"
+          }
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+            "product_quantity_enable": true,
+            "vendor_show": true,
+            "product_description_position": "right",
+            "show_extra_tab": true,
+            "extra_tab_content": "",
+            "product_image_zoom_type": "none",
+            "add_to_cart_width": "full_width"
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "vendor_show": true,
+            "collection_tag_enable": true
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "footer-0": {
+              "type": "menu",
+              "settings": {
+                "menu": "footer"
+              }
+            },
+            "footer-1": {
+              "type": "text",
+              "settings": {}
+            },
+            "footer-2": {
+              "type": "newsletter",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "footer-0",
+            "footer-1",
+            "footer-2"
+          ],
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "slideshow",
+        "advanced-content-0",
+        "featured-content",
+        "featured-products",
+        "advanced-content-1",
+        "featured-row"
+      ]
+    },
+    "Toy": {
+      "color_body_text": "#5b4c45",
+      "color_primary_color": "#0f857c",
+      "color_primary_button_text": "#ffffff",
+      "color_sale_badge": "#a5674d",
+      "color_borders": "#ede8e7",
+      "color_image_overlay": "#0f857c",
+      "image_overlay_opacity": 55,
+      "type_header_font": "swiss_721_rounded_n7",
+      "type_header_base_size": "28px",
+      "type_base_font": "itc_johnston_n5",
+      "type_base_size": "16px",
+      "type_button_base_size": "14px",
+      "type_navigation_base_size": "16px",
+      "show_breadcrumb_nav": true,
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "show_announcement": true
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "image",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "slideshow-0"
+          ],
+          "settings": {
+            "slider_height": "large",
+            "text_size": "large"
+          }
+        },
+        "featured-products": {
+          "type": "featured-products",
+          "settings": {}
+        },
+        "map": {
+          "type": "map",
+          "settings": {}
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+            "product_quantity_enable": true,
+            "vendor_show": true,
+            "product_description_position": "right",
+            "show_extra_tab": true,
+            "extra_tab_content": "",
+            "product_image_zoom_type": "none",
+            "add_to_cart_width": "regular"
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "vendor_show": false
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "footer-0": {
+              "type": "menu",
+              "settings": {
+                "menu": "footer"
+              }
+            },
+            "footer-1": {
+              "type": "newsletter",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "footer-0",
+            "footer-1"
+          ],
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "slideshow",
+        "featured-products",
+        "map"
+      ]
+    }
+  }
+}

@@ -1,0 +1,401 @@
+<header id="header">
+        <div class="inner">
+            <div class="upper">
+                <div class="link">
+                  <ul class="nav_mobile util_sp">
+                    <li>
+                      <a href="#" id="btn_sp">
+                        <span class="icon_nav_sp"></span>
+                        <span class="icon_nav_sp"></span>
+                        <span class="icon_nav_sp"></span>
+                      </a>
+                    </li>
+                  </ul>
+                    <ul class="search-card">
+                        <li class="util_pc">
+                            <a class="nav_item_top" href="/blogs/news">お知らせ</a>
+                        </li>
+                        <li class="util_pc">
+                            <a class="nav_item_top" href="/pages/wishlist">お気に入り</a>
+                        </li>
+                        <li>
+                            <div class="util_pc search_box">
+                                <form class="form-search" action="/search" method="get" role="search">
+                                    <input type="text" name="q" class="search_box_input search-header search" value="{{ search.terms | escape }}" placeholder="キーワードを入力" autocomplete="off">
+                                    <button type="submit" class="search_box_button">
+                                        <img class="util_pc" src="{{'header_icon_search.png' | asset_url}}" alt="">
+                                        <img class="util_sp" src="{{'sp_header_Icon_search.png' | asset_url}}" alt="">
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="util_sp search_box">
+                              <div class="search_box_button_sp">
+                                <a href="javascript:;" id="search_box_button_sp">
+                                  <img class="util_sp" src="{{'sp_header_Icon_search.png' | asset_url}}" alt="">
+                                </a>
+                              </div>
+                            </div>
+                        </li>
+                        <li class="util_pc">
+                          <a href="/collections/search-filter">
+                          {% comment %} <a href="javascript:;" id="advanced_search"> {% endcomment %}
+                            <div class="advanced_search">
+                              <img class="util_pc" src="{{'icon_urtra_serch.png' | asset_url}}" alt="詳しく検索">
+                              <img class="util_sp" src="{{'sp_icon_detailserch.png' | asset_url}}" alt="詳しく検索">
+                              <span>ウルトラ検索</span>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                            <div class="cart">
+                                <a href="{{ routes.cart_url }}">
+                                    <img class="util_pc" src="{{'header_icon_cart.png' | asset_url}}" alt="">
+                                    <img class="util_sp" src="{{'sp_icon_cart_bk.png' | asset_url}}" alt="">
+                                    <span class="small--hide">
+                                    {% comment %} {{ 'layout.cart.title' | t }} {% endcomment %}
+                                    <span id="CartCount">{{ cart.item_count }}</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="util_pc">
+                            <div class="login">
+                                {% if customer %}
+                                <a href="/account">マイページ</a>
+                                {% else %}
+                                <a href="{{ routes.account_login_url }}">ログイン</a>
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="logo util_sp">
+                      <a href="/">
+                        <img src="{{'logo.svg' | asset_url}}" alt="">
+                      </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+<div style="display: none;" id="hidden-search-sp">
+  <div class="modal">
+
+    <form class="form-search" action="/search" method="post" role="search">
+      <input type="text" name="q" value="{{ search.terms | escape }}" placeholder="キーワードで検索" />
+      <button type="submit" class="">
+        <img class="util_sp" src="{{'sp_header_Icon_search.png' | asset_url}}" alt=""
+        />
+      </button>
+    </form>
+  </div>
+</div>
+{% schema %}
+{
+  "name": {
+    "da": "Overskrift",
+    "de": "Titel",
+    "en": "Header",
+    "es": "Encabezado",
+    "fi": "Ylätunniste",
+    "fr": "En-tête",
+    "hi": "हैडर",
+    "it": "Header",
+    "ja": "ヘッダー",
+    "ko": "머리글",
+    "nb": "Header",
+    "nl": "Koptekst",
+    "pt-BR": "Cabeçalho",
+    "pt-PT": "Cabeçalho",
+    "sv": "Rubrik",
+    "th": "ส่วนหัว",
+    "zh-CN": "标头",
+    "zh-TW": "標頭"
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": {
+        "da": "Logo",
+        "de": "Logo",
+        "en": "Logo",
+        "es": "Logo",
+        "fi": "Logo",
+        "fr": "Logo",
+        "hi": "लोगो",
+        "it": "Logo",
+        "ja": "ロゴ",
+        "ko": "로고",
+        "nb": "Logo",
+        "nl": "Logo",
+        "pt-BR": "Logotipo",
+        "pt-PT": "Logótipo",
+        "sv": "Logotyp",
+        "th": "โลโก้",
+        "zh-CN": "logo",
+        "zh-TW": "商標"
+      }
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": {
+        "da": "Logobillede",
+        "de": "Logo-Foto",
+        "en": "Logo image",
+        "es": "Imagen del logo",
+        "fi": "Logokuva",
+        "fr": "Image du logo",
+        "hi": "लोगो इमेज",
+        "it": "Immagine del logo",
+        "ja": "ロゴ画像",
+        "ko": "로고 이미지",
+        "nb": "Logobilde",
+        "nl": "Afbeelding van logo",
+        "pt-BR": "Imagem do logotipo",
+        "pt-PT": "Imagem do logótipo",
+        "sv": "Logobild",
+        "th": "รูปภาพโลโก้",
+        "zh-CN": "logo 图片",
+        "zh-TW": "標誌圖片"
+      }
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "label": {
+        "da": "Tilpasset logobredde",
+        "de": "Logobreite",
+        "en": "Custom logo width",
+        "es": "Ancho del logo personalizado",
+        "fi": "Mukautetun logon leveys",
+        "fr": "Largeur personnalisée du logo",
+        "hi": "कस्टम लोगो की चौड़ाई",
+        "it": "Larghezza logo personalizzato",
+        "ja": "ロゴの幅をカスタマイズする",
+        "ko": "사용자 지정 로고 폭",
+        "nb": "Tilpasset logobredde",
+        "nl": "Aangepaste logo-breedte",
+        "pt-BR": "Largura do logotipo personalizado",
+        "pt-PT": "Largura de logótipo personalizada",
+        "sv": "Anpassad logotypsbredd",
+        "th": "ความกว้างของโลโก้ที่กำหนดเอง",
+        "zh-CN": "自定义 logo 宽度",
+        "zh-TW": "自訂商標寬度"
+      },
+      "default": 150,
+      "min": 50,
+      "max": 250,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": {
+        "da": "Meddelelseslinje",
+        "de": "Ankündigungsleiste",
+        "en": "Announcement bar",
+        "es": "Barra de anuncios",
+        "fi": "Ilmoituspalkki",
+        "fr": "Barre d'annonces",
+        "hi": "घोषणा बार",
+        "it": "Barra degli annunci",
+        "ja": "告知バー",
+        "ko": "공지 표시줄",
+        "nb": "Kunngjøringslinje",
+        "nl": "Aankondigingsbalk",
+        "pt-BR": "Barra de avisos",
+        "pt-PT": "Barra de comunicado",
+        "sv": "Meddelandefält",
+        "th": "แถบประกาศ",
+        "zh-CN": "公告栏",
+        "zh-TW": "公告列"
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": {
+        "da": "Vis meddelelse",
+        "de": "Ankündigung anzeigen",
+        "en": "Show announcement",
+        "es": "Mostrar anuncio",
+        "fi": "Näytä ilmoitus",
+        "fr": "Afficher l'annonce",
+        "hi": "घोषणा डिखाएं",
+        "it": "Mostra annuncio",
+        "ja": "告知を表示する",
+        "ko": "공지 표시",
+        "nb": "Vis kunngjøring",
+        "nl": "Aankondiging weergeven",
+        "pt-BR": "Exibir anúncio",
+        "pt-PT": "Mostrar comunicado",
+        "sv": "Visa tillkännagivande",
+        "th": "แสดงประกาศ",
+        "zh-CN": "显示公告",
+        "zh-TW": "顯示公告"
+      },
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "home_page_only",
+      "label": {
+        "da": "Kun startside",
+        "de": "Nur Startseite",
+        "en": "Home page only",
+        "es": "Solo página de inicio",
+        "fi": "Vain etusivu",
+        "fr": "Page d'accueil uniquement",
+        "hi": "केवल होमपेज",
+        "it": "Solo home page",
+        "ja": "ホームページのみ",
+        "ko": "홈페이지만",
+        "nb": "Kun på startsiden",
+        "nl": "Alleen homepage",
+        "pt-BR": "Apenas na página inicial",
+        "pt-PT": "Apenas a página inicial",
+        "sv": "Endast hemsida",
+        "th": "หน้าแรกเท่านั้น",
+        "zh-CN": "仅主页",
+        "zh-TW": "僅限首頁"
+      },
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": {
+        "da": "Meddelelsestekst",
+        "de": "Ankündigungstext",
+        "en": "Announcement text",
+        "es": "Texto del anuncio",
+        "fi": "Ilmoitusteksti",
+        "fr": "Texte d'annonce",
+        "hi": "घोषणा पाठ",
+        "it": "Testo annuncio",
+        "ja": "告知テキスト",
+        "ko": "공지 텍스트",
+        "nb": "Kunngjøringstekst",
+        "nl": "Aankondigingstekst",
+        "pt-BR": "Texto do anúncio",
+        "pt-PT": "Texto do comunicado",
+        "sv": "Meddelandetext",
+        "th": "ข้อความประกาศ",
+        "zh-CN": "公告文本",
+        "zh-TW": "公告文字"
+      },
+      "default": {
+        "da": "Meddel noget her",
+        "de": "Hier etwas ankündigen",
+        "en": "Announce something here",
+        "es": "Anuncia algo aquí",
+        "fi": "Ilmoita jotakin tässä",
+        "fr": "Annoncez quelque chose ici",
+        "hi": "यहां कुछ घोषित करें",
+        "it": "Annuncia qualcosa qui",
+        "ja": "ここで告知してください",
+        "ko": "여기에 공지하십시오",
+        "nb": "Kunngjør noe her",
+        "nl": "Kondig hier iets aan",
+        "pt-BR": "Anuncie algo aqui",
+        "pt-PT": "Anunciar algo aqui",
+        "sv": "Meddela något här",
+        "th": "ประกาศข้อความที่นี่",
+        "zh-CN": "在此处进行公告",
+        "zh-TW": "在此公告資訊"
+      }
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": {
+        "da": "Link til meddelelse",
+        "de": "Ankündigungslink",
+        "en": "Announcement link",
+        "es": "Enlace de anuncio",
+        "fi": "Ilmoituslinkki",
+        "fr": "Lien d'annonce",
+        "hi": "घोषणा लिंक",
+        "it": "Link annuncio",
+        "ja": "告知リンク",
+        "ko": "공지 링크",
+        "nb": "Kunngjøringskobling",
+        "nl": "Aankondigingslink",
+        "pt-BR": "Link de anúncio",
+        "pt-PT": "Ligação do comunicado",
+        "sv": "Meddelandelänk",
+        "th": "ลิงก์ประกาศ",
+        "zh-CN": "公告链接",
+        "zh-TW": "公告連結"
+      },
+      "info": {
+        "da": "Valgfri",
+        "de": "Optional",
+        "en": "Optional",
+        "es": "Opcional",
+        "fi": "Valinnainen",
+        "fr": "Facultatif",
+        "hi": "वैकल्पिक",
+        "it": "Facoltativo",
+        "ja": "オプション",
+        "ko": "선택 사항",
+        "nb": "Valgfritt",
+        "nl": "Optioneel",
+        "pt-BR": "Opcional",
+        "pt-PT": "Opcional",
+        "sv": "Valfritt",
+        "th": "ไม่จำเป็น",
+        "zh-CN": "可选",
+        "zh-TW": "(選填)"
+      }
+    },
+    {
+      "type": "header",
+      "content": {
+        "da": "Slogan",
+        "de": "Tagline",
+        "en": "Tagline",
+        "es": "Eslogan",
+        "fi": "Iskulause",
+        "fr": "Slogan",
+        "hi": "टैगलाइन",
+        "it": "Tagline",
+        "ja": "キャッチコピー",
+        "ko": "태그 라인",
+        "nb": "Slagord",
+        "nl": "Tagline",
+        "pt-BR": "Slogan",
+        "pt-PT": "slogan",
+        "sv": "Tagline",
+        "th": "สโลแกน",
+        "zh-CN": "标语",
+        "zh-TW": "標語"
+      }
+    },
+    {
+      "type": "richtext",
+      "id": "tagline",
+      "label": {
+        "da": "Tekst",
+        "de": "Text",
+        "en": "Text",
+        "es": "Texto",
+        "fi": "Teksti",
+        "fr": "Texte",
+        "hi": "टेक्स्ट",
+        "it": "Testo",
+        "ja": "テキスト",
+        "ko": "텍스트",
+        "nb": "Tekst",
+        "nl": "Tekst",
+        "pt-BR": "Texto",
+        "pt-PT": "Texto",
+        "sv": "Text",
+        "th": "ข้อความ",
+        "zh-CN": "文本",
+        "zh-TW": "文字"
+      }
+    }
+  ]
+}
+{% endschema %}

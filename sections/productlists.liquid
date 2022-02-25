@@ -1,0 +1,135 @@
+<section class="util_pc section list_slider recomend" id="slider_recomend">
+{% for block in section.blocks %}
+{%- assign collection = collections[block.settings.collection] -%}
+  <div class="upper">
+    <div class="tlt_main">
+        <div class="item_thumbnail">
+          <img class="util_pc" src="{{ section.settings.image | img_url:'master' }}" alt="">
+          <img class="util_sp" src="{{ section.settings.image | img_url:'master' }}" alt="">
+        </div>
+        <span>{{block.settings.title}}</span>
+      </div>
+      {% if collection.products.count > 0 %}
+      <div class="slider_inner">
+        <ul id="carousel02" class="slider_01 owl-carousel owl-theme">
+        {% paginate collection.products by 10 %}
+        {% for product in collection.products %}
+          <li class="item-product-{{ forloop.index }}">
+            <a class="c-item" href="{{ product.url }}">
+                <div class="item_thumbnail">
+                  <img src="{{ product.images.first.src | img_url: '200x200' }}" alt="{{ product.images.first.alt }}">
+                </div>
+                <div class="c-item__body">
+                  <div class="c_category"><span>{{ product.type }}</span></div>
+                  <h3 class="c-item__title">{{ product.title}}</h3>
+                  <div class="c-item__author">{{product.metafields.custom_fields["artist"]}}</div>
+                  <div class="c-item__price">{{ product.selected_or_first_available_variant.price | money }}（税抜）</div>
+                  <div class="c-item__date">{{product.metafields.custom_fields["release_date"] | date: "%Y/%m/%d"}} 発売</div>
+              </div>
+            </a>
+          </li>
+          {% endfor %}
+          {% endpaginate %}
+        </ul>
+      </div>
+       <div class="util_pc bg_slider_top"></div>
+       {% endif %}
+  </div>
+{% endfor %}
+</section>
+<section class="util_sp section recomend" id="container_recomend">
+{% for block in section.blocks %}
+{%- assign collection = collections[block.settings.collection] -%}
+  <div class="upper">
+    <div class="tlt_main">
+        <div class="item_thumbnail">
+          <img class="util_pc" src="{{ section.settings.image | img_url:'master' }}" alt="">
+          <img class="util_sp" src="{{ section.settings.image | img_url:'master' }}" alt="">
+        </div>
+        <span>{{block.settings.title}}</span>
+      </div>
+    <div class="container_recomend">
+        <ul class="list_item_recomend">
+        {% paginate collection.products by 10 %}
+        {% for product in collection.products %}
+          <li class="item-product-{{ forloop.index }}">
+            <a class="c-item" href="{{ product.url }}">
+                <div class="item_thumbnail">
+                  {%- for image in product.images -%}
+                  <img class="util_pc" src="{{ image.src | img_url: '200x200' }}" alt="">
+                  <img class="util_sp" src="{{ image.src | img_url: '200x200' }}" alt="">
+                  {%- endfor -%}
+                </div>
+                <div class="c-item__body">
+                  <div class="c_category"><span>{{ product.type }}</span></div>
+                  <h3 class="c-item__title">{{ product.title}}</h3>
+                  <div class="c-item__author">{{product.metafields.custom_fields["artist"]}}</div>
+                  <div class="c-item__price">{{ product.selected_or_first_available_variant.price | money }}（税抜）</div>
+                  <div class="c-item__date">{{product.metafields.custom_fields["release_date"] | date: "%Y/%m/%d"}} 発売</div>
+              </div>
+            </a>
+          </li>
+          {% endfor %}
+          {% endpaginate %}
+        </ul>
+        <div class="more_01">
+          <span>もっと見る</span>
+        </div>
+      </div>
+  </div>
+{% endfor %}
+</section>
+{% schema %}
+  {
+    "name": "Producttabs-recomend",
+    "max_blocks": 1,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Rankin"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+	"blocks":[
+      {
+        "type": "item_tab",
+        "name": "Item tabs",
+        "settings": [
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          }
+        ]
+      }
+	],
+    "presets": [
+      {
+        "name": "Producttabs",
+        "category": "Collection",
+		"blocks": [
+          {
+            "type": "item_tab"
+          },
+          {
+            "type": "item_tab"
+          },
+          {
+            "type": "item_tab"
+          }
+		]
+      }
+    ]
+  }
+{% endschema %}

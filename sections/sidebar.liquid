@@ -1,0 +1,350 @@
+<div data-section-id="{{ section.id }}" data-section-type="sidebar-section">
+  <nav id="nav">
+    <div class="logo util_pc">
+      <a href="/">
+        <img src="{{'logo.svg' | asset_url}}" alt="">
+      </a>
+    </div>
+    <ul class="navigation">
+      <li class="util_sp">
+        {% if customer %}
+          <ul class="nav_item">
+            <li>
+              <a href="#" class="icon__login accordion_navi main"><span>マイページ</span></a>
+              <ul class="content logined" style="display: none;">
+                <li>
+                  <a class="nav_order_history accordion_navi main"><span>注文履歴</span></a>
+                  <ul class="content" style="display: none;">
+                      {% paginate customer.orders by 5 %}
+                      {% if customer.orders.size != 0 %}
+                      {% for order in customer.orders %}
+                      {% assign numbeOrder = 0 %}
+                      {%- for line_item in order.line_items -%}
+                          {% assign numbeOrder = numbeOrder | plus: line_item.quantity %}
+                      {% endfor %}
+                        <li>
+                          <div class="item_nav_order_history">
+                            <span class="nav_status_order">発送準備中</span>
+                            <div class="info_nav_order_history">
+                              <h3>注文番号：{{ order.name }}</h3>
+                              <span>注文日：{{ order.created_at | time_tag: '%Y/%m/%d' }}</span>
+                              <span>商品数：{{numbeOrder}}</span>
+                              <span>合計：{{ order.total_price | money }}</span>
+                              <span>お支払い状況：{{ order.financial_status_label }}</span>
+                            </div>
+                            <a href="{{order.customer_url}}">詳細を見る</a>
+                          </div>
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                          <span class="order-history">まだ注文をしていません。</span>
+                        {% endif %}
+                        {% if paginate.pages > 1 %}
+                            {% include 'pagination' %}
+                        {% endif %}
+                        {% endpaginate %}
+                  </ul>
+                </li>
+                <li>
+                  <span class="tlt_shiping">発送先住所</span>
+                   {% for address in customer.addresses %}
+                    <div class="item">
+                      <div class="container-default">
+                        {% if address == customer.default_address %}
+                          <div class="setting-default"> デフォルトに設定中</div>
+                        {% endif %}
+                        <div class="btn_option">
+                          <div class="btn_del">
+                            <a class="btn del_model_popup" href="javascript:;" data-form-id="{{ address.id }}">削除</a>
+                          </div>
+                          <div style="display: none;" id="hidden-content-1" class="hidden-content-sp hidden-content">
+                            <div class="modal">
+                              <div class="title">住所を削除</div>
+                              <div class="question">本当にこの住所を削除してもよろしいですか？</div>
+                              <div class="confirm">
+                                <a data-fancybox-close class="delete btn_short01" href="javascript:;">はい</a>
+                                <a data-fancybox-close href="javascript:;">いいえ</a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="btn_edit">
+                            <a
+                                    data-form-id="{{ address.id }}"
+                                    class="edit_address">編集</a>
+                          </div>
+                        </div>
+                      </div>
+
+                    <div class="content_address">
+                      <ul>
+                        <li>{{address.last_name}} {{address.first_name}}</li>
+                        <li>{{address.company}}</li>
+                        <li>{{ address.phone }}</li>
+                        <li>〒{{ address.zip }}</li>
+                        <li>{{ address.city }} /{{ address.address1 }} {{ address.address2 }}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  {% endfor %}
+                  <p>
+                    <a id="create_address_new"  class="new_address">新しい住所を追加</a>
+                  </p>
+                </li>
+                <li>
+                  <a href="/pages/contact" class="accordion_navi"><span>お問い合わせ</span></a>
+                </li>
+                <li>
+                  <a href="/account/logout" class="accordion_navi"><span>ログアウト</span></a>
+                </li>
+              </ul>
+            </li>
+          <li>
+            <a href="/pages/wishlist" class="icon__favorite accordion_navi"
+              ><span>お気に入り</span></a
+            >
+          </li>
+          <li>
+            <a href="/collections/search-filter" class="icon__search_res accordion_navi"><span>ウルトラ検索</span></a>
+          </li>
+          <li>
+            <a href="/blogs/news" class="accordion_navi"><span>お知らせ</span></a>
+          </li>
+          {% if template.name == "index" %}
+            <li>
+              <a href="#feature_list_sp" class="accordion_navi"><span>特集</span></a>
+            </li>
+            <li>
+              <a href="#container_ranking" class="accordion_navi"><span>ランキング</span></a>
+            </li>
+            <li>
+              <a href="#container_recomend" class="accordion_navi"><span>おすすめ</span></a>
+            </li>
+            <li>
+              <a href="#new_rerease" class="accordion_navi"><span>新譜</span></a>
+            </li>
+          {% else %}
+            <li>
+              <a href="/#feature_list_sp" class="accordion_navi"><span>特集</span></a>
+            </li>
+            <li>
+              <a href="/#container_ranking" class="accordion_navi"><span>ランキング</span></a>
+            </li>
+            <li>
+              <a href="/#container_recomend" class="accordion_navi"><span>おすすめ</span></a>
+            </li>
+            <li>
+              <a href="/#new_rerease" class="accordion_navi"><span>新譜</span></a>
+            </li>
+          {% endif %}
+        </ul>
+        {% else %}  
+        <ul class="nav_item">
+          <li>
+            <a href="{{ routes.account_login_url }}" class="icon__login accordion_navi"><span>ログイン</span></a>
+          </li>
+          <li>
+            <a href="/pages/wishlist" class="icon__favorite accordion_navi"
+              ><span>お気に入り</span></a
+            >
+          </li>
+          <li>
+            <a href="/collections/search-filter" class="icon__search_res accordion_navi"><span>ウルトラ検索</span></a>
+          </li>
+          <li>
+            <a href="/blogs/news" class="accordion_navi"><span>お知らせ</span></a>
+          </li>
+            {% if template.name == "index" %}
+              <li>
+                <a href="#feature_list_sp" class="accordion_navi"><span>特集</span></a>
+              </li>
+              <li>
+                <a href="#container_ranking" class="accordion_navi"><span>ランキング</span></a>
+              </li>
+              <li>
+                <a href="#container_recomend" class="accordion_navi"><span>おすすめ</span></a>
+              </li>
+              <li>
+                <a href="#new_rerease" class="accordion_navi"><span>新譜</span></a>
+              </li>
+            {% else %}
+              <li>
+                <a href="/#feature_list_sp" class="accordion_navi"><span>特集</span></a>
+              </li>
+              <li>
+                <a href="/#container_ranking" class="accordion_navi"><span>ランキング</span></a>
+              </li>
+              <li>
+                <a href="/#container_recomend" class="accordion_navi"><span>おすすめ</span></a>
+              </li>
+              <li>
+                <a href="/#new_rerease" class="accordion_navi"><span>新譜</span></a>
+              </li>
+            {% endif %}
+        </ul>
+        {% endif %}
+      </li>
+        {% for link in menus[section.settings.main_menu_link_list].links %}
+          {% assign outer_index = forloop.index %}
+          {% if link.links != blank %}
+            {% assign has_active_link = false %}
+            {% if link.active or link.child_active %}
+              {% assign has_active_link = true %}
+            {% endif %}
+
+            <li>
+              {% if link.title == "ULTRA SHIBUYA" %}
+              <span class="bottom_nav">{{link.title}}</span>
+              {% else %}
+              <span class="tlt_nav">{{link.title}}</span>
+              {% endif %}
+              <ul class="nav_item inner_drown_nav">
+                {% for childlink in link.links %}
+                  {% if childlink.links != blank %}
+                    {% assign has_active_childlink = false %}
+                    {% if childlink.active or childlink.child_active %}
+                      {% assign has_active_childlink = true %}
+                    {% endif %}
+                    <li>
+                      <a href="{{ childlink.url }}" class="accordion_navi main"><span>{{ childlink.title | escape }}</span></a>
+                      <ul class="content drown_nav_list" style="display: none;">
+                        {% for grandchildlink in childlink.links %}
+                          <li>
+                            <a href="{{ grandchildlink.url }}" class="accordion_navi"{% if grandchildlink.active %} aria-current="page"{% endif %}><span>{{ grandchildlink.title | escape }}</span></a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  {% else %}
+                    <li>
+                      {% if childlink.title == "CLASSIC" %}
+                        <li class="container_bottom_border">
+                            <a href="#" class="accordion_navi boder_bottom"><span>{{ childlink.title | escape }}</span></a>
+                        </li>
+                      {% else %}
+                      <a href="{{ childlink.url }}" class="accordion_navi"{% if childlink.active %} aria-current="page"{% endif %}><span>{{ childlink.title | escape }}</span></a>
+                      {% endif %}
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+          {% else %}
+            <li>
+              <a href="{{ link.url }}" class="accordion_navi"{% if link.active %} aria-current="page"{% endif %}><span>{{ link.title | escape }}</span></a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+  </nav>
+  <div id="navfilter" class="util_sp">
+    <a href="" class="logo_open">
+    </a>
+    <a href="#" id="btn_close_pc"><img src="{{'sp_btn_close.png' | asset_url}}" alt="閉じる"></a>
+  </div>
+</div>
+<style>
+  #shopify-section-sidebar {
+    background-color: #CAE2DC;
+  }
+</style>
+<script>
+  window.onload = function () {
+    var formIdDel;
+    $(".del_model_popup").click(function () {
+      formIdDel = $(this).data("form-id");
+    });
+      // var elementTemp;
+      // $('.btn').click(function() {
+      //     elementTemp = $(this).closest('.item')
+      // })
+      // $('.delete').click(function() {
+      //     elementTemp.fadeOut();
+      // })
+
+        // function* _delete(a) {
+        //   a.closest('.item').fadeOut();
+        //   yield;
+        // }
+        // let _deleteFunc;
+        // $('.btn').click(function () {
+        //   _deleteFunc = _delete($(this));
+        // });
+        $('.delete').click(function () {
+          var $el = $('.address-delete');
+          localStorage.setItem('address','list');
+          $.ajax({
+            url: "/account/addresses/" + formIdDel,
+            type: "DELETE",
+            success: function (result) {
+            }
+          });
+        });
+      };
+      $('.edit_address').click(function(){
+        var $el = $(this);
+        var formId = $el.data('form-id');
+        localStorage.setItem('address','edit');
+        localStorage.setItem('formId',formId);
+        setTimeout(function() {
+            window.location.href = "/account/addresses";
+        }, 500);
+      });
+
+      $('#create_address_new').click(function(){
+        localStorage.setItem('address','create');
+        setTimeout(function() {
+                window.location.href = "/account/addresses";
+        }, 500);
+      });
+</script>
+{% schema %}
+{
+  "name": {
+    "da": "Sidebjælke",
+    "de": "Seitenleiste",
+    "en": "Sidebar",
+    "es": "Barra lateral",
+    "fi": "Sivupalkki",
+    "fr": "Barre latérale",
+    "hi": "साइडबार",
+    "it": "Sidebar",
+    "ja": "サイドバー",
+    "ko": "사이드바",
+    "nb": "Sidefelt",
+    "nl": "Zijbalk",
+    "pt-BR": "Barra Lateral",
+    "pt-PT": "Barra lateral",
+    "sv": "Sidofält",
+    "th": "แถบด้านข้าง",
+    "zh-CN": "侧边栏",
+    "zh-TW": "側邊欄"
+  },
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "main_menu_link_list",
+      "label": {
+        "da": "Menu",
+        "de": "Menü",
+        "en": "Menu",
+        "es": "Menú",
+        "fi": "Valikko",
+        "fr": "Menu",
+        "hi": "मेनू",
+        "it": "Menu",
+        "ja": "メニュー",
+        "ko": "메뉴",
+        "nb": "Meny",
+        "nl": "Menu",
+        "pt-BR": "Menu",
+        "pt-PT": "Menu",
+        "sv": "Meny",
+        "th": "เมนู",
+        "zh-CN": "菜单",
+        "zh-TW": "選單"
+      },
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

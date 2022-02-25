@@ -1,0 +1,139 @@
+<section class="section list_slider recomend" id="slider_recomend">
+  <div class="upper">
+      {%- if section.settings.show_product_recommendations -%}
+          <div class="product-recommendations" data-product-id="{{ product.id }}" data-limit="5">
+              {% if recommendations.performed %}
+              {%- if recommendations.products_count > 0 -%}
+                  <div class="tlt_main">
+                      <div class="item_thumbnail">
+                          <img src="{{'RECOMEND.png' | asset_url}}" alt="" />
+                      </div>
+                      <span>おすすめ</span>
+                  </div>
+                  <div class="slider_inner">
+                      <ul class="inner_recommend">
+                          {%- for product in recommendations.products -%}
+                              <li>
+                                  <a class="c-item" href="{{ product.url }}">
+                                      <div class="item_thumbnail">
+                                          <img src="{{ product.images.first.src | img_url: '200x200' }}" alt="{{ product.images.first.alt }}">
+                                      </div>
+                                      <div class="c-item__body">
+                                          <div class="c_category"><span>{{ product.type }}</span></div>
+                                          <h3 class="c-item__title">{{ product.title }}</h3>
+                                          <div class="c-item__author">{{product.metafields.custom_fields["artist"]}}</div>
+                                          <div class="c-item__price">{{ product.selected_or_first_available_variant.price | money }}（税抜）</div>
+                                          <div class="c-item__date">{{product.metafields.custom_fields["release_date"] | date: "%Y/%m/%d"}} 発売</div>
+                                      </div>
+                                  </a>
+                              </li>
+                          {%- endfor -%}
+                      </ul>
+                  </div>
+              {%- endif -%}
+              {% endif %}
+          </div>
+      {%- endif -%}
+  </div>
+</section>
+<script>
+    $(window).bind("load", function() {
+        // copy default code before carousel loaded
+        var header_links__html = $('.slider_inner').html();
+
+        // window_resize();
+        //
+        // $(window).resize(function() {
+        //     window_resize();
+        // });
+        //
+        // function window_resize() {
+        //     // mobile
+        //     if ( $(window).width() < 769 ) {
+        //         // if ( $('.slider_inner').find('.owl-carousel').hasClass('owl-loaded') ) {
+        //         //     $('.slider_inner').find('.owl-carousel').remove();
+        //         //
+        //         //     $('.slider_inner').append( header_links__html );
+        //         // }
+        //         //
+        //         // if ( !$('.slider_inner').find('.owl-carousel').length ) {
+        //         //     $('.slider_inner').append( header_links__html );
+        //         // }
+        //         $("section#slider_recomend").removeAttr("id");
+        //         $("section.list_slider.recomend").attr('id','container_recomend');
+        //         $( 'section.list_slider.recomend' ).removeClass( 'list_slider' );
+        //         $( '.slider_inner' ).addClass( 'container_recomend' );
+        //         $('ul.inner_recommend').addClass('list_item_ranking');
+        //
+        //         setTimeout(function () {
+        //             $('.c-item .c-item__body').matchHeight();
+        //         }, 1000);
+        //     }
+        //     //desktop
+        //     else {
+        //         if ( !$('.slider_inner').find('.owl-carousel').hasClass('owl-loaded') ) {
+        //             $('.slider_inner').find('.owl-carousel').owlCarousel({
+        //                 loop: false,
+        //                 rewind: true,
+        //                 dots: false,
+        //                 nav:true,
+        //                 items: 5,
+        //                 smartSpeed: 700
+        //             });
+        //         }
+        //         setTimeout(function () {
+        //             $('.c-item .c-item__body').matchHeight();
+        //         }, 1000);
+        //
+        //     }
+        // }
+    });
+
+    var loadProductRecommendationsIntoSection = function() {
+        // Look for an element with class 'product-recommendations'
+        var productRecommendationsSection = document.querySelector(".product-recommendations");
+        if (productRecommendationsSection === null) { return; }
+        // Read product id from data attribute
+        var productId = productRecommendationsSection.dataset.productId;
+        // Read limit from data attribute
+        var limit = productRecommendationsSection.dataset.limit;
+        // Build request URL
+        var requestUrl = "/recommendations/products?section_id=product-recommendations&limit="+limit+"&product_id="+productId;
+        // Create request and submit it using Ajax
+        var request = new XMLHttpRequest();
+        request.open("GET", requestUrl);
+        request.onload = function() {
+            if (request.status >= 200 && request.status < 300) {
+                var container = document.createElement("div");
+                container.innerHTML = request.response;
+                productRecommendationsSection.parentElement.innerHTML = container.querySelector(".product-recommendations").innerHTML;
+            }
+        };
+        request.send();
+    };
+    // If your section has theme settings, the theme editor
+    // reloads the section as you edit those settings. When that happens, the
+    // recommendations need to be fetched again.
+    // See https://help.shopify.com/en/themes/development/sections/integration-with-theme-editor
+    document.addEventListener("shopify:section:load", function(event) {
+        if (event.detail.sectionId === "product-recommendations") {
+            loadProductRecommendationsIntoSection();
+        }
+    });
+    // Fetching the recommendations on page load
+    loadProductRecommendationsIntoSection();
+</script>
+{% schema %}
+
+{
+  "name": "Product recommendations",
+  "settings": [
+  {
+  "type": "checkbox",
+  "id": "show_product_recommendations",
+  "label": "Enable product recommendations",
+  "default": false
+  }
+  ]
+}
+{% endschema %}

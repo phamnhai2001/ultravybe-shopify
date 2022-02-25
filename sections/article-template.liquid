@@ -1,0 +1,154 @@
+<!-- /templates/article.liquid -->
+{% comment %}
+  Comments will not appear right after they are submitted, either to be checked for spam
+  or to await moderation. When a comment is submitted, the browser is redirected to a page
+  that includes the new comment id in its URL.
+    Example: http://shopname.myshopify.com/blogs/news/2022072-my-post?comment=3721372
+{% endcomment %}
+{%- assign new_comment = false -%}
+{% if comment and comment.created_at %}
+  {%- assign new_comment = true -%}
+  {%- assign new_comment_id = comment.id -%}
+{% endif %}
+
+{% if new_comment %}
+  {%- assign duplicate_comment = false %}
+  {% for comment in article.comments %}
+    {% if comment.id == new_comment_id %}
+      {%- assign duplicate_comment = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% if duplicate_comment %}
+    {%- assign number_of_comments = article.comments_count -%}
+  {% else %}
+    {%- assign number_of_comments = article.comments_count | plus: 1 -%}
+  {% endif %}
+{% else %}
+  {%- assign number_of_comments = article.comments_count -%}
+{% endif %}
+<article class="article" itemscope itemtype="http://schema.org/Article">
+  <div class="upper">
+    <div class="navi_top">
+      <ul>
+        <li><a href="/">TOP</a></li>
+        <li><span class="current">お知らせ</span></li>
+      </ul>
+    </div>
+  </div>
+  <section class="section list_news list_news_detail">
+    <div class="upper">
+      <div class="item_news_details">
+        <div>
+          <span>{{ blog.title }}</span>
+          <div class="util_pc c-item__date">{{ article.published_at | date:'%Y/%m/%d %H:%M:%S'}}</div>
+        </div>
+        <h3 class="tlt_news">
+          {{ article.title }}
+        </h3>
+        <div class="item_thumbnail">
+          <img src="{{ article.image | img_url: 'master' }}" alt="" />
+        </div>
+        <div class="item_news_data">
+          <p>
+            {{ article.content }}
+          </p>
+        </div>
+        <div class="util_sp sns_social">
+          <ul class="col3">
+            <li>
+              {% if settings.share_facebook %}
+                <a target="_blank" href="//www.facebook.com/sharer.php?u={{ shop.url | append: share_permalink }}" class="resp-sharing-button__link" title="{{ 'general.social.alt_text.share_on_facebook' | t }}">
+                  <img src="{{'btn_share_fb.png' | asset_url}}" alt="sns twitter" />
+                </a>
+              {% endif %}
+            </li>
+            <li>
+              {% if settings.share_twitter %}
+                <a target="_blank" href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ shop.url | append: share_permalink }}" class="resp-sharing-button__link" title="{{ 'general.social.alt_text.share_on_twitter' | t }}">
+                  <img src="{{'btn_share_twitter.png' | asset_url}}" alt="sns line" />
+                </a>
+              {% endif %}
+            </li>
+            <li>
+              {% if settings.share_pinterest %}
+                <a target="_blank" href="//instagram.com/sharer.php?u={{ shop.url | append: share_permalink }}" class="resp-sharing-button__link" title="{{ 'general.social.alt_text.share_on_pinterest' | t }}">
+                  <img src="{{'btn_share_fb.png' | asset_url}}" alt="sns twitter" />
+                </a>
+              {% endif %}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+<style>
+  #main_content {
+    background-color: #F4F4F4;
+  }
+  .main>.inner {
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    .main > .inner,
+    #main_content {
+      background-color: #ffffff;
+    }
+    .template-article {
+      background-color: #ffffff;
+    }
+  }
+</style>
+{% schema %}
+{
+  "name": {
+    "da": "Artikelsider",
+    "de": "Artikelseiten",
+    "en": "Article pages",
+    "es": "Páginas del artículo",
+    "fi": "Artikkelisivut",
+    "fr": "Pages d'articles",
+    "hi": "लेख पेज",
+    "it": "Pagine articoli",
+    "ja": "記事ページ",
+    "ko": "문서 페이지",
+    "nb": "Artikkelsider",
+    "nl": "Artikelpagina's",
+    "pt-BR": "Páginas do artigo",
+    "pt-PT": "Páginas de artigo",
+    "sv": "Artikelsidor",
+    "th": "หน้าบทความ",
+    "zh-CN": "文章页面",
+    "zh-TW": "文章頁面"
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "social_sharing_blog",
+      "label": {
+        "da": "Aktivér deling for blogartikler",
+        "de": "Teilen von Blog-Beiträgen aktivieren",
+        "en": "Enable sharing for blog articles",
+        "es": "Habilitar el uso compartido de artículos de blog",
+        "fi": "Ota blogi-artikkelien jakaminen käyttöön",
+        "fr": "Activer le partage pour les articles de blog",
+        "hi": "ब्लॉग लेखों के लिए शेयर करना सक्षम करें",
+        "it": "Abilita condivisione per gli articoli del blog",
+        "ja": "ブログ記事の共有を有効にする",
+        "ko": "블로그 기사 공유 사용",
+        "nb": "Aktiver deling for bloggartikler",
+        "nl": "Delen van blogartikelen toestaan",
+        "pt-BR": "Habilitar compartilhamento para artigos de blog",
+        "pt-PT": "Ativar partilha para artigos no blogue",
+        "sv": "Aktivera delning för bloggartiklar",
+        "th": "เปิดใช้งานการแชร์บทความบล็อก",
+        "zh-CN": "启用博客文章分享",
+        "zh-TW": "啟用部落格文章分享功能"
+      },
+      "default": true
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,8 @@
+development:
+  password: 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
+  theme_id: "79751184441"
+  store: ultra-shibuya.myshopify.com
+  ignore_files:
+        “*.swp”
+        “*~”
+        “config/settings_data.json”

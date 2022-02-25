@@ -1,0 +1,300 @@
+<!-- /templates/collection.liquid -->
+<div data-section-id="{{ section.id }}" data-section-type="collection-template" data-sort-enabled="{{ section.settings.collection_sort_enable }}" data-tags-enabled="{{ section.settings.collection_tag_enable }}">
+  <div class="upper">
+    {% render 'breadcrumbs' %}
+  </div>
+    {% if collection.products_count > 0 %}
+        <section class="section inner_list_item" id="inner_list_item">
+            <div class="upper">
+              <div class="tlt_option_top">
+                <div class="tlt_list">
+                    {% if current_tags %}
+                        <h3>{{current_tags}}</h3>
+                    {% else %}
+                        <h3>{{collection.title}}</h3>
+                    {% endif %}
+                  <span>件数：{{collection.products_count}}件</span>
+                  {% comment %} <h1>Data: {{current_tags}} - {{collection.title}}</h1> {% endcomment %}
+                </div>
+
+                  <div id="box_check_option" class="box_select__">
+                  {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+                    <select name="sort_by" id="SortBy" class="box_select_sort box_select__list">
+                    <!-- {% for option in collection.sort_options %}
+                      <option value="{{ option.value }}" selected="selected">{{ option.name }}</option>
+                      {% endfor %} -->
+                      <option></option>
+                      <option value="created-descending">新着順</option>
+                      <option value="price-ascending">値段の安い順</option>
+                      <option value="price-descending">値段の高い順</option>
+                    </select>
+                  </div>
+
+              </div>
+              {% paginate collection.products by 10 %}
+              <div class="product_list_item">
+                <ul class="holizontal_list col_05 list_item_products" id="AjaxinateLoop">
+                {% for product in collection.products %}
+                  <li>
+                    <a class="c-item" href="{{ product.url }}">
+                      <div class="item_thumbnail">
+                        <img src="{{ product.images.first.src | img_url: '200x200' }}" alt="">
+                        {% comment %} {%- for image in product.images -%}
+                            <img class="util_pc" src="{{ image.src | img_url: '200x200' }}" alt="">
+                            <img class="util_sp" src="{{ image.src | img_url: '200x200' }}" alt="">
+                            {%- endfor -%} {% endcomment %}
+                      </div>
+                      <div class="c-item__body">
+                        <div class="c_category"><span>{{ product.type }}</span></div>
+                        <h3 class="c-item__title">
+                          {{ product.title}}
+                        </h3>
+                        <div class="c-item__author">{{product.metafields.custom_fields["artist"]}}</div>
+                        <div class="c-item__price">{{ product.selected_or_first_available_variant.price | money }}（税抜）</div>
+                        <div class="c-item__date">{{product.metafields.custom_fields["release_date"] | date: "%Y/%m/%d"}} 発売</div>
+                      </div>
+                    </a>
+                  </li>
+                  {% endfor %}
+                </ul>
+                <div id="AjaxinatePagination">
+                  {% if paginate.next %}
+                  <a href="{{ paginate.next.url }}">
+                    <div class="load-more load1">
+                      <div class="wrap_loader">
+                        <div class="loader"></div>
+                        <div class="loading hidden"></div>
+                      </div>
+                    </div>
+                  </a>
+                  {% endif %}
+                </div>
+              </div>
+      {% endpaginate %}
+    </div>
+  </section>
+    {% else %}
+        <section class="section inner_list_item wapper_search_empty" id="inner_list_item">
+          <div class="upper">
+            <div class="tlt_option_top">
+              <div class="tlt_list">
+                <h3>{{ collection.title }}</h3>
+                <span>件数：0件</span>
+              </div>
+            </div>
+            <div class="product_list_item inner_search_empty">
+              <div class="search_empty">
+                <h2>現在こちらの商品はお取り扱いがありません。</h2>
+                <a class="btn_short01" href="/">TOPへ戻る</a>
+              </div>
+            </div>
+          </div>
+      </section>
+    {% endif %}
+</div>
+<style>
+  .holizontal_list.col_05.list_item_products {
+    /*max-height: 2481px;*/
+  }
+  .section.inner_list_item.wapper_search_empty > .upper {
+    min-height: auto !important;
+  }
+  .main>.inner {
+    background-color: #ffffff;
+    width: 100%;
+  }
+  .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: #EBEBEB;
+    color: #000;
+    font-size: 14px;
+  }
+  .select2-container--default .select2-results__option--selected,
+  .select2-results__option--selectable {
+    font-size: 14px;
+  }
+  .select2-results__option {
+    margin: 6px;
+  }
+  @media only screen and (min-width: 1248px) and (max-width: 1919px) {
+    .holizontal_list.col_05.list_item_products {
+      /*max-height: 129.2860865vw;*/
+    }
+    .select2-container--default .select2-results__option--selected,
+    .select2-results__option--selectable {
+      font-size: 0.729546639vw;
+    }
+    .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+      font-size: 0.729546639vw;
+    }
+    .select2-results__option {
+      margin: 0.312662845vw;
+    }
+  }
+  @media only screen and (max-width: 1247px) and (min-width: 769px) {
+    .select2-results__option {
+      margin: 4px;
+    }
+  }
+  @media (max-width: 768px) {
+    .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable,
+    .select2-container--default .select2-results__option--selected, .select2-results__option--selectable {
+      font-size: 3.64vw;
+      padding: 2.604166667vw;
+    }
+  }
+</style>
+
+<script>
+
+    $('.c-item .c-item__body').matchHeight();
+  document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(function(){
+        var endlessScroll = new Ajaxinate({
+        container: '#AjaxinateLoop',
+        pagination: '#AjaxinatePagination',
+        // method: 'scroll',
+        // loadingText: '',
+        // offset: 10000,
+        callback: function() {
+            setTimeout(function () {
+                $('.c-item .c-item__body').matchHeight();
+                $('.holizontal_list .c-item').matchHeight();
+            }, 1000);
+        }
+      });
+      endlessScroll.destroy();
+    }, 300);
+
+   $('.c-item .c-item__body').matchHeight();
+});
+</script>
+<script>
+  Shopify.queryParams = {};
+  if (location.search.length) {
+    for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+      aKeyValue = aCouples[i].split('=');
+      if (aKeyValue.length > 1) {
+        Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+      }
+    }
+  }
+  jQuery('#sort-by')
+    .val('{{ collection.sort_by | default: collection.default_sort_by | escape }}')
+    .bind('change', function() {
+      Shopify.queryParams.sort_by = jQuery(this).val();
+      location.search = jQuery.param(Shopify.queryParams).replace(/\+/g, '%20');
+    });
+
+    var sortValue = {{sort_by | json}};
+    var sortName = "";
+    if(sortValue == "created-descending") {
+      sortName = "新着順";
+    }
+    if (sortValue == "price-ascending") {
+      sortName = "値段の安い順";
+    }
+    if (sortValue == "price-descending") {
+      sortName = "値段の高い順";
+    }
+    localStorage.setItem("sortName", sortName);
+</script>
+{% schema %}
+{
+  "name": {
+    "da": "Kollektionssider",
+    "de": "Kategorie-Seiten",
+    "en": "Collection pages",
+    "es": "Páginas de colección",
+    "fi": "Kokoelman sivut",
+    "fr": "Pages de collections",
+    "hi": "कलेक्शन पेज",
+    "it": "Pagine di collezioni",
+    "ja": "コレクションページ",
+    "ko": "컬렉션 페이지",
+    "nb": "Samlingssider",
+    "nl": "Collectiepagina's",
+    "pt-BR": "Páginas de coleções",
+    "pt-PT": "Páginas de coleções",
+    "sv": "Produktseriesidor",
+    "th": "หน้าคอลเลกชัน",
+    "zh-CN": "产品系列页面",
+    "zh-TW": "商品系列頁面"
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "vendor_show",
+      "label": {
+        "da": "Vis produktleverandør",
+        "de": "Produktverkäufer anzeigen",
+        "en": "Show product vendor",
+        "es": "Mostrar proveedor del producto",
+        "fi": "Näytä tuotteen myyjä",
+        "fr": "Afficher le distributeur du produit",
+        "hi": "उत्पाद विक्रेता दिखाएं",
+        "it": "Mostra fornitore prodotto",
+        "ja": "商品の販売元を表示する",
+        "ko": "제품 공급 업체 표시",
+        "nb": "Vis produktleverandør",
+        "nl": "Productleverancier weergeven",
+        "pt-BR": "Exiba o fornecedor do produto",
+        "pt-PT": "Mostrar o fornecedor do produto",
+        "sv": "Visa produktsäljare",
+        "th": "แสดงผู้ขายสินค้า",
+        "zh-CN": "显示产品厂商",
+        "zh-TW": "顯示產品廠商"
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "collection_sort_enable",
+      "label": {
+        "da": "Aktivér sortering af kollektioner",
+        "de": "Kategoriesortierung aktivieren",
+        "en": "Enable collection sorting",
+        "es": "Habilitar la función ordenar colecciones",
+        "fi": "Ota kokoelman lajittelu käyttöön",
+        "fr": "Activer le tri de la collection",
+        "hi": "कलेक्शन क्रमबद्ध करना सक्षम करें",
+        "it": "Abilita ordinamento collezione",
+        "ja": "コレクションの並べ替えを有効にする",
+        "ko": "컬렉션 정렬 사용",
+        "nb": "Aktiver sortering av samlinger",
+        "nl": "Sorteren op collectie inschakelen",
+        "pt-BR": "Habilitar a organização de coleções",
+        "pt-PT": "Ativar ordenação de coleções",
+        "sv": "Aktivera produktseriesortering",
+        "th": "เปิดใช้การเรียงลำดับคอลเลกชัน",
+        "zh-CN": "启用产品系列排序",
+        "zh-TW": "啟用商品系列排序功能"
+      },
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "collection_tag_enable",
+      "label": {
+        "da": "Aktivér filtrering efter produkttag",
+        "de": "Filterung nach Produkt-Tag aktivieren",
+        "en": "Enable filtering by product tag",
+        "es": "Habilitar filtro por etiqueta de producto",
+        "fi": "Ota suodatus tuotetunnisteen perusteella käyttöön",
+        "fr": "Activer le filtrage par balise de produit",
+        "hi": "उत्पाद टैग द्वारा फ़िल्टर लगाना सक्षम करें",
+        "it": "Abilita filtri per tag di prodotto",
+        "ja": "商品タグによる絞り込みを有効にする",
+        "ko": "제품 태그별로 필터링 사용",
+        "nb": "Aktiver filtrering etter produkttagg",
+        "nl": "Schakel filteren in per producttag",
+        "pt-BR": "Habilitar filtragem por tag de produto",
+        "pt-PT": "Ativar filtragem por etiqueta de produto",
+        "sv": "Aktivera filtrering efter produkttagg",
+        "th": "เปิดใช้การกรองตามแท็กสินค้า",
+        "zh-CN": "启用按产品标记筛选",
+        "zh-TW": "啟用產品標籤篩選功能"
+      },
+      "default": true
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,180 @@
+<!doctype html>
+<html class="supports-no-js" lang="{{ shop.locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {% comment %} {% if settings.favicon %}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png" />
+  {% endif %} {% endcomment %}
+
+  <title>
+  {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  {% include 'social-meta-tags' %}
+
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('supports-no-js', 'supports-js');
+
+    var theme = {
+      mapStrings: {
+        addressError: {{ 'homepage.map.address_error' | t | json }},
+        addressNoResults: {{ 'homepage.map.address_no_results' | t | json }},
+        addressQueryLimit: {{ 'homepage.map.address_query_limit_html' | t | json }},
+        authError: {{ 'homepage.map.auth_error_html' | t | json }}
+      }
+    }
+  </script>
+
+  {{ 'jquery.fancybox.min.css' | asset_url | stylesheet_tag }}
+  {{ 'wish-list.css' | asset_url | stylesheet_tag }}
+  {{ 'slick.css' | asset_url | stylesheet_tag }}
+  {{ 'slick-theme.css' | asset_url | stylesheet_tag }}
+  {{ 'owl.carousel.min.css' | asset_url | stylesheet_tag }}
+  {{ 'owl.theme.default.min.css' | asset_url | stylesheet_tag }}
+  {{ 'select2.min.css' | asset_url | stylesheet_tag }}
+  {{ 'font-awesome.min.css' | asset_url | stylesheet_tag }}
+  {{ 'xzoom.css' | asset_url | stylesheet_tag }}
+  {{ 'magnific-popup.css' | asset_url | stylesheet_tag }}
+  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+  {% comment %} {{ 'style.scss.css' | asset_url | stylesheet_tag }} {% endcomment %}
+
+  {{ content_for_header }}
+
+
+  <script src="{{ 'jquery-ui.slider.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'jquery.ui.touch-punch.min.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'check_price_search.js' | asset_url }}" defer="defer"></script>
+
+  {{ 'jquery-1.11.0.min.js' | asset_url | script_tag }}
+  {{ 'modernizr.min.js' | asset_url | script_tag }}
+  {{ 'ajaxinate.js' | asset_url | script_tag }}
+  {{ 'jquery.min.js' | asset_url | script_tag }}
+  {{ 'slick.min.js' | asset_url | script_tag }}
+  {{ 'select2.min.js' | asset_url | script_tag }}
+  {{ 'jquery.validate.js' | asset_url | script_tag }}
+  {{ 'contact-validate.js' | asset_url | script_tag }}
+  {{ 'jquery.zip2addr.js' | asset_url | script_tag }}
+  {{ 'jquery.easing.js' | asset_url | script_tag }}
+  {{ 'jquery.fancybox.min.js' | asset_url | script_tag }}
+  {{ 'xzoom.min.js' | asset_url | script_tag }}
+  {{ 'owl.carousel.min.js' | asset_url | script_tag }}
+  {{ 'jquery.matchHeight-min.js' | asset_url | script_tag }}
+  {{ 'jquery.hammer.min.js' | asset_url | script_tag }}
+  {{ 'magnific-popup.js' | asset_url | script_tag }}
+
+
+  <script language="JavaScript" src="https://web-cache.chocomaru.com/jplayer.js" async defer></script>
+
+  {% comment %} <script src="{{ 'check_price_search.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'slick.min.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'select2.min.js' | asset_url }}" defer="defer"></script> {% endcomment %}
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+  {% comment %} <script src="{{ 'lazysizes.min.js' | asset_url }}" async="async"></script> {% endcomment %}
+
+  {% if request.page_type contains 'customers/' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {% endif %}
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+    {% if template contains 'customers' %}
+      {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+    {% endif %}
+
+  <style>
+    @media (max-width: 768px) {
+      .main > .inner {
+         background-color: #ebebeb;
+       }
+      .upper>div.link {
+        z-index: 999;
+        padding-left: 13.02083333vw;
+      }
+    }
+  </style>
+</head>
+
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ request.page_type | handle }}">
+<div id="container">
+  {% section "header" %}
+  <div class="main">
+    {% section "sidebar" %}
+    <div class="inner">
+      <div id="main_content" role="main">
+          {% if (page_title == 'ultra shibuya online') %}
+          <script>
+            if (localStorage.getItem("redirectLogin") == "login") {
+                localStorage.setItem("redirectLogin", "");
+                $('body').addClass('open');
+                $('.content.logined').show();
+                $('.icon__login.accordion_navi.main').addClass('active');
+              }
+          </script>
+            {% section "slider" %}
+            {% section "featuredpage" %}
+          {% endif %}
+          {{ content_for_layout }}
+          <script>
+            $('.shopify-challenge__message').html('認証のために以下にチェックを入れて<span>送信してください</span>');
+            $('.shopify-challenge__button').val('送信する');
+          </script>
+      </div>
+    </div>
+  </div>
+    {% section "footer" %}
+  {% if request.page_type == 'product' or request.page_type == 'index' %}
+    {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+    <script>
+      // Set a global variable for theme.js to use on product single init
+      window.theme = window.theme || {};
+      theme.moneyFormat = {{ shop.money_format | json }};
+      theme.productSingleObject = {{ product | json }};
+    </script>
+  {% endif %}
+
+  <ul hidden>
+    <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
+    <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
+  </ul>
+  <div id="stop" class="scrollTop">
+        <span><a href="">Top</a></span>
+    </div>
+</div>
+  
+  {% include 'social-login' %}
+
+  {% if template contains 'product' or template contains 'wishlist' %}
+  {{ 'Wishlist.js' | asset_url | script_tag }}
+  <script>
+    (function () {
+      Wishlist.init();
+    }());
+  </script>
+  {% endif %}
+  {% if template contains 'product' or (page_title == 'wishlist') %}
+    {{ 'jquery.products.js' | asset_url | script_tag }}
+    <script>
+    Shopify.Products.recordRecentlyViewed();
+    </script>
+  {% endif %}
+  {{ 'main.js' | asset_url | script_tag }}
+  {{ 'theme.js' | asset_url | script_tag }}
+<script>
+  $(document).ready(function(){
+    var url = window.location.pathname + window.location.hash;
+    if (url == '/challenge#contact_form') {
+      $('html, body').animate({
+        scrollTop: 0,
+      }, 300);
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!-- {% assign timeCheck = 'now' | date: "%M"%}
+{% assign input ='00, 05, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60' | split:", " %}
+
+{% if input contains timeCheck %}
+<script src="https://unpkg.com/localforage@1.7.3/dist/localforage.min.js"></script>
+<script>
+  localforage.setDriver(localforage.INDEXEDDB);
+  var collections = new Array();
+</script>
+{% assign allProduct = '' | split: ',' %}
+{% paginate collections.all.products by 9999 %}
+{% for product in collections.all.products %}
+  {% assign artist = product.metafields.custom_fields["artist"] %}
+  {% assign date_release = product.metafields.custom_fields["release_date"] %}
+  {% assign country = product.metafields.custom_fields["country"] %}
+  {% assign condition = product.metafields.custom_fields["condition"] %}
+  {% assign specification = product.metafields.custom_fields["specification"] %}
+  {% assign preorder = product.metafields.custom_fields["preorder"] %}
+  {% assign product_type = product.type %}
+  {% assign product_title = product.title %}
+  {% assign product_price = product.selected_or_first_available_variant.price %}
+  {% assign product_img = product.images.first.src %}
+  {% assign product_url = product.url %}
+  <script>
+    var product = {
+      "title": {{ product_title | json }},
+      "type": {{ product_type | json }},
+      "price": {{ product_price | json }},
+      "img": {{ product_img | json }},
+      "url": {{ product_url | json }},
+      "artist": {{ artist | json }},
+      "release_date": {{ date_release | json }},
+      "country": {{ country | json }},
+      "condition": {{ condition | json }},
+      "specification": {{ specification | json }},
+      "preorder": {{ preorder | json }},
+    };
+    collections.push(product);
+  </script>
+{% endfor %}
+{% endpaginate %}
+  <script>
+    var dataProduct = {
+      'products': collections,
+    }
+
+    localforage
+    .setItem('products', dataProduct)
+    .then(function(value) {
+      console.log(value);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+</script>
+{%endif%} -->
+
+<script src="https://unpkg.com/localforage@1.7.3/dist/localforage.min.js"></script>
+<script>
+  localforage.setDriver(localforage.INDEXEDDB);
+  var collections = new Array();
+</script>
+{% paginate collections.all.products by 99999 %}
+{% for product in collections.all.products %}
+{% assign artist = product.metafields.custom_fields["artist"] %}
+{% assign songName = product.metafields.custom_fields["tracklist"] %}
+{% assign catalogNo = product.metafields.custom_fields["catalog_no"] %}
+{% assign date_release = product.metafields.custom_fields["release_date"] %}
+{% assign country = product.metafields.custom_fields["country"] %}
+{% assign condition = product.metafields.custom_fields["condition"] %}
+{% assign specification = product.metafields.custom_fields["specification"] %}
+{% assign preorder = product.metafields.custom_fields["preorder"] %}
+{% assign product_type = product.type %}
+{% assign product_vendor = product.vendor %}
+{% assign product_barcode = product.selected_or_first_available_variant.barcode %}
+{% assign product_title = product.title %}
+{% assign product_price = product.selected_or_first_available_variant.price %}
+{% assign product_img = product.images.first.src %}
+{% assign product_url = product.url %}
+<script>
+  var product = {
+    "title": {{ product_title | json }},
+    "tracklist": {{ product_title | json}},
+    "catalog_no": {{ catalogNo | json}},
+    "vendor": {{ product_vendor | json}},
+    "barcode": {{ product_barcode | json}},
+    "type": {{ product_type | json }},
+    "price": {{ product_price | json }},
+    "img": {{ product_img | json }},
+    "url": {{ product_url | json }},
+    "artist": {{ artist | json }},
+    "release_date": {{ date_release | json }},
+    "country": {{ country | json }},
+    "condition": {{ condition | json }},
+    "specification": {{ specification | json }},
+    "preorder": {{ preorder | json }},
+    };
+  collections.push(product);
+</script>
+{% endfor %}
+{% endpaginate %}
+<script>
+  var dataProduct = {
+    'products': collections,
+  }
+
+  localforage
+    .setItem('products', dataProduct)
+    .then(function (value) {
+      // console.log("data: ",value);
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+</script>

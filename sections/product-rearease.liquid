@@ -1,0 +1,122 @@
+{% assign limitProduct = 10 %}
+<section class="section new_rerease" id="new_rerease">
+{% for block in section.blocks %}
+{%- assign collection = collections[block.settings.collection] -%}
+  <div class="upper">
+    <div class="tlt_main">
+        <div class="item_thumbnail">
+          <img class="util_pc" src="{{ section.settings.image | img_url: 'master' }}" alt="">
+          <img class="util_sp" src="{{ section.settings.image | img_url: 'master' }}" alt="">
+        </div>
+        <span>{{block.settings.title}}</span>
+      </div>
+      {% paginate collection.products by limitProduct %}
+      <ul class="holizontal_list col_05" id="AjaxinateLoop">
+        {% for product in collection.products %}
+          <li class="item-product-{{ forloop.index }}">
+            <a class="c-item" href={{ product.url }}>
+                <div class="item_thumbnail">
+                    <img src="{{ product.images.first.src | img_url: '200x200' }}" alt="{{ product.images.first.alt }}">
+                </div>
+                <div class="c-item__body">
+                  <div class="c_category"><span>{{ product.type }}</span></div>
+                  <h3 class="c-item__title">{{ product.title}}</h3>
+                  <div class="c-item__author">{{product.metafields.custom_fields["artist"]}}</div>
+                  <div class="c-item__price">{{ product.selected_or_first_available_variant.price | money }}（税抜）</div>
+                  <div class="c-item__date">{{product.metafields.custom_fields["release_date"] | date: "%Y/%m/%d"}} 発売</div>
+              </div>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        <div id="AjaxinatePagination">
+            {% if paginate.next %}
+                <a href="{{ paginate.next.url }}">
+                  <div class="load-more load1">
+                    <div class="wrap_loader">
+                      <div class="loader"></div>
+                      <div class="loading hidden"></div>
+                    </div>
+                  </div>
+                </a>
+            {% endif %}
+            </div>
+        {% endpaginate %}
+  </div>
+{% endfor %}
+</section>
+{% schema %}
+  {
+    "name": "Productreseare",
+    "class": "section new_rerease",
+    "max_blocks": 1,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Rankin"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+	"blocks":[
+      {
+        "type": "item_tab",
+        "name": "Item tabs",
+        "settings": [
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          }
+        ]
+      }
+	],
+    "presets": [
+      {
+        "name": "Productreseare",
+        "category": "Collection",
+		"blocks": [
+          {
+            "type": "item_tab"
+          },
+          {
+            "type": "item_tab"
+          },
+          {
+            "type": "item_tab"
+          }
+		]
+      }
+    ]
+  }
+{% endschema %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(function () {
+        var endlessScroll = new Ajaxinate({
+          container: '#AjaxinateLoop',
+          pagination: '#AjaxinatePagination',
+          // method: 'scroll',
+          // loadingText: '',
+          // offset: 10000,
+          callback: function() {
+              setTimeout(function () {
+                  $('.c-item .c-item__body').matchHeight();
+                  $('.holizontal_list .c-item').matchHeight();
+              }, 1000);
+          }
+        });
+      endlessScroll.destroy();
+      }, 300);
+    });
+</script>

@@ -1,0 +1,132 @@
+<!-- /templates/collection.liquid -->
+<div data-section-id="{{ section.id }}" data-section-type="collection-template" data-sort-enabled="{{ section.settings.collection_sort_enable }}" data-tags-enabled="{{ section.settings.collection_tag_enable }}">
+  {% assign collection_handle = “collection-” | append: collection.handle %}
+  <div class="upper">
+    <div class="navi_top">
+      <ul>
+        <li><a href="/">商品ページ</a></li>
+        <li>
+          <span class="current">
+          {% assign handle = "musics" %}
+          {% case handle %}
+            {% when "musics" %}
+              音楽
+            {% when "videos" %}
+              映像
+            {% when "goods" %}
+              グッズ
+            {% when "japanese-music" %}
+              邦楽
+            {% when "western-music" %}
+              洋楽
+            {% when "other" %}
+              その他
+          {% endcase %}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <section class="section inner_list_item" id="inner_list_item">
+    <div class="upper">
+      {% paginate collection.products by 10 %}
+      <div class="product_list_item">
+        <ul class="holizontal_list col_05" id="product-loop">
+         {% for link in linklists[collection_handle].links %}
+          {% for product in link.object.products %}
+          <li>
+            <a class="c-item" href="{{ product.url }}">
+              <div class="item_thumbnail">
+                {%- for image in product.images -%}
+                    <img class="util_pc" src="{{ image.src | img_url: '200x200' }}" alt="">
+                    <img class="util_sp" src="{{ image.src | img_url: '200x200' }}" alt="">
+                    {%- endfor -%}
+              </div>
+              <div class="c-item__body">
+                <div class="c_category"><span>{{ product.type }}</span></div>
+                <h3 class="c-item__title">
+                  {{ product.title}}
+                </h3>
+                <div class="c-item__author">{{product.metafields.custom_fields["artist"]}}</div>
+                <div class="c-item__price">{{ product.selected_or_first_available_variant.price | money }}（税抜）</div>
+                <div class="c-item__date">{{product.metafields.custom_fields["release_date"] | date: "%Y/%m/%d"}} 発売</div>
+              </div>
+            </a>
+          </li>
+          {% endfor %}
+          {% endfor %}
+        </ul>
+        <div id="AjaxinatePagination">
+          {% if paginate.next %}
+              <a href="{{ paginate.next.url }}">
+              </a>
+              <div class="load-more load1">
+                <div class="wrap_loader">
+                  <div class="loader"></div>
+                  <div class="loading hidden"></div>
+                </div>
+              </div>
+          {% endif %}
+          </div>
+      {% endpaginate %}
+    </div>
+    </div>
+  </section>
+</div>
+<style>
+    .main>.inner {
+        background-color: #ffffff;
+        width: 100%;
+    }
+  .select2-container--default
+    .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: #ebebeb;
+    color: #000;
+    font-size: 14px;
+  }
+  .select2-container--default .select2-results__option--selected,
+  .select2-results__option--selectable {
+    font-size: 14px;
+  }
+  .select2-results__option {
+    margin: 6px;
+  }
+  @media only screen and (min-width: 1248px) and (max-width: 1919px) {
+    .select2-container--default .select2-results__option--selected,
+    .select2-results__option--selectable {
+      font-size: 0.729546639vw;
+    }
+    .select2-container--default
+      .select2-results__option--highlighted.select2-results__option--selectable {
+      font-size: 0.729546639vw;
+    }
+    .select2-results__option {
+      margin: 0.312662845vw;
+    }
+  }
+  @media only screen and (max-width: 1247px) and (min-width: 769px) {
+    .select2-results__option {
+      margin: 4px;
+    }
+  }
+  @media (max-width: 768px) {
+    .select2-container--default
+      .select2-results__option--highlighted.select2-results__option--selectable,
+    .select2-container--default .select2-results__option--selected,
+    .select2-results__option--selectable {
+      font-size: 3.64vw;
+      padding: 2.604166667vw;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  var endlessScroll = new Ajaxinate({
+        container: '#product-loop',
+        pagination: '#AjaxinatePagination',
+        loadingText: ' '
+  });
+    endlessScroll.destroy();
+});
+</script>
