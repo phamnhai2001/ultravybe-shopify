@@ -1,6 +1,6 @@
 <!-- /templates/collection.liquid -->
 <div data-section-id="{{ section.id }}" data-section-type="collection-template" data-sort-enabled="{{ section.settings.collection_sort_enable }}" data-tags-enabled="{{ section.settings.collection_tag_enable }}">
-  {% assign collection_handle = “collection-” | append: collection.handle %}
+  {% assign collection_handle = collection- | append: collection.handle %}
   <div class="upper">
     <div class="navi_top">
       <ul>
@@ -130,3 +130,13 @@
     endlessScroll.destroy();
 });
 </script>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% assign collection_handle = “collection-” | append: collection.handle %}"
+  to: "{% assign collection_handle = collection- | append: collection.handle %}"
+  position: 252..324
+{% endcomment %}

@@ -108,7 +108,7 @@
     {% section "sidebar" %}
     <div class="inner">
       <div id="main_content" role="main">
-          {% if (page_title == 'ultra shibuya online') %}
+          {% if page_title == 'ultra shibuya online' %}
           <script>
             if (localStorage.getItem("redirectLogin") == "login") {
                 localStorage.setItem("redirectLogin", "");
@@ -158,7 +158,7 @@
     }());
   </script>
   {% endif %}
-  {% if template contains 'product' or (page_title == 'wishlist') %}
+  {% if template contains 'product' or page_title == 'wishlist' %}
     {{ 'jquery.products.js' | asset_url | script_tag }}
     <script>
     Shopify.Products.recordRecentlyViewed();
@@ -178,3 +178,16 @@
 </script>
 </body>
 </html>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% if (page_title == 'ultra shibuya online') %}"
+  to: "{% if page_title == 'ultra shibuya online' %}"
+  position: 4782..4827
+- from: "{% if template contains 'product' or (page_title == 'wishlist') %}"
+  to: "{% if template contains 'product' or page_title == 'wishlist' %}"
+  position: 6507..6571
+{% endcomment %}
